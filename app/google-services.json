@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1007759706019",
+    "project_id": "moviesapp-798f2",
+    "storage_bucket": "moviesapp-798f2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1007759706019:android:a52b81512cf5743fbfbc16",
+        "android_client_info": {
+          "package_name": "com.berfinilik.moviesappkotlin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjO6xn3MKmUrb-c0BqHc64H06B49dUsRc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

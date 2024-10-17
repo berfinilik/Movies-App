@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MoviesAppKotlin</string>
+    <string name="login_title">Login</string>
+    <string name="username_hint">Username</string>
+    <string name="password_hint">Password</string>
+    <string name="forgot_password">Forgot your password?</string>
+    <string name="login_button">Login</string>
+    <string name="no_account">Don\'t have an account?</string>
+    <string name="register_text">Register</string>
+    <string name="signup_title">Sign Up</string>
+    <string name="email_hint">Email</string>
+    <string name="confirm_password_hint">Re-enter your password</string>
+    <string name="signup_button">Sign Up</string>
+    <string name="hello">Hello</string>
+    <string name="search_hint">Search Movie</string>
+    <string name="category_title">Categories</string>
+    <string name="popular_title">Most Popular</string>
+    <string name="storyline_title">Story Line</string>
+    <string name="cast_title">Cast and Crew</string>
+    <string name="movie_title">Movie Title</string>
+    <string name="movie_time">2024 - 2h 2m</string>
+    <string name="rating_text">4.5</string>
+    <string name="watch_trailer">Watch Trailer</string>
+</resources>

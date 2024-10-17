@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">MoviesAppKotlin</string>
+    <string name="login_title">Giriş Yap</string>
+    <string name="username_hint">Kullanıcı Adı</string>
+    <string name="password_hint">Şifre</string>
+    <string name="forgot_password">Şifrenizi mi unuttunuz?</string>
+    <string name="login_button">Giriş Yap</string>
+    <string name="no_account">Henüz hesabınız yok mu?</string>
+    <string name="register_text">Kayıt Olun</string>
+    <string name="signup_title">Kayıt Ol</string>
+    <string name="email_hint">Email</string>
+    <string name="confirm_password_hint">Şifrenizi tekrar giriniz</string>
+    <string name="signup_button">Kayıt Ol</string>
+    <string name="hello">Merhaba</string>
+    <string name="search_hint">Film Ara</string>
+    <string name="category_title">Kategoriler</string>
+    <string name="popular_title">En popülerler</string>
+    <string name="storyline_title">Story Line</string>
+    <string name="cast_title">Cast and Crew</string>
+    <string name="movie_title">Film Adı</string>
+    <string name="movie_time">2024 - 2h 2m</string>
+    <string name="rating_text">4.5</string>
+    <string name="watch_trailer">İzle</string>
+
 </resources>
