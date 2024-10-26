@@ -1,21 +1,22 @@
 package com.berfinilik.moviesappkotlin.api
 
-import com.berfinilik.moviesappkotlin.model.GenresResponse
-import com.berfinilik.moviesappkotlin.model.PopularMoviesResponse
-import retrofit2.Call
+import com.berfinilik.moviesappkotlin.data.model.GenresResponse
+import com.berfinilik.moviesappkotlin.data.model.PopularMoviesResponse
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface MovieApiService {
-    @GET("movie/popular")
-    fun getPopularMovies(
-        @Query("language") language:String= "tr-TR",
-        @Query("page") page:Int=1,
+    suspend fun getPopularMovies(
+        @Query("api_key") apiKey: String,
+        @Query("language") language: String = "tr-TR",
+        @Query("page") page: Int = 1,
         @Query("region") region: String? = null
+    ): Response<PopularMoviesResponse>
 
-    ): Call<PopularMoviesResponse>
     @GET("genre/movie/list")
-    fun getMovieGenres(
-        @Query("language") language: String="tr-TR"
-    ):Call<GenresResponse>
+    suspend fun getMovieGenres(
+        @Query("api_key") apiKey: String,
+        @Query("language") language: String = "tr-TR"
+    ): Response<GenresResponse>
 }
