@@ -1,4 +1,4 @@
-package com.berfinilik.moviesappkotlin.model
+package com.berfinilik.moviesappkotlin.data.model
 
 data class PopularMoviesResponse(
     val page: Int,

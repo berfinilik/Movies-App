@@ -26,6 +26,11 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("String", "TMDB_API_KEY", "\"416ffe3feaa612800144e2d842faa042\"")
+        }
+        debug {
+            isMinifyEnabled = false
+            buildConfigField("String", "TMDB_API_KEY", "\"416ffe3feaa612800144e2d842faa042\"")
         }
     }
     compileOptions {
@@ -38,6 +43,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
