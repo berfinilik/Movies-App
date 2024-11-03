@@ -22,4 +22,16 @@ class MovieRepository(private val apiService: MovieApiService) {
     ): Response<GenresResponse> {
         return apiService.getMovieGenres(apiKey, language)
     }
+
+    suspend fun searchMovies(apiKey: String, query: String): Response<PopularMoviesResponse> {
+        return apiService.searchMovies(apiKey, query)
+    }
+    suspend fun getMoviesByCategory(
+        apiKey: String,
+        categoryId: Int,
+        language: String = "tr-TR",
+        page: Int = 1
+    ): Response<PopularMoviesResponse> {
+        return apiService.getMoviesByCategory(apiKey, categoryId, language, page)
+    }
 }

@@ -18,13 +18,13 @@ class MainActivity : AppCompatActivity() {
         private const val TAG = "MainActivity"
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         NavigationUI.setupWithNavController(
             binding.bottomNav,
@@ -37,9 +37,6 @@ class MainActivity : AppCompatActivity() {
         if (user != null) {
             val name = user.displayName ?: "Anonim Kullanıcı"
 
-            val bundle = Bundle()
-            bundle.putString("userName", name)
-            navController.navigate(R.id.homeFragment, bundle)
         } else {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)

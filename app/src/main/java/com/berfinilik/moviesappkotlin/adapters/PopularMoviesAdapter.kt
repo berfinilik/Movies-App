@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.berfinilik.moviesappkotlin.R
 import com.berfinilik.moviesappkotlin.data.model.Result
+import com.bumptech.glide.Glide
 
 class PopularMoviesAdapter(
     private var moviesList: List<Result>,
@@ -28,6 +29,11 @@ class PopularMoviesAdapter(
     override fun onBindViewHolder(viewHolder: PopularViewHolder, position: Int) {
         val movie = moviesList[position]
         viewHolder.titleTextView.text = movie.title
+
+        Glide.with(viewHolder.itemView.context)
+            .load("https://image.tmdb.org/t/p/w500" + movie.poster_path)
+            .into(viewHolder.posterImageView)
+
         viewHolder.itemView.setOnClickListener { onClick(movie) }
     }
 

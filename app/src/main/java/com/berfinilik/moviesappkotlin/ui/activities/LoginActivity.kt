@@ -38,11 +38,45 @@ class LoginActivity : AppCompatActivity() {
                 showSnackbar("Kullanıcı adı ve şifre boş olamaz!")
             }
         }
+        binding.textViewResetPassword.setOnClickListener {
+            resetPassword()
+        }
         binding.textViewRegister.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun resetPassword() {
+        val userName = binding.editTextName.text.toString().trim()
+        val db = FirebaseFirestore.getInstance()
+
+        db.collection("users")
+            .whereEqualTo("userName", userName)
+            .get()
+            .addOnSuccessListener { documents ->
+                if (!documents.isEmpty) {
+                    val email = documents.documents[0].getString("email") ?: ""
+                    sendPasswordResetEmail(email)
+                } else {
+                    showSnackbar("Kullanıcı adınızı giriniz")
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Hata: ", e)
+                showSnackbar("Bir hata oluştu.")
+            }
+    }
+    private fun sendPasswordResetEmail(email: String) {
+        auth.sendPasswordResetEmail(email)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    showSnackbar("Şifre sıfırlama e-postası gönderildi.")
+                } else {
+                    showSnackbar("E-posta gönderilemedi: ${task.exception?.message}")
+                }
+            }
     }
 
     private fun findEmailByUserName(userName: String, password: String) {
@@ -59,7 +93,7 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
             .addOnFailureListener { e ->
-                Log.w(TAG, "Error getting documents: ", e)
+                Log.w(TAG, "Hata: ", e)
                 showSnackbar("Bir hata oluştu.")
             }
     }
@@ -71,6 +105,7 @@ class LoginActivity : AppCompatActivity() {
                     Log.d(TAG, "signInWithEmail:success")
                     val user = auth.currentUser
                     updateUI(user)
+
                 } else {
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
                     Toast.makeText(
@@ -82,6 +117,7 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
     }
+
 
     private fun showSnackbar(message: String) {
         Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()

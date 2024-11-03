@@ -31,13 +31,13 @@
 
                 <TextView
                     android:id="@+id/textViewUserName"
-                    android:layout_width="120dp"
-                    android:layout_height="19dp"
-                    android:layout_marginStart="50dp"
+                    android:layout_width="222dp"
+                    android:layout_height="26dp"
+                    android:layout_marginStart="100dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="101dp"
                     android:layout_marginBottom="7dp"
-                    android:text="Hoşgeldiniz............."
+                    android:text="Hoşgeldin"
                     android:textColor="@color/white"
                     android:textSize="19sp"
                     android:textStyle="bold"
@@ -48,10 +48,10 @@
 
                 <TextView
                     android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="223dp"
+                    android:layout_height="34dp"
                     android:layout_marginEnd="33dp"
-                    android:text="En sevdiğini filmi yayınlayalım."
+                    android:text="En sevdiğin filmi yayınlayalım."
                     android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/imageViewFavourite"
@@ -70,10 +70,10 @@
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="64dp"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="52dp"
+                    android:layout_width="83dp"
+                    android:layout_height="57dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="12dp"
                     android:src="@drawable/ic_launcher_background"
                     app:layout_constraintEnd_toStartOf="@+id/textViewUserName"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -81,13 +81,13 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="76dp"
+                android:layout_height="58dp"
                 android:background="@drawable/dark_blue_bg"
                 android:orientation="horizontal"
                 android:padding="16dp">
 
                 <SearchView
-                    android:id="@+id/searchView"
+                    android:id="@+id/searchViewFilm"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -112,12 +112,12 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
+                android:layout_height="178dp">
 
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/viewPager2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="410dp"
+                    android:layout_height="177dp"
                     android:paddingStart="60dp"
                     android:paddingEnd="60dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -138,9 +138,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
 
                 <TextView

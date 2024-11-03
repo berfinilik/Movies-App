@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.berfinilik.moviesappkotlin.R
 import com.berfinilik.moviesappkotlin.data.model.Genre
 
-class CategoriesAdapter(private var categoriesList: List<Genre>) :
+class CategoriesAdapter(private var categoriesList: List<Genre>,private val onCategoryClick: (Int) -> Unit) :
     RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
 
     class CategoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -22,6 +22,10 @@ class CategoriesAdapter(private var categoriesList: List<Genre>) :
     }
 
     override fun onBindViewHolder(viewHolder: CategoryViewHolder, position: Int) {
+        val category = categoriesList[position]
+        viewHolder.itemView.setOnClickListener {
+            onCategoryClick(category.id)
+        }
         viewHolder.categoryTextView.text = categoriesList[position].name
     }
 
