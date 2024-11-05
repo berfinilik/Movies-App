@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.berfinilik.moviesappkotlin.BuildConfig
 import com.berfinilik.moviesappkotlin.R
@@ -17,6 +16,7 @@ import com.berfinilik.moviesappkotlin.adapters.CastAdapter
 import com.berfinilik.moviesappkotlin.api.ApiClient
 import com.berfinilik.moviesappkotlin.data.database.AppDatabase
 import com.berfinilik.moviesappkotlin.data.model.FavouriteMovie
+import com.berfinilik.moviesappkotlin.data.model.SavedMovie
 import com.berfinilik.moviesappkotlin.databinding.FragmentDetailBinding
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
@@ -90,21 +90,21 @@ class DetailFragment : Fragment() {
         }
         binding.addToSavedBtn.setOnClickListener {
             movie?.let { movieDetails ->
+                addMovieToSavedList(movieDetails)
                 showSnackbar("${movieDetails.title} kaydedilenler listesine eklendi.")
-                findNavController().navigate(R.id.action_detailFragment_to_savedFragment)
             }
         }
     }
     private fun addMovieToSavedList(movie: MovieDetailsResponse) {
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
             val database = AppDatabase.getDatabase(requireContext())
-            val savedMovie = FavouriteMovie(
+            val savedMovie = SavedMovie(
                 id = movie.id,
                 title = movie.title,
                 releaseYear = movie.release_date?.split("-")?.get(0)?.toIntOrNull() ?: 0,
                 posterUrl = "https://image.tmdb.org/t/p/w500${movie.poster_path}"
             )
-            database.favouritesDao().insertAll(savedMovie)
+            database.savedMoviesDao().insertSavedMovie(savedMovie)
         }
     }
     private fun checkIfFavorite(movieId: Int) {

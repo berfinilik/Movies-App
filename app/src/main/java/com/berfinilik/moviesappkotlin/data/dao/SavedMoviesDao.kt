@@ -1,9 +1,10 @@
-package com.berfinilik.moviesappkotlin
+package com.berfinilik.moviesappkotlin.data.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.berfinilik.moviesappkotlin.data.model.SavedMovie
 
 @Dao
 interface SavedMoviesDao {
@@ -11,7 +12,7 @@ interface SavedMoviesDao {
     fun getAllSavedMovies(): List<SavedMovie>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertMovie(movie: SavedMovie)
+    suspend fun insertSavedMovie(movie: SavedMovie)
 
     @Query("DELETE FROM saved_movies WHERE id = :movieId")
     fun deleteById(movieId: Int)

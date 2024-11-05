@@ -1,4 +1,3 @@
-
 package com.berfinilik.moviesappkotlin.adapters
 
 import android.view.LayoutInflater
@@ -6,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.berfinilik.moviesappkotlin.databinding.ItemSavedMovieBinding
 import com.bumptech.glide.Glide
-import com.berfinilik.moviesappkotlin.SavedMovie
+import com.berfinilik.moviesappkotlin.data.model.SavedMovie
 
 class SavedMoviesAdapter(private var movies: List<SavedMovie>) : RecyclerView.Adapter<SavedMoviesAdapter.SavedMovieViewHolder>() {
 

@@ -27,6 +27,8 @@ class CategoryMoviesFragment : Fragment() {
 
     private lateinit var moviesAdapter: PopularMoviesAdapter
     private var categoryId: Int? = null
+    private var categoryName: String? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +42,10 @@ class CategoryMoviesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         categoryId = arguments?.getInt("categoryId")
+        categoryName = arguments?.getString("categoryName")
+
+        binding.categoryTitleTextView.text = categoryName ?: "Kategori"
+
 
         moviesAdapter = PopularMoviesAdapter(emptyList()) { selectedMovie ->
             val action = CategoryMoviesFragmentDirections.actionCategoryMoviesFragmentToDetailFragment(selectedMovie.id)
@@ -56,19 +62,26 @@ class CategoryMoviesFragment : Fragment() {
     }
 
     private fun observeViewModel() {
+        binding.progressBar.visibility = View.VISIBLE
+        binding.emptyMessageTextView.visibility = View.GONE
+        binding.moviesRecyclerView.visibility = View.GONE
+
         movieViewModel.popularMoviesLiveData.observe(viewLifecycleOwner) { response ->
+            binding.progressBar.visibility = View.GONE
             response?.let {
                 if (it.results.isNotEmpty()) {
+                    binding.moviesRecyclerView.visibility = View.VISIBLE
+                    binding.emptyMessageTextView.visibility = View.GONE
                     moviesAdapter.updateData(it.results)
                 } else {
-                    showSnackbar("Bu kategoride film bulunamadı.")
+                    binding.moviesRecyclerView.visibility = View.GONE
+                    binding.emptyMessageTextView.visibility = View.VISIBLE
                 }
+            } ?: run {
+                binding.moviesRecyclerView.visibility = View.GONE
+                binding.emptyMessageTextView.visibility = View.VISIBLE
             }
         }
-    }
-
-    private fun showSnackbar(message: String) {
-        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
     }
 
     override fun onDestroyView() {

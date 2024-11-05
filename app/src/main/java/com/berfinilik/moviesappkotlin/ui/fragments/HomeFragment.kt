@@ -64,12 +64,19 @@ class HomeFragment : Fragment() {
                 return false
             }
         })
+        binding.imageViewFavourite.setOnClickListener {
+            val action=HomeFragmentDirections.actionHomeFragmentToFavouritesFragment()
+            findNavController().navigate(action)
+        }
     }
 
 
     private fun setupRecyclerViews() {
-        categoriesAdapter = CategoriesAdapter(emptyList()) { categoryId ->
-            val action = HomeFragmentDirections.actionHomeFragmentToCategoryMoviesFragment(categoryId)
+        categoriesAdapter = CategoriesAdapter(emptyList()) { category ->
+            val action = HomeFragmentDirections.actionHomeFragmentToCategoryMoviesFragment(
+                category.id,
+                category.name
+            )
             findNavController().navigate(action)
         }
         binding.categoriesRecyclerView.apply {
@@ -82,7 +89,7 @@ class HomeFragment : Fragment() {
             findNavController().navigate(action)
         }
         binding.popularsRecyclerView.apply {
-            layoutManager = GridLayoutManager(requireContext(), 2)
+            layoutManager = GridLayoutManager(requireContext(), 1, GridLayoutManager.HORIZONTAL, false)
             adapter = popularMoviesAdapter
         }
     }

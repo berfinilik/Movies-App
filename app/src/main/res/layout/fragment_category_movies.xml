@@ -1,9 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragments.CategoryMoviesFragment">
+
+    <TextView
+        android:id="@+id/categoryTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="16dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/emptyMessageTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:text="Bu kategoride film bulunamadı."
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/white" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -16,7 +34,8 @@
         android:id="@+id/moviesRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp"
+        android:layout_marginTop="48dp"
         android:clipToPadding="false"
+        android:padding="16dp"
         tools:listitem="@layout/item_movie" />
 </FrameLayout>

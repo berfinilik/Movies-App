@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="6dp">
+    android:layout_margin="2dp">
 
     <ImageView
         android:id="@+id/filmImageView"
-        android:layout_width="140dp"
+        android:layout_width="160dp"
         android:layout_height="180dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,6 +26,7 @@
         android:lines="2"
         android:maxLines="2"
         android:text="TextView"
+        android:textSize="16sp"
         android:textAlignment="center"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -6,8 +6,8 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.berfinilik.moviesappkotlin.SavedMovie
-import com.berfinilik.moviesappkotlin.SavedMoviesDao
+import com.berfinilik.moviesappkotlin.data.model.SavedMovie
+import com.berfinilik.moviesappkotlin.data.dao.SavedMoviesDao
 import com.berfinilik.moviesappkotlin.data.dao.FavouritesDao
 import com.berfinilik.moviesappkotlin.data.model.FavouriteMovie
 
