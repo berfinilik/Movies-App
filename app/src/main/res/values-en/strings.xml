@@ -17,8 +17,6 @@
     <string name="category_title">Categories</string>
     <string name="popular_title">Most Popular</string>
     <string name="storyline_title">Story Line</string>
-    <string name="cast_title">Cast and Crew</string>
-    <string name="movie_title">Movie Title</string>
-y6    <string name="rating_text">4.5</string>
+    <string name="cast_title">Cast</string>
     <string name="watch_trailer">Watch Trailer</string>
 </resources>

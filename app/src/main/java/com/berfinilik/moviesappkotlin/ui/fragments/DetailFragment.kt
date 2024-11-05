@@ -62,22 +62,29 @@ class DetailFragment : Fragment() {
             requireActivity().supportFragmentManager.popBackStack()
         }
         binding.favImageView.setOnClickListener {
-            movie?.let {
-                if (!isFavorite) {
-                    addMovieToFavorites(it)
-                    binding.favImageView.setColorFilter(
-                        ContextCompat.getColor(
-                            requireContext(),
-                            R.color.red
-                        )
-                    )
-                    showSnackbar("Favorilere eklendi.")
-                    isFavorite = true
-                } else {
-                    removeMovieFromFavorites(it.id)
-                    binding.favImageView.clearColorFilter()
-                    showSnackbar("Favorilerden kaldırıldı.")
-                    isFavorite = false
+            movie?.let { movieDetails ->
+                viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+                    val database = AppDatabase.getDatabase(requireContext())
+                    val isAlreadyFavorite = database.favouritesDao().isMovieFavorite(movieDetails.id)
+
+                    withContext(Dispatchers.Main) {
+                        if (!isAlreadyFavorite) {
+                            addMovieToFavorites(movieDetails)
+                            binding.favImageView.setColorFilter(
+                                ContextCompat.getColor(
+                                    requireContext(),
+                                    R.color.red
+                                )
+                            )
+                            showSnackbar("Favorilere eklendi.")
+                            isFavorite = true
+                        } else {
+                            removeMovieFromFavorites(movieDetails.id)
+                            binding.favImageView.clearColorFilter()
+                            showSnackbar("Favorilerden kaldırıldı.")
+                            isFavorite = false
+                        }
+                    }
                 }
             }
         }

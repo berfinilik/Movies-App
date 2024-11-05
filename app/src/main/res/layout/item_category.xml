@@ -6,8 +6,8 @@
 
     <TextView
         android:id="@+id/categoryNameTextView"
-        android:layout_width="83dp"
-        android:layout_height="43dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:background="@drawable/dark_blue_bg"
         android:padding="8dp"

@@ -7,6 +7,9 @@ import com.berfinilik.moviesappkotlin.data.model.FavouriteMovie
 
 @Dao
 interface FavouritesDao {
+
+    @Query("SELECT EXISTS(SELECT 1 FROM favorite_movies WHERE id = :movieId)")
+    suspend fun isMovieFavorite(movieId: Int): Boolean
     @Query("SELECT * FROM favorite_movies")
     fun getAll(): List<FavouriteMovie>
 
@@ -18,7 +21,4 @@ interface FavouritesDao {
 
     @Query("DELETE FROM favorite_movies WHERE id = :movieId")
     fun deleteById(movieId: Int)
-
-
-
 }
