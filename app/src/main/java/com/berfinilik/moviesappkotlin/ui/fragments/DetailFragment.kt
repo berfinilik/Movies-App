@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.berfinilik.moviesappkotlin.BuildConfig
 import com.berfinilik.moviesappkotlin.R
@@ -80,6 +81,24 @@ class DetailFragment : Fragment() {
                 }
             }
         }
+        binding.addToSavedBtn.setOnClickListener {
+            movie?.let { movieDetails ->
+                showSnackbar("${movieDetails.title} kaydedilenler listesine eklendi.")
+                findNavController().navigate(R.id.action_detailFragment_to_savedFragment)
+            }
+        }
+    }
+    private fun addMovieToSavedList(movie: MovieDetailsResponse) {
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+            val database = AppDatabase.getDatabase(requireContext())
+            val savedMovie = FavouriteMovie(
+                id = movie.id,
+                title = movie.title,
+                releaseYear = movie.release_date?.split("-")?.get(0)?.toIntOrNull() ?: 0,
+                posterUrl = "https://image.tmdb.org/t/p/w500${movie.poster_path}"
+            )
+            database.favouritesDao().insertAll(savedMovie)
+        }
     }
     private fun checkIfFavorite(movieId: Int) {
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
@@ -113,7 +132,7 @@ class DetailFragment : Fragment() {
 
 
     private fun addMovieToFavorites(movie: MovieDetailsResponse) {
-        val releaseYear = movie.releaseDate?.split("-")?.get(0)?.toIntOrNull() ?: 0
+        val releaseYear = movie.release_date ?.split("-")?.get(0)?.toIntOrNull() ?: 0
 
         val favoriteMovie = FavouriteMovie(
             id = movie.id,
@@ -148,6 +167,17 @@ class DetailFragment : Fragment() {
 
                 binding.titleTextView.text = movie?.title
                 binding.movieSummaryTextView.text = movie?.overview
+
+                val rating = movie?.vote_average?.let { "%.1f".format(it) } ?: "Bilinmiyor"
+                binding.ratingTextView.text = "$rating / 10"
+
+                val releaseYear = movie?.release_date?.split("-")?.get(0) ?: "Bilinmiyor"
+                binding.movieReleaseYearTextView.text = "$releaseYear"
+                val duration = movie?.runtime?.let { "$it dk" } ?: "Bilinmiyor"
+                binding.movieDurationTextView.text = "$duration"
+                val genres = movie?.genres?.joinToString(", ") { it.name } ?: "Bilinmiyor"
+                binding.movieCategoryTextView.text = "$genres"
+
 
                 movie?.poster_path?.let { posterPath ->
                     Glide.with(this@DetailFragment)

@@ -13,6 +13,9 @@
         <argument
             android:name="movieId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_detailFragment_to_savedFragment"
+            app:destination="@id/savedFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"

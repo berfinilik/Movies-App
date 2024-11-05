@@ -19,7 +19,6 @@
     <string name="storyline_title">Story Line</string>
     <string name="cast_title">Cast and Crew</string>
     <string name="movie_title">Movie Title</string>
-    <string name="movie_time">2024 - 2h 2m</string>
-    <string name="rating_text">4.5</string>
+y6    <string name="rating_text">4.5</string>
     <string name="watch_trailer">Watch Trailer</string>
 </resources>

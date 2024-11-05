@@ -6,12 +6,15 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.berfinilik.moviesappkotlin.SavedMovie
+import com.berfinilik.moviesappkotlin.SavedMoviesDao
 import com.berfinilik.moviesappkotlin.data.dao.FavouritesDao
 import com.berfinilik.moviesappkotlin.data.model.FavouriteMovie
 
-@Database(entities = [FavouriteMovie::class], version = 2)
+@Database(entities = [FavouriteMovie::class, SavedMovie::class], version = 4)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun favouritesDao(): FavouritesDao
+    abstract fun savedMoviesDao(): SavedMoviesDao
 
     companion object {
         @Volatile
@@ -24,15 +27,46 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "movie-database"
                 )
-                    .addMigrations(MIGRATION_1_2)
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4) // Yeni migration eklendi
                     .build()
                 INSTANCE = instance
                 instance
             }
         }
+
         val MIGRATION_1_2 = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL(
+                    """
+                    CREATE TABLE IF NOT EXISTS `saved_movies` (
+                        `id` INTEGER PRIMARY KEY NOT NULL,
+                        `title` TEXT NOT NULL,
+                        `releaseYear` INTEGER NOT NULL,
+                        `posterUrl` TEXT NOT NULL
+                    )
+                    """.trimIndent()
+                )
+            }
+        }
 
+        val MIGRATION_2_3 = object : Migration(2, 3) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+            }
+        }
+
+        val MIGRATION_3_4 = object : Migration(3, 4) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("DROP TABLE IF EXISTS `saved_movies`")
+                database.execSQL(
+                    """
+                    CREATE TABLE IF NOT EXISTS `saved_movies` (
+                        `id` INTEGER PRIMARY KEY NOT NULL,
+                        `title` TEXT NOT NULL,
+                        `releaseYear` INTEGER NOT NULL,
+                        `posterUrl` TEXT NOT NULL
+                    )
+                    """.trimIndent()
+                )
             }
         }
     }
