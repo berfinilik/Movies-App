@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import com.berfinilik.moviesappkotlin.adapters.SavedMoviesAdapter
 import com.berfinilik.moviesappkotlin.data.database.AppDatabase
 import com.berfinilik.moviesappkotlin.databinding.FragmentSavedBinding
@@ -45,7 +45,7 @@ class SavedFragment : Fragment() {
     private fun setupRecyclerView() {
         adapter = SavedMoviesAdapter(emptyList())
         binding.savedRecyclerView.adapter = adapter
-        binding.savedRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.savedRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
     }
 
     override fun onDestroyView() {

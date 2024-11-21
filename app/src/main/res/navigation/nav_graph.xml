@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_detailFragment_to_savedFragment"
             app:destination="@id/savedFragment" />
+        <action
+            android:id="@+id/action_detailFragment_to_youTubePlayerFragment"
+            app:destination="@id/youTubePlayerFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -81,4 +84,13 @@
         </action>
 
     </fragment>
+    <fragment
+        android:id="@+id/youTubePlayerFragment"
+        android:name="com.berfinilik.moviesappkotlin.ui.fragments.YouTubePlayerFragment"
+        android:label="YouTubePlayerFragment">
+        <argument
+            android:name="videoKey"
+            app:argType="string" />
+    </fragment>
+
 </navigation>

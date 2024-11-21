@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="8dp">
 
     <ImageView
         android:id="@+id/moviePosterImageView"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_width="188dp"
+        android:layout_height="193dp"
         android:scaleType="centerCrop" />
 
     <TextView
         android:id="@+id/movieTitleTextView"
-        android:layout_width="match_parent"
+        android:layout_width="185dp"
         android:layout_height="wrap_content"
+        android:paddingTop="4dp"
         android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:paddingTop="4dp"/>
+        android:textSize="15sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/releaseYearTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="185dp"
+        android:layout_height="33dp"
+        android:paddingTop="2dp"
         android:textColor="@color/white"
-        android:textSize="14sp"
-        android:paddingTop="2dp"/>
+        android:textSize="14sp" />
 
 </LinearLayout>

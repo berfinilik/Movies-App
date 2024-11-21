@@ -17,6 +17,9 @@ import com.berfinilik.moviesappkotlin.api.ApiClient
 import com.berfinilik.moviesappkotlin.data.repository.MovieRepository
 import com.berfinilik.moviesappkotlin.databinding.FragmentHomeBinding
 import com.berfinilik.moviesappkotlin.viewmodels.MovieViewModel
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -34,11 +37,15 @@ class HomeFragment : Fragment() {
     private lateinit var categoriesAdapter: CategoriesAdapter
     private lateinit var popularMoviesAdapter: PopularMoviesAdapter
 
+    private lateinit var adView:AdView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        context?.let { MobileAds.initialize(it) }
+        adView = binding.adView
+        loadBannerAd()
         return binding.root
     }
 
@@ -69,8 +76,12 @@ class HomeFragment : Fragment() {
             findNavController().navigate(action)
         }
     }
-
-
+    private fun loadBannerAd() {
+        val adRequest = AdRequest.Builder()
+            .setContentUrl("https://www.imdb.com/")
+            .build()
+        adView.loadAd(adRequest)
+    }
     private fun setupRecyclerViews() {
         categoriesAdapter = CategoriesAdapter(emptyList()) { category ->
             val action = HomeFragmentDirections.actionHomeFragmentToCategoryMoviesFragment(

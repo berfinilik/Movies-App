@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.berfinilik.moviesappkotlin.BuildConfig
 import com.berfinilik.moviesappkotlin.R
@@ -34,6 +35,8 @@ class DetailFragment : Fragment() {
     private var isFavorite = false
 
     private var movie: MovieDetailsResponse? = null
+    private var videoKey: String? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +58,7 @@ class DetailFragment : Fragment() {
         movieId?.let { id ->
             fetchMovieDetails(id)
             checkIfFavorite(id)
-
+            fetchMovieVideos(id)
         }
 
         binding.backImageView.setOnClickListener {
@@ -94,7 +97,36 @@ class DetailFragment : Fragment() {
                 showSnackbar("${movieDetails.title} kaydedilenler listesine eklendi.")
             }
         }
+        binding.watchTrailerBtn.setOnClickListener {
+            videoKey?.let { key ->
+                val action = DetailFragmentDirections.actionDetailFragmentToYouTubePlayerFragment(key)
+                findNavController().navigate(action)
+            }
+        }
+
+
     }
+    private fun fetchMovieVideos(movieId: Int) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            val response = ApiClient.apiService.getMovieVideos(
+                movieId = movieId,
+                apiKey = BuildConfig.TMDB_API_KEY
+            )
+            if (response.isSuccessful && response.body() != null) {
+                val videos = response.body()?.results?.filter { it.site == "YouTube" }
+                if (!videos.isNullOrEmpty()) {
+                    videoKey = videos.first().key
+                    binding.watchTrailerBtn.visibility = View.VISIBLE
+                } else {
+                    binding.watchTrailerBtn.visibility = View.GONE
+                }
+            } else {
+                binding.watchTrailerBtn.visibility = View.GONE
+            }
+        }
+    }
+
+
     private fun addMovieToSavedList(movie: MovieDetailsResponse) {
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
             val database = AppDatabase.getDatabase(requireContext())

@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/filmImageView"
-        android:layout_width="160dp"
-        android:layout_height="180dp"
+        android:layout_width="188dp"
+        android:layout_height="193dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

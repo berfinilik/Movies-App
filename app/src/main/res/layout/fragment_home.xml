@@ -115,15 +115,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="178dp">
 
-                <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/viewPager2"
-                    android:layout_width="410dp"
-                    android:layout_height="177dp"
-                    android:paddingStart="60dp"
-                    android:paddingEnd="60dp"
+                <com.google.android.gms.ads.AdView
+                    android:id="@+id/adView"
+                    android:layout_width="396dp"
+                    android:layout_height="165dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="13dp"
+                    app:adSize="BANNER"
+                    app:adUnitId="ca-app-pub-1224605104274941/8527318787"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
 
                 <ProgressBar
                     android:id="@+id/progressBarBanner"
@@ -133,7 +136,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/viewPager2" />
+                    app:layout_constraintTop_toTopOf="@+id/adView" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout

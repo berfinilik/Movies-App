@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoviesAppKotlin"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-1224605104274941~8691100194"/>
         <activity
             android:name=".ui.activities.SignUpActivity"
             android:exported="false" />

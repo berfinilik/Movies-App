@@ -1,5 +1,6 @@
 package com.berfinilik.moviesappkotlin.api
 
+import com.berfinilik.moviesappkotlin.VideosResponse
 import com.berfinilik.moviesappkotlin.data.model.MovieDetailsResponse
 import com.berfinilik.moviesappkotlin.data.model.GenresResponse
 import com.berfinilik.moviesappkotlin.data.model.PopularMoviesResponse
@@ -48,5 +49,11 @@ interface MovieApiService {
         @Query("page") page: Int = 1
     ): Response<PopularMoviesResponse>
 
+    @GET("movie/{movie_id}/videos")
+    suspend fun getMovieVideos(
+        @Path("movie_id") movieId: Int,
+        @Query("language") language:String="tr-TR",
+        @Query("api_key") apiKey: String
+    ):Response<VideosResponse>
 
 }
