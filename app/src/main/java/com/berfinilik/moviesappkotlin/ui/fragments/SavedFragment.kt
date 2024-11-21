@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.berfinilik.moviesappkotlin.adapters.SavedMoviesAdapter
 import com.berfinilik.moviesappkotlin.data.database.AppDatabase
@@ -43,7 +44,10 @@ class SavedFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        adapter = SavedMoviesAdapter(emptyList())
+        adapter = SavedMoviesAdapter(emptyList()) { movieId ->
+            val action = SavedFragmentDirections.actionSavedFragmentToDetailFragment(movieId)
+            findNavController().navigate(action)
+        }
         binding.savedRecyclerView.adapter = adapter
         binding.savedRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
     }
