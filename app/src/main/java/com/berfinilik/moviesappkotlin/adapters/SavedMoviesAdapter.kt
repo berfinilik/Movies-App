@@ -9,7 +9,8 @@ import com.berfinilik.moviesappkotlin.data.model.SavedMovie
 
 class SavedMoviesAdapter(
     private var movies: List<SavedMovie>,
-    private val onMovieClick: (Int) -> Unit
+    private val onMovieClick: (Int) -> Unit,
+    private val onMovieSelected: (SavedMovie, Boolean) -> Unit
 ) : RecyclerView.Adapter<SavedMoviesAdapter.SavedMovieViewHolder>() {
 
     inner class SavedMovieViewHolder(private val binding: ItemSavedMovieBinding) :
@@ -23,6 +24,11 @@ class SavedMoviesAdapter(
 
             binding.root.setOnClickListener {
                 onMovieClick(movie.id)
+            }
+            binding.selectMovieCheckBox.setOnCheckedChangeListener(null)
+            binding.selectMovieCheckBox.isChecked = false
+            binding.selectMovieCheckBox.setOnCheckedChangeListener { _, isChecked ->
+                onMovieSelected(movie, isChecked)
             }
         }
     }

@@ -15,5 +15,5 @@ interface SavedMoviesDao {
     suspend fun insertSavedMovie(movie: SavedMovie)
 
     @Query("DELETE FROM saved_movies WHERE id = :movieId")
-    fun deleteById(movieId: Int)
+    suspend fun deleteSavedMovieById(movieId: Int)
 }
