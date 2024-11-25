@@ -1,5 +1,6 @@
 package com.berfinilik.moviesappkotlin.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -103,8 +104,27 @@ class DetailFragment : Fragment() {
                 findNavController().navigate(action)
             }
         }
-
-
+        binding.shareBtn.setOnClickListener {
+            movie?.let { movieDetails ->
+                val releaseYear = movieDetails.release_date?.split("-")?.get(0) ?: "Bilinmiyor"
+                val duration = movieDetails.runtime?.let { "$it dk" } ?: "Bilinmiyor"
+                val genres = movieDetails.genres?.joinToString(", ") { it.name } ?: "Bilinmiyor"
+                val shareIntent = Intent(Intent.ACTION_SEND).apply {
+                    type = "text/plain"
+                    putExtra(
+                        Intent.EXTRA_TEXT,
+                        "Film: ${movieDetails.title}\n" +
+                                "IMDB Puanı: ${movieDetails.vote_average}\n" +
+                                "Yayın Yılı: $releaseYear\n" +
+                                "Açıklama: ${movieDetails.overview}\n" +
+                                "Süre: $duration\n" +
+                                "Kategori: $genres\n" +
+                                "Poster: https://image.tmdb.org/t/p/w500${movieDetails.poster_path}"
+                    )
+                }
+                startActivity(Intent.createChooser(shareIntent, "Film Paylaş"))
+            }
+        }
     }
     private fun fetchMovieVideos(movieId: Int) {
         viewLifecycleOwner.lifecycleScope.launch {
