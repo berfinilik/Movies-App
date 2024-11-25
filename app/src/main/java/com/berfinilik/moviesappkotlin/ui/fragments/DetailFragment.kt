@@ -70,24 +70,18 @@ class DetailFragment : Fragment() {
                 viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
                     val database = AppDatabase.getDatabase(requireContext())
                     val isAlreadyFavorite = database.favouritesDao().isMovieFavorite(movieDetails.id)
-
                     withContext(Dispatchers.Main) {
-                        if (!isAlreadyFavorite) {
-                            addMovieToFavorites(movieDetails)
-                            binding.favImageView.setColorFilter(
-                                ContextCompat.getColor(
-                                    requireContext(),
-                                    R.color.red
-                                )
-                            )
-                            showSnackbar("Favorilere eklendi.")
-                            isFavorite = true
-                        } else {
-                            removeMovieFromFavorites(movieDetails.id)
-                            binding.favImageView.clearColorFilter()
-                            showSnackbar("Favorilerden kaldırıldı.")
-                            isFavorite = false
-                        }
+                           if (!isAlreadyFavorite) {
+                               addMovieToFavorites(movieDetails)
+                               binding.favImageView.setImageResource(R.drawable.ic_favorite_selected)
+                               showSnackbar("Favorilere eklendi.")
+                               isFavorite = true
+                           } else {
+                               removeMovieFromFavorites(movieDetails.id)
+                               binding.favImageView.setImageResource(R.drawable.ic_favorite_normal)
+                               showSnackbar("Favorilerden kaldırıldı.")
+                               isFavorite = false
+                           }
                     }
                 }
             }
@@ -122,7 +116,7 @@ class DetailFragment : Fragment() {
                                 "Poster: https://image.tmdb.org/t/p/w500${movieDetails.poster_path}"
                     )
                 }
-                startActivity(Intent.createChooser(shareIntent, "Film Paylaş"))
+                startActivity(Intent.createChooser(shareIntent, "Paylaş"))
             }
         }
     }
@@ -166,11 +160,11 @@ class DetailFragment : Fragment() {
             withContext(Dispatchers.Main) {
                 if (favoriteMovie != null) {
                     isFavorite = true
-                    binding.favImageView.setColorFilter(
-                        ContextCompat.getColor(requireContext(), R.color.red))
+                    binding.favImageView.setImageResource(R.drawable.ic_favorite_selected)
+
                 } else {
                     isFavorite = false
-                    binding.favImageView.clearColorFilter()
+                    binding.favImageView.setImageResource(R.drawable.ic_favorite_normal)
                 }
             }
         }
