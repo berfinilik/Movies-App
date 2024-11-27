@@ -3,7 +3,7 @@
     <string name="login_title">Giriş Yap</string>
     <string name="username_hint">Kullanıcı Adı</string>
     <string name="password_hint">Şifre</string>
-    <string name="forgot_password">Şifrenizi mi unuttunuz?</string>
+    <string name="forgot_password">Şifrenizi mi unuttunuz?Sıfırlayın.</string>
     <string name="login_button">Giriş Yap</string>
     <string name="no_account">Henüz hesabınız yok mu?</string>
     <string name="register_text">Kayıt Olun</string>
@@ -18,5 +18,10 @@
     <string name="storyline_title">Film Hikayesi</string>
     <string name="cast_title">Oyuncular</string>
     <string name="watch_trailer">İzle</string>
+    <string name="forgot_password_title">Şifremi Unuttum</string>
+    <string name="forgot_password_instruction">Lütfen üye olduğunuz kullanıcı adını giriniz.</string>
+    <string name="forgot_password_button">Şifremi Unuttum</string>
+    <string name="remember_text">Bilgilerini hatırladıysan hemen</string>
+    <string name="sign_in_text">Oturum Aç!</string>
 
 </resources>

@@ -39,44 +39,14 @@ class LoginActivity : AppCompatActivity() {
             }
         }
         binding.textViewResetPassword.setOnClickListener {
-            resetPassword()
+            val intent=Intent(this,ForgotPasswordActivity::class.java)
+            startActivity(intent)
         }
         binding.textViewRegister.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
             finish()
         }
-    }
-
-    private fun resetPassword() {
-        val userName = binding.editTextName.text.toString().trim()
-        val db = FirebaseFirestore.getInstance()
-
-        db.collection("users")
-            .whereEqualTo("userName", userName)
-            .get()
-            .addOnSuccessListener { documents ->
-                if (!documents.isEmpty) {
-                    val email = documents.documents[0].getString("email") ?: ""
-                    sendPasswordResetEmail(email)
-                } else {
-                    showSnackbar("Kullanıcı adınızı giriniz")
-                }
-            }
-            .addOnFailureListener { e ->
-                Log.w(TAG, "Hata: ", e)
-                showSnackbar("Bir hata oluştu.")
-            }
-    }
-    private fun sendPasswordResetEmail(email: String) {
-        auth.sendPasswordResetEmail(email)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    showSnackbar("Şifre sıfırlama e-postası gönderildi.")
-                } else {
-                    showSnackbar("E-posta gönderilemedi: ${task.exception?.message}")
-                }
-            }
     }
 
     private fun findEmailByUserName(userName: String, password: String) {

@@ -4,7 +4,7 @@
     <string name="login_title">Login</string>
     <string name="username_hint">Username</string>
     <string name="password_hint">Password</string>
-    <string name="forgot_password">Forgot your password?</string>
+    <string name="forgot_password">Forgot your password? Reset it.</string>
     <string name="login_button">Login</string>
     <string name="no_account">Don\'t have an account?</string>
     <string name="register_text">Register</string>
@@ -19,4 +19,9 @@
     <string name="storyline_title">Story Line</string>
     <string name="cast_title">Cast</string>
     <string name="watch_trailer">Watch Trailer</string>
+    <string name="forgot_password_title">Forgot Password</string>
+    <string name="forgot_password_instruction">Please enter your registered username.</string>
+    <string name="forgot_password_button">Reset Password</string>
+    <string name="remember_text">If you remember, just</string>
+    <string name="sign_in_text">Sign In!</string>
 </resources>
