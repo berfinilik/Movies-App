@@ -13,6 +13,7 @@ import com.berfinilik.moviesappkotlin.adapters.FavoritesAdapter
 import com.berfinilik.moviesappkotlin.data.database.AppDatabase
 import com.berfinilik.moviesappkotlin.databinding.FragmentFavouritesBinding
 import com.berfinilik.moviesappkotlin.viewmodels.MovieViewModel
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -42,7 +43,9 @@ class FavouritesFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
             val database = AppDatabase.getDatabase(requireContext())
-            val favoriteMovies = database.favouritesDao().getAll()
+            val currentUser = FirebaseAuth.getInstance().currentUser
+            val userId = currentUser?.uid ?: return@launch
+            val favoriteMovies = database.favouritesDao().getAll(userId)
             withContext(Dispatchers.Main) {
                 favoritesAdapter.updateData(favoriteMovies)
             }

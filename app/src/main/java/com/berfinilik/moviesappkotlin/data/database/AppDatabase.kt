@@ -11,7 +11,7 @@ import com.berfinilik.moviesappkotlin.data.dao.SavedMoviesDao
 import com.berfinilik.moviesappkotlin.data.dao.FavouritesDao
 import com.berfinilik.moviesappkotlin.data.model.FavouriteMovie
 
-@Database(entities = [FavouriteMovie::class, SavedMovie::class], version = 4)
+@Database(entities = [FavouriteMovie::class, SavedMovie::class], version = 5)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun favouritesDao(): FavouritesDao
     abstract fun savedMoviesDao(): SavedMoviesDao
@@ -27,7 +27,11 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "movie-database"
                 )
-                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4) // Yeni migration eklendi
+                    .addMigrations(
+                        MIGRATION_1_2,
+                        MIGRATION_2_3,
+                        MIGRATION_3_4,
+                        MIGRATION_4_5)
                     .build()
                 INSTANCE = instance
                 instance
@@ -67,6 +71,11 @@ abstract class AppDatabase : RoomDatabase() {
                     )
                     """.trimIndent()
                 )
+            }
+        }
+        val MIGRATION_4_5 = object : Migration(4, 5) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("ALTER TABLE favorite_movies ADD COLUMN userId TEXT NOT NULL DEFAULT ''")
             }
         }
     }

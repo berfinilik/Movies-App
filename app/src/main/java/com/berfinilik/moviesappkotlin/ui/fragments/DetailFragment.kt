@@ -22,6 +22,7 @@ import com.berfinilik.moviesappkotlin.data.model.SavedMovie
 import com.berfinilik.moviesappkotlin.databinding.FragmentDetailBinding
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -68,20 +69,23 @@ class DetailFragment : Fragment() {
         binding.favImageView.setOnClickListener {
             movie?.let { movieDetails ->
                 viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+                    val currentUser = FirebaseAuth.getInstance().currentUser
+                    val userId = currentUser?.uid ?: return@launch
+
                     val database = AppDatabase.getDatabase(requireContext())
-                    val isAlreadyFavorite = database.favouritesDao().isMovieFavorite(movieDetails.id)
+                    val isAlreadyFavorite = database.favouritesDao().isMovieFavorite(movieDetails.id, userId)
                     withContext(Dispatchers.Main) {
-                           if (!isAlreadyFavorite) {
-                               addMovieToFavorites(movieDetails)
-                               binding.favImageView.setImageResource(R.drawable.ic_favorite_selected)
-                               showSnackbar("Favorilere eklendi.")
-                               isFavorite = true
-                           } else {
-                               removeMovieFromFavorites(movieDetails.id)
-                               binding.favImageView.setImageResource(R.drawable.ic_favorite_normal)
-                               showSnackbar("Favorilerden kaldırıldı.")
-                               isFavorite = false
-                           }
+                        if (!isAlreadyFavorite) {
+                            addMovieToFavorites(movieDetails)
+                            binding.favImageView.setImageResource(R.drawable.ic_favorite_selected)
+                            showSnackbar("Favorilere eklendi.")
+                            isFavorite = true
+                        } else {
+                            removeMovieFromFavorites(movieDetails.id)
+                            binding.favImageView.setImageResource(R.drawable.ic_favorite_normal)
+                            showSnackbar("Favorilerden kaldırıldı.")
+                            isFavorite = false
+                        }
                     }
                 }
             }
@@ -155,13 +159,15 @@ class DetailFragment : Fragment() {
     }
     private fun checkIfFavorite(movieId: Int) {
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+            val currentUser = FirebaseAuth.getInstance().currentUser
+            val userId = currentUser?.uid ?: return@launch
+
             val database = AppDatabase.getDatabase(requireContext())
-            val favoriteMovie = database.favouritesDao().getMovieById(movieId)
+            val favoriteMovie = database.favouritesDao().getMovieById(movieId, userId)
             withContext(Dispatchers.Main) {
                 if (favoriteMovie != null) {
                     isFavorite = true
                     binding.favImageView.setImageResource(R.drawable.ic_favorite_selected)
-
                 } else {
                     isFavorite = false
                     binding.favImageView.setImageResource(R.drawable.ic_favorite_normal)
@@ -170,12 +176,13 @@ class DetailFragment : Fragment() {
         }
     }
 
-
-
     private fun removeMovieFromFavorites(movieId: Int) {
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+            val currentUser = FirebaseAuth.getInstance().currentUser
+            val userId = currentUser?.uid ?: return@launch
+
             val database = AppDatabase.getDatabase(requireContext())
-            database.favouritesDao().deleteById(movieId)
+            database.favouritesDao().deleteById(movieId, userId)
             withContext(Dispatchers.Main) {
                 showSnackbar("Film favorilerden kaldırıldı.")
             }
@@ -185,20 +192,35 @@ class DetailFragment : Fragment() {
 
 
     private fun addMovieToFavorites(movie: MovieDetailsResponse) {
-        val releaseYear = movie.release_date ?.split("-")?.get(0)?.toIntOrNull() ?: 0
+        val releaseYear = movie.release_date?.split("-")?.get(0)?.toIntOrNull() ?: 0
+
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val userId = currentUser?.uid ?: run {
+            showSnackbar("Kullanıcı bilgisi bulunamadı.")
+            return
+        }
 
         val favoriteMovie = FavouriteMovie(
             id = movie.id,
             title = movie.title,
             releaseYear = releaseYear,
-            posterUrl = "https://image.tmdb.org/t/p/w500${movie.poster_path}"
+            posterUrl = "https://image.tmdb.org/t/p/w500${movie.poster_path}",
+            userId = userId
         )
 
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
             val database = AppDatabase.getDatabase(requireContext())
-            database.favouritesDao().insertAll(favoriteMovie)
-            withContext(Dispatchers.Main) {
-                showSnackbar("${movie.title} favorilere eklendi.")
+
+            val isAlreadyFavorite = database.favouritesDao().isMovieFavorite(movie.id, userId)
+            if (isAlreadyFavorite) {
+                withContext(Dispatchers.Main) {
+                    showSnackbar("${movie.title} zaten favorilerde.")
+                }
+            } else {
+                database.favouritesDao().insertAll(favoriteMovie)
+                withContext(Dispatchers.Main) {
+                    showSnackbar("${movie.title} favorilere eklendi.")
+                }
             }
         }
     }
