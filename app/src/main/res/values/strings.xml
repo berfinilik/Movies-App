@@ -25,5 +25,14 @@
     <string name="sign_in_text">Oturum Aç!</string>
     <string name="favourites_title">Favorilerim</string>
     <string name="empty_favourites_message">Favori film bulunmuyor. Hemen keşfet ve ekle!</string>
+    <string name="favorites_title">Favorilerim</string>
+    <string name="empty_favorites_message">Favori film bulunmuyor. Hemen keşfet ve ekle!</string>
+    <string name="saved_list_title">Listem</string>
+    <string name="empty_saved_list_message">Listende film yok. Hemen keşfet ve ekle!</string>
+    <string name="remove_selected">Seçilenleri Kaldır</string>
+    <string name="welcome_message">Hoşgeldin</string>
+    <string name="recommendation_message">En sevdiğin filmi yayınlayalım.</string>
+    <string name="voice_search_description">Sesli Arama</string>
+    <string name="empty_category_message">Bu kategoride film bulunamadı.</string>
 
 </resources>

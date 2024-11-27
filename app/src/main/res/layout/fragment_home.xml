@@ -37,7 +37,7 @@
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="101dp"
                     android:layout_marginBottom="7dp"
-                    android:text="Hoşgeldin"
+                    android:text="@string/welcome_message"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -51,7 +51,7 @@
                     android:layout_width="223dp"
                     android:layout_height="34dp"
                     android:layout_marginEnd="33dp"
-                    android:text="En sevdiğin filmi yayınlayalım."
+                    android:text="@string/recommendation_message"
                     android:textSize="16sp"
                     android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -96,7 +96,7 @@
                     android:iconifiedByDefault="false"
                     android:imeOptions="actionSearch"
                     android:inputType="text"
-                    android:queryHint="Film Ara"
+                    android:queryHint="@string/search_hint"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white" />
 
@@ -106,7 +106,7 @@
                     android:layout_height="22dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="8dp"
-                    android:contentDescription="Sesli Arama"
+                    android:contentDescription="@string/voice_search_description"
                     android:src="@drawable/microphone" />
             </LinearLayout>
 
