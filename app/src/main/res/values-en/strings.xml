@@ -24,4 +24,6 @@
     <string name="forgot_password_button">Reset Password</string>
     <string name="remember_text">If you remember, just</string>
     <string name="sign_in_text">Sign In!</string>
+    <string name="favourites_title">My Favorites</string>
+    <string name="empty_favourites_message">No favorite movies found. Discover and add now!</string>
 </resources>

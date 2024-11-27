@@ -23,5 +23,7 @@
     <string name="forgot_password_button">Şifremi Unuttum</string>
     <string name="remember_text">Bilgilerini hatırladıysan hemen</string>
     <string name="sign_in_text">Oturum Aç!</string>
+    <string name="favourites_title">Favorilerim</string>
+    <string name="empty_favourites_message">Favori film bulunmuyor. Hemen keşfet ve ekle!</string>
 
 </resources>

@@ -1,6 +1,7 @@
 package com.berfinilik.moviesappkotlin.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -40,6 +41,7 @@ class FavouritesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
+        loadFavorites()
 
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
             val database = AppDatabase.getDatabase(requireContext())
@@ -62,6 +64,30 @@ class FavouritesFragment : Fragment() {
             adapter = favoritesAdapter
         }
     }
+    private fun loadFavorites() {
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+            val database = AppDatabase.getDatabase(requireContext())
+            val currentUser = FirebaseAuth.getInstance().currentUser
+            val userId = currentUser?.uid ?: return@launch
+
+            val favoriteMovies = database.favouritesDao().getAll(userId)
+
+            withContext(Dispatchers.Main) {
+                Log.d("FavouritesFragment", "Favorite Movies Size: ${favoriteMovies.size}")
+                if (favoriteMovies.isEmpty()) {
+                    Log.d("FavouritesFragment", "Empty List: Showing TextView")
+                    binding.emptyFavouritesTextView.visibility = View.VISIBLE
+                    binding.favouritesRecyclerView.visibility = View.GONE
+                } else {
+                    Log.d("FavouritesFragment", "Non-Empty List: Showing RecyclerView")
+                    binding.emptyFavouritesTextView.visibility = View.GONE
+                    binding.favouritesRecyclerView.visibility = View.VISIBLE
+                    favoritesAdapter.updateData(favoriteMovies)
+                }
+            }
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
