@@ -10,8 +10,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.berfinilik.moviesappkotlin.MovieViewModelFactory
-import com.berfinilik.moviesappkotlin.adapters.PopularMoviesAdapter
+import com.berfinilik.moviesappkotlin.adapters.CategoriesCardAdapter
 import com.berfinilik.moviesappkotlin.api.ApiClient
+import com.berfinilik.moviesappkotlin.data.model.Movie
 import com.berfinilik.moviesappkotlin.data.repository.MovieRepository
 import com.berfinilik.moviesappkotlin.databinding.FragmentCategoryMoviesBinding
 import com.berfinilik.moviesappkotlin.viewmodels.MovieViewModel
@@ -25,7 +26,7 @@ class CategoryMoviesFragment : Fragment() {
         MovieViewModelFactory(MovieRepository(ApiClient.apiService))
     }
 
-    private lateinit var moviesAdapter: PopularMoviesAdapter
+    private lateinit var moviesAdapter: CategoriesCardAdapter
     private var categoryId: Int? = null
     private var categoryName: String? = null
 
@@ -46,9 +47,20 @@ class CategoryMoviesFragment : Fragment() {
 
         binding.categoryTitleTextView.text = categoryName ?: "Kategori"
 
+        setupRecyclerView()
+        observeViewModel()
 
-        moviesAdapter = PopularMoviesAdapter(emptyList()) { selectedMovie ->
-            val action = CategoryMoviesFragmentDirections.actionCategoryMoviesFragmentToDetailFragment(selectedMovie.id)
+        categoryId?.let { id ->
+            movieViewModel.resetPagination()
+            movieViewModel.fetchMoviesByCategory(id)
+        }
+    }
+
+    private fun setupRecyclerView() {
+
+        moviesAdapter = CategoriesCardAdapter(emptyList()) { selectedMovie ->
+            val action = CategoryMoviesFragmentDirections
+                .actionCategoryMoviesFragmentToDetailFragment(selectedMovie.id)
             findNavController().navigate(action)
         }
         binding.moviesRecyclerView.apply {
@@ -69,11 +81,6 @@ class CategoryMoviesFragment : Fragment() {
                 }
             })
         }
-        observeViewModel()
-        categoryId?.let { id ->
-            movieViewModel.resetPagination()
-            movieViewModel.fetchMoviesByCategory(id)
-        }
     }
 
     private fun observeViewModel() {
@@ -87,7 +94,16 @@ class CategoryMoviesFragment : Fragment() {
                 if (it.results.isNotEmpty()) {
                     binding.moviesRecyclerView.visibility = View.VISIBLE
                     binding.emptyMessageTextView.visibility = View.GONE
-                    moviesAdapter.updateData(it.results)
+                    val movies = it.results.map { result ->
+                        Movie(
+                            id = result.id,
+                            title = result.title ?: "Başlık Yok",
+                            releaseYear = result.release_date?.split("-")?.get(0) ?: "Tarih Yok",
+                            posterUrl = "https://image.tmdb.org/t/p/w500${result.poster_path}"
+                        )
+                    }
+
+                    moviesAdapter.updateData(movies)
                 } else {
                     binding.moviesRecyclerView.visibility = View.GONE
                     binding.emptyMessageTextView.visibility = View.VISIBLE
