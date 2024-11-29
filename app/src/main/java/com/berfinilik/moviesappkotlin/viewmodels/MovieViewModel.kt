@@ -23,19 +23,37 @@ class MovieViewModel(private val repository: MovieRepository) : ViewModel() {
     private val _searchResultsLiveData = MutableLiveData<List<Result>>()
     val searchResultsLiveData: LiveData<List<Result>> = _searchResultsLiveData
 
+    private var currentPage = 1
+    var isLoading = false
+    private var totalPages = Int.MAX_VALUE
+
     val apiKey = BuildConfig.TMDB_API_KEY
 
-    fun fetchPopularMovies(language: String = "tr-TR", page: Int = 1, region: String? = null) {
+    fun fetchPopularMovies(language: String = "tr-TR", region: String? = null) {
+        if (isLoading || currentPage > totalPages) return
+        isLoading = true
         viewModelScope.launch {
-            val response = repository.getPopularMovies(apiKey, language, page, region)
+            val response = repository.getPopularMovies(apiKey, language, currentPage, region)
             if (response.isSuccessful) {
-                Log.d("MovieViewModel", "Popüler filmler başarıyla alındı: ${response.body()?.results?.size} items")
-                _popularMoviesLiveData.postValue(response.body())
-            } else {
-                Log.e("MovieViewModel", "Popüler filmler alınamadı: ${response.errorBody()?.string()}")
+                val movies = response.body()?.results ?: emptyList()
+                val currentResponse = _popularMoviesLiveData.value
+                val updatedMovies = (currentResponse?.results ?: emptyList()) + movies
+
+                totalPages = response.body()?.total_pages ?: Int.MAX_VALUE
+                _popularMoviesLiveData.postValue(
+                    PopularMoviesResponse(
+                        page = currentPage,
+                        results = updatedMovies,
+                        total_pages = totalPages,
+                        total_results = response.body()?.total_results ?: 0
+                    )
+                )
+                currentPage++
             }
+            isLoading = false
         }
     }
+
 
     fun fetchMovieGenres(language: String = "tr-TR") {
         viewModelScope.launch {
@@ -59,14 +77,39 @@ class MovieViewModel(private val repository: MovieRepository) : ViewModel() {
             }
         }
     }
-    fun fetchMoviesByCategory(categoryId: Int, language: String = "tr-TR", page: Int = 1) {
+    fun fetchMoviesByCategory(categoryId: Int, language: String = "tr-TR", region: String? = null) {
+        if (isLoading || currentPage > totalPages) return
+        isLoading = true
+
         viewModelScope.launch {
-            val response = repository.getMoviesByCategory(apiKey, categoryId, language, page)
+            val response = repository.getMoviesByCategory(apiKey, categoryId, language, currentPage)
             if (response.isSuccessful) {
-                _popularMoviesLiveData.postValue(response.body())
+                val movies = response.body()?.results ?: emptyList()
+                val currentResponse = _popularMoviesLiveData.value
+                val updatedMovies = (currentResponse?.results ?: emptyList()) + movies
+
+                totalPages = response.body()?.total_pages ?: Int.MAX_VALUE
+                val updatedResponse = currentResponse?.copy(results = updatedMovies)
+                    ?: PopularMoviesResponse(
+                        page = currentPage,
+                        results = updatedMovies,
+                        total_pages = totalPages,
+                        total_results = response.body()?.total_results ?: updatedMovies.size
+                    )
+
+                _popularMoviesLiveData.postValue(updatedResponse)
+                currentPage++
             } else {
                 Log.e("MovieViewModel", "Kategoriye göre filmler alınamadı: ${response.errorBody()?.string()}")
             }
+            isLoading = false
         }
     }
+    fun resetPagination() {
+        currentPage = 1
+        isLoading = false
+        totalPages = Int.MAX_VALUE
+    }
+
+
 }

@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.berfinilik.moviesappkotlin.MovieViewModelFactory
 import com.berfinilik.moviesappkotlin.adapters.CategoriesAdapter
 import com.berfinilik.moviesappkotlin.adapters.PopularMoviesAdapter
@@ -102,6 +103,19 @@ class HomeFragment : Fragment() {
         binding.popularsRecyclerView.apply {
             layoutManager = GridLayoutManager(requireContext(), 1, GridLayoutManager.HORIZONTAL, false)
             adapter = popularMoviesAdapter
+
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                    val totalItemCount = layoutManager.itemCount
+                    val lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition()
+
+                    if (!movieViewModel.isLoading && lastVisibleItemPosition + 5 >= totalItemCount) {
+                        movieViewModel.fetchPopularMovies()
+                    }
+                }
+            })
+
         }
     }
 

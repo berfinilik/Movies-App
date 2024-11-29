@@ -8,13 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.berfinilik.moviesappkotlin.MovieViewModelFactory
 import com.berfinilik.moviesappkotlin.adapters.PopularMoviesAdapter
 import com.berfinilik.moviesappkotlin.api.ApiClient
 import com.berfinilik.moviesappkotlin.data.repository.MovieRepository
 import com.berfinilik.moviesappkotlin.databinding.FragmentCategoryMoviesBinding
 import com.berfinilik.moviesappkotlin.viewmodels.MovieViewModel
-import com.google.android.material.snackbar.Snackbar
 
 
 class CategoryMoviesFragment : Fragment() {
@@ -54,9 +54,24 @@ class CategoryMoviesFragment : Fragment() {
         binding.moviesRecyclerView.apply {
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = moviesAdapter
+
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    val layoutManager = recyclerView.layoutManager as GridLayoutManager
+                    val totalItemCount = layoutManager.itemCount
+                    val lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition()
+
+                    if (!movieViewModel.isLoading && lastVisibleItemPosition + 5 >= totalItemCount) {
+                        categoryId?.let { id ->
+                            movieViewModel.fetchMoviesByCategory(id)
+                        }
+                    }
+                }
+            })
         }
         observeViewModel()
         categoryId?.let { id ->
+            movieViewModel.resetPagination()
             movieViewModel.fetchMoviesByCategory(id)
         }
     }
