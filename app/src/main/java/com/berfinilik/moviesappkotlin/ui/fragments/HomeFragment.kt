@@ -1,11 +1,19 @@
 package com.berfinilik.moviesappkotlin.ui.fragments
 
+import android.Manifest
+import android.app.Activity
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.speech.RecognizerIntent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -39,6 +47,12 @@ class HomeFragment : Fragment() {
     private lateinit var popularMoviesAdapter: PopularMoviesAdapter
 
     private lateinit var adView:AdView
+
+    companion object {
+        private const val VOICE_RECOGNITION_REQUEST_CODE = 1
+        private const val RECORD_AUDIO_PERMISSION_REQUEST_CODE = 2
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -75,6 +89,9 @@ class HomeFragment : Fragment() {
         binding.imageViewFavourite.setOnClickListener {
             val action=HomeFragmentDirections.actionHomeFragmentToFavouritesFragment()
             findNavController().navigate(action)
+        }
+        binding.microphoneImageView.setOnClickListener {
+            checkAudioPermission()
         }
     }
     private fun loadBannerAd() {
@@ -180,6 +197,42 @@ class HomeFragment : Fragment() {
             binding.textViewUserName.text = "Hoşgeldin Anonim Kullanıcı"
         }
     }
+    private fun checkAudioPermission() {
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.RECORD_AUDIO),
+                RECORD_AUDIO_PERMISSION_REQUEST_CODE
+            )
+        } else {
+            startVoiceRecognition()
+        }
+    }
+    private fun startVoiceRecognition() {
+        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
+            putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+            putExtra(RecognizerIntent.EXTRA_LANGUAGE, "tr-TR")
+            putExtra(RecognizerIntent.EXTRA_PROMPT, "Lütfen bir şeyler söyleyin")
+        }
+
+        try {
+            startActivityForResult(intent, VOICE_RECOGNITION_REQUEST_CODE)
+        } catch (e: ActivityNotFoundException) {
+            Snackbar.make(binding.root, "Ses tanıma desteklenmiyor.", Snackbar.LENGTH_LONG).show()
+        }
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == VOICE_RECOGNITION_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            val matches = data?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+            matches?.firstOrNull()?.let { recognizedText ->
+                binding.searchViewFilm.setQuery(recognizedText, true)
+                movieViewModel.searchMovies(recognizedText)
+            }
+        }
+    }
+
+
 
 
     override fun onDestroyView() {
