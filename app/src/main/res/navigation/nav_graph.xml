@@ -99,5 +99,21 @@
             android:name="videoKey"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/searchResultsFragment"
+        android:name="com.berfinilik.moviesappkotlin.ui.fragments.SearchResultsFragment"
+        android:label="Arama Sonuçları">
+        <argument
+            android:name="query"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_searchResultsFragment_to_detailFragment"
+            app:destination="@id/detailFragment"/>
+    </fragment>
+
+    <action
+        android:id="@+id/action_homeFragment_to_searchResultsFragment"
+        app:destination="@id/searchResultsFragment"/>
+
 
 </navigation>

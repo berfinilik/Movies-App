@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.berfinilik.moviesappkotlin.MovieViewModelFactory
 import com.berfinilik.moviesappkotlin.adapters.CategoriesAdapter
 import com.berfinilik.moviesappkotlin.adapters.PopularMoviesAdapter
+import com.berfinilik.moviesappkotlin.adapters.SearchMoviesAdapter
 import com.berfinilik.moviesappkotlin.api.ApiClient
 import com.berfinilik.moviesappkotlin.data.repository.MovieRepository
 import com.berfinilik.moviesappkotlin.databinding.FragmentHomeBinding
@@ -45,6 +46,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var categoriesAdapter: CategoriesAdapter
     private lateinit var popularMoviesAdapter: PopularMoviesAdapter
+    private lateinit var searchMoviesAdapter: SearchMoviesAdapter
 
     private lateinit var adView:AdView
 
@@ -72,12 +74,12 @@ class HomeFragment : Fragment() {
         movieViewModel.fetchMovieGenres()
         movieViewModel.fetchPopularMovies()
         fetchUserNameFromFirestore()
-
         binding.searchViewFilm.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             android.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 query?.let {
-                    movieViewModel.searchMovies(it)
+                    val action = HomeFragmentDirections.actionHomeFragmentToSearchResultsFragment(it)
+                    findNavController().navigate(action)
                 }
                 return true
             }
@@ -164,7 +166,7 @@ class HomeFragment : Fragment() {
         movieViewModel.searchResultsLiveData.observe(viewLifecycleOwner) { searchResults ->
             searchResults?.let {
                 if (it.isNotEmpty()) {
-                    popularMoviesAdapter.updateData(it)
+                    searchMoviesAdapter.updateData(it)
                 } else {
                     showSnackbar("Arama sonucu bulunamadı.")
                 }
@@ -231,9 +233,11 @@ class HomeFragment : Fragment() {
             }
         }
     }
-
-
-
+    override fun onResume() {
+        super.onResume()
+        binding.searchViewFilm.setQuery("", false)
+        binding.searchViewFilm.clearFocus()
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
