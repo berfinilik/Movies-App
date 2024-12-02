@@ -8,5 +8,9 @@
     <color name="dark_blue">#252836</color>
     <color name="bottom_nav">#049FB4</color>
     <color name="red">#FF0000</color>
+    <color name="darker_gray">#aaa</color>
+    <color name="transparent">#00000000</color>
+
+
 
 </resources>
