@@ -39,7 +39,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private val repository by lazy { MovieRepository(ApiClient.apiService) }
+    private val repository by lazy { MovieRepository(ApiClient.apiService, requireContext()) }
     private val movieViewModel: MovieViewModel by viewModels {
         MovieViewModelFactory(repository)
     }

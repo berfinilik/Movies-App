@@ -1,14 +1,31 @@
 package com.berfinilik.moviesappkotlin.data.repository
 
+import android.content.Context
 import com.berfinilik.moviesappkotlin.api.MovieApiService
 import com.berfinilik.moviesappkotlin.data.model.GenresResponse
 import com.berfinilik.moviesappkotlin.data.model.PopularMoviesResponse
+import com.berfinilik.moviesappkotlin.utils.KeyStore
 import retrofit2.Response
 
-class MovieRepository(private val apiService: MovieApiService) {
+class MovieRepository(
+    private val apiService: MovieApiService,
+    private val context: Context
+) {
+    private val keyStore = KeyStore(context)
+
+    private val apiKey: String by lazy {
+        val sharedPreferences = context.getSharedPreferences("SecurePrefs", Context.MODE_PRIVATE)
+        val encryptedApiKey = sharedPreferences.getString("encryptedApiKey", null)
+        val iv = sharedPreferences.getString("encryptionIv", null)
+
+        if (encryptedApiKey != null && iv != null) {
+            keyStore.decryptData(encryptedApiKey, iv)
+        } else {
+            throw IllegalStateException("API key not found! Şifrelenmiş API key eksik.")
+        }
+    }
 
     suspend fun getPopularMovies(
-        apiKey: String,
         language: String = "tr-TR",
         page: Int = 1,
         region: String? = null
@@ -17,17 +34,15 @@ class MovieRepository(private val apiService: MovieApiService) {
     }
 
     suspend fun getMovieGenres(
-        apiKey: String,
         language: String = "tr-TR"
     ): Response<GenresResponse> {
         return apiService.getMovieGenres(apiKey, language)
     }
 
-    suspend fun searchMovies(apiKey: String, query: String): Response<PopularMoviesResponse> {
+    suspend fun searchMovies(query: String): Response<PopularMoviesResponse> {
         return apiService.searchMovies(apiKey, query)
     }
     suspend fun getMoviesByCategory(
-        apiKey: String,
         categoryId: Int,
         language: String = "tr-TR",
         page: Int = 1

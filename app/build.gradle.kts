@@ -20,20 +20,6 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-            buildConfigField("String", "TMDB_API_KEY", "\"416ffe3feaa612800144e2d842faa042\"")
-        }
-        debug {
-            isMinifyEnabled = false
-            buildConfigField("String", "TMDB_API_KEY", "\"416ffe3feaa612800144e2d842faa042\"")
-        }
-    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -44,7 +30,6 @@ android {
 
     buildFeatures {
         viewBinding = true
-        buildConfig = true
     }
 }
 

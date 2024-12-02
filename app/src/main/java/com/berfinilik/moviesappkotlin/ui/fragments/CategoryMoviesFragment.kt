@@ -23,7 +23,7 @@ class CategoryMoviesFragment : Fragment() {
     private var _binding: FragmentCategoryMoviesBinding? = null
     private val binding get() = _binding!!
     private val movieViewModel: MovieViewModel by viewModels {
-        MovieViewModelFactory(MovieRepository(ApiClient.apiService))
+        MovieViewModelFactory(MovieRepository(ApiClient.apiService, requireContext()))
     }
 
     private lateinit var moviesAdapter: CategoriesCardAdapter

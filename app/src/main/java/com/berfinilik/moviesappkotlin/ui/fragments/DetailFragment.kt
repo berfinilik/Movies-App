@@ -7,11 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.berfinilik.moviesappkotlin.BuildConfig
 import com.berfinilik.moviesappkotlin.R
 import com.berfinilik.moviesappkotlin.data.model.MovieDetailsResponse
 import com.berfinilik.moviesappkotlin.adapters.CastAdapter
@@ -39,12 +37,14 @@ class DetailFragment : Fragment() {
     private var movie: MovieDetailsResponse? = null
     private var videoKey: String? = null
 
+    private lateinit var keyStore: com.berfinilik.moviesappkotlin.utils.KeyStore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             movieId = it.getInt("movieId")
         }
+        keyStore = com.berfinilik.moviesappkotlin.utils.KeyStore(requireContext())
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -124,11 +124,22 @@ class DetailFragment : Fragment() {
             }
         }
     }
+    private fun getApiKey(): String {
+        val sharedPreferences = requireContext().getSharedPreferences("SecurePrefs", android.content.Context.MODE_PRIVATE)
+        val encryptedApiKey = sharedPreferences.getString("encryptedApiKey", null)
+        val iv = sharedPreferences.getString("encryptionIv", null)
+
+        return if (encryptedApiKey != null && iv != null) {
+            keyStore.decryptData(encryptedApiKey, iv)
+        } else {
+            throw IllegalStateException("API key bulunamadı.")
+        }
+    }
     private fun fetchMovieVideos(movieId: Int) {
         viewLifecycleOwner.lifecycleScope.launch {
             val response = ApiClient.apiService.getMovieVideos(
                 movieId = movieId,
-                apiKey = BuildConfig.TMDB_API_KEY
+                apiKey = getApiKey()
             )
             if (response.isSuccessful && response.body() != null) {
                 val videos = response.body()?.results?.filter { it.site == "YouTube" }
@@ -233,7 +244,7 @@ class DetailFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             val response = ApiClient.apiService.getMovieDetails(
                 movieId = movieId,
-                apiKey = BuildConfig.TMDB_API_KEY
+                apiKey = getApiKey()
             )
             if (response.isSuccessful && response.body() != null) {
                 val movie = response.body()
