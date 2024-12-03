@@ -67,4 +67,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.x.x")
 
     implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.0.0")
+
+    implementation("androidx.work:work-runtime-ktx:2.8.0")
+
 }

@@ -3,6 +3,7 @@ package com.berfinilik.moviesappkotlin.api
 import com.berfinilik.moviesappkotlin.VideosResponse
 import com.berfinilik.moviesappkotlin.data.model.MovieDetailsResponse
 import com.berfinilik.moviesappkotlin.data.model.GenresResponse
+import com.berfinilik.moviesappkotlin.data.model.MovieResponse
 import com.berfinilik.moviesappkotlin.data.model.PopularMoviesResponse
 import retrofit2.Response
 import retrofit2.http.GET
@@ -55,5 +56,11 @@ interface MovieApiService {
         @Query("language") language:String="tr-TR",
         @Query("api_key") apiKey: String
     ):Response<VideosResponse>
+
+    @GET("discover/movie")
+    suspend fun getDiscoverMovies(
+        @Query("api_key") apiKey: String,
+        @Query("sort_by") sortBy: String
+    ): Response<MovieResponse>
 
 }
