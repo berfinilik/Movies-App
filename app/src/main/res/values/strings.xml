@@ -35,4 +35,15 @@
     <string name="voice_search_description">Sesli Arama</string>
     <string name="empty_category_message">Bu kategoride film bulunamadı.</string>
 
+    <string name="who_is_watching">Kim İzliyor?</string>
+    <string name="manage_profiles">Profilleri Yönet</string>
+    <string name="logout">Çıkış Yap</string>
+    <string name="settings">Ayarlar</string>
+    <string name="theme_settings">Tema Ayarları</string>
+    <string name="account_info">Hesap Bilgileri</string>
+    <string name="privacy_and_security">Gizlilik ve Güvenlik</string>
+    <string name="notification_settings">Bildirim Ayarları</string>
+    <string name="help_and_support">Yardım ve Destek</string>
+
+
 </resources>

@@ -1,9 +1,11 @@
 package com.berfinilik.moviesappkotlin
 
 import android.app.Application
+import android.content.Context
 import androidx.room.Room
 import com.berfinilik.moviesappkotlin.data.database.AppDatabase
 import com.berfinilik.moviesappkotlin.utils.KeyStore
+import com.berfinilik.moviesappkotlin.utils.ThemeHelper
 
 class MyApplication : Application() {
 
@@ -18,6 +20,13 @@ class MyApplication : Application() {
     }
     override fun onCreate() {
         super.onCreate()
+
+        setupKeyStore()
+        applyThemePreference()
+
+    }
+
+    private fun setupKeyStore() {
         keyStore = KeyStore(this)
         keyStore.createKey()
         val sharedPreferences = getSharedPreferences("SecurePrefs", MODE_PRIVATE)
@@ -30,4 +39,11 @@ class MyApplication : Application() {
             }
         }
     }
+
+    private fun applyThemePreference() {
+        val sharedPreferences = getSharedPreferences("theme_pref", Context.MODE_PRIVATE)
+        val isDarkMode = sharedPreferences.getBoolean("isDarkMode", false)
+        ThemeHelper.setThemeMode(isDarkMode)
+    }
+
 }
