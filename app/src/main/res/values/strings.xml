@@ -48,6 +48,20 @@
     <string name="two_factor_auth">İki Faktörlü Kimlik Doğrulama</string>
     <string name="data_protection">Veri Koruma</string>
     <string name="delete_account">Hesabı Sil</string>
+    <string name="delete_account_confirmation">Hesabınızı silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.</string>
+    <string name="account_deleted_successfully">Hesap başarıyla silindi.</string>
+    <string name="account_delete_failed">Hesap silinirken bir hata oluştu.</string>
+    <string name="logout_confirmation">Çıkış yapmak istediğinizden emin misiniz?</string>
+    <string name="confirm">Onayla</string>
+    <string name="cancel">İptal</string>
+    <string name="logged_out">Başarıyla çıkış yaptınız.</string>
+    <string name="error_occurred">Bir hata oluştu.</string>
+    <string name="firestore_delete_failed">Firestore verileri silinirken bir hata oluştu.</string>
+    <string name="firestore_delete_success">Firestore verileri başarıyla silindi.</string>
+
+
+
+
 
 
 

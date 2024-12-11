@@ -49,5 +49,16 @@
     <string name="two_factor_auth">Two-Factor Authentication</string>
     <string name="data_protection">Data Protection</string>
     <string name="delete_account">Delete Account</string>
+    <string name="delete_account_confirmation">Are you sure you want to delete your account? This action cannot be undone.</string>
+    <string name="logout_confirmation">Are you sure you want to log out?</string>
+    <string name="account_deleted_successfully">Account deleted successfully.</string>
+    <string name="account_delete_failed">An error occurred while deleting the account.</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="logged_out">You have successfully logged out.</string>
+    <string name="error_occurred">An error occurred.</string>
+    <string name="firestore_delete_failed">An error occurred while deleting Firestore data.</string>
+    <string name="firestore_delete_success">Firestore data deleted successfully.</string>
+
 
 </resources>
