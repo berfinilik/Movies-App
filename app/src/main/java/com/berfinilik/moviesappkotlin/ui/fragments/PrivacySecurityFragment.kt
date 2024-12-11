@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.berfinilik.moviesappkotlin.R
 import com.berfinilik.moviesappkotlin.adapters.PrivacySecurityAdapter
@@ -41,6 +42,8 @@ class PrivacySecurityFragment : Fragment() {
             when (option.action) {
                 SettingAction.DELETE_ACCOUNT -> showDeleteAccountDialog()
                 SettingAction.LOGOUT -> confirmLogout()
+                SettingAction.CHANGE_PASSWORD -> findNavController().navigate(R.id.action_privacySecurityFragment_to_changePasswordFragment)
+
 
                 else -> {}
             }

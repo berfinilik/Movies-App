@@ -136,6 +136,17 @@
         android:label="fragment_privacy_security"
         tools:layout="@layout/fragment_privacy_security" />
 
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.berfinilik.moviesappkotlin.ui.fragments.ChangePasswordFragment"
+        android:label="Change Password"
+        tools:layout="@layout/fragment_change_password" />
+
+    <action
+        android:id="@+id/action_privacySecurityFragment_to_changePasswordFragment"
+        app:destination="@id/changePasswordFragment" />
+
+
 
 
 </navigation>

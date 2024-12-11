@@ -59,6 +59,19 @@
     <string name="error_occurred">An error occurred.</string>
     <string name="firestore_delete_failed">An error occurred while deleting Firestore data.</string>
     <string name="firestore_delete_success">Firestore data deleted successfully.</string>
+    <string name="enter_current_password">Enter your current password</string>
+    <string name="enter_new_password">Enter your new password</string>
+    <string name="confirm_new_password">Confirm your new password</string>
+    <string name="passwords_do_not_match">Passwords do not match</string>
+    <string name="password_too_short">Password must be at least 6 characters long</string>
+    <string name="password_changed_successfully">Password changed successfully</string>
+    <string name="password_change_failed">Failed to change password</string>
+    <string name="invalid_current_password">Invalid current password</string>
+    <string name="current_password_empty">Current password cannot be empty.</string>
+    <string name="new_password_empty">New password cannot be empty.</string>
+    <string name="confirm_password_empty">Confirm password cannot be empty.</string>
+
+
 
 
 </resources>

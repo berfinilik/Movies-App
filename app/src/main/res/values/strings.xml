@@ -58,9 +58,17 @@
     <string name="error_occurred">Bir hata oluştu.</string>
     <string name="firestore_delete_failed">Firestore verileri silinirken bir hata oluştu.</string>
     <string name="firestore_delete_success">Firestore verileri başarıyla silindi.</string>
-
-
-
+    <string name="enter_current_password">Mevcut şifrenizi girin</string>
+    <string name="enter_new_password">Yeni şifrenizi girin</string>
+    <string name="confirm_new_password">Yeni şifrenizi onaylayın</string>
+    <string name="passwords_do_not_match">Şifreler eşleşmiyor</string>
+    <string name="password_too_short">Şifre en az 6 karakter olmalıdır</string>
+    <string name="password_changed_successfully">Şifre başarıyla değiştirildi</string>
+    <string name="password_change_failed">Şifre değiştirilemedi</string>
+    <string name="invalid_current_password">Mevcut şifre hatalı</string>
+    <string name="current_password_empty">Mevcut şifre boş olamaz.</string>
+    <string name="new_password_empty">Yeni şifre boş olamaz.</string>
+    <string name="confirm_password_empty">Onay şifresi boş olamaz.</string>
 
 
 
