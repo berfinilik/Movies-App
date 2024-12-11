@@ -44,6 +44,11 @@
     <string name="privacy_and_security">Gizlilik ve Güvenlik</string>
     <string name="notification_settings">Bildirim Ayarları</string>
     <string name="help_and_support">Yardım ve Destek</string>
+    <string name="change_password">Şifreyi Değiştir</string>
+    <string name="two_factor_auth">İki Faktörlü Kimlik Doğrulama</string>
+    <string name="data_protection">Veri Koruma</string>
+    <string name="delete_account">Hesabı Sil</string>
+
 
 
 </resources>

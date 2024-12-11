@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.WorkManager
@@ -51,6 +52,7 @@ class SettingsFragment : Fragment() {
             when (option.action) {
                 SettingAction.CHANGE_THEME -> showThemeDialog()
                 SettingAction.NOTIFICATIONS -> showNotificationSettingsDialog()
+                SettingAction.PRIVACY_SECURITY -> openPrivacySecurityFragment()
                 else -> {}
             }
         }
@@ -59,6 +61,9 @@ class SettingsFragment : Fragment() {
         binding.recyclerViewSettings.adapter = adapter
 
         return binding.root
+    }
+    private fun openPrivacySecurityFragment() {
+        findNavController().navigate(R.id.action_settingsFragment_to_privacySecurityFragment)
     }
 
     private fun showNotificationSettingsDialog() {

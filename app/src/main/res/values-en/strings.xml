@@ -45,5 +45,9 @@
     <string name="privacy_and_security">Privacy and Security</string>
     <string name="notification_settings">Notification Settings</string>
     <string name="help_and_support">Help and Support</string>
+    <string name="change_password">Change Password</string>
+    <string name="two_factor_auth">Two-Factor Authentication</string>
+    <string name="data_protection">Data Protection</string>
+    <string name="delete_account">Delete Account</string>
 
 </resources>

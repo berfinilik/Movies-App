@@ -123,7 +123,19 @@
         android:id="@+id/settingsFragment"
         android:name="com.berfinilik.moviesappkotlin.ui.fragments.SettingsFragment"
         android:label="Ayarlar"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings">
+    <action
+        android:id="@+id/action_settingsFragment_to_privacySecurityFragment"
+        app:destination="@id/privacySecurityFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/privacySecurityFragment"
+        android:name="com.berfinilik.moviesappkotlin.ui.fragments.PrivacySecurityFragment"
+        android:label="fragment_privacy_security"
+        tools:layout="@layout/fragment_privacy_security" />
+
 
 
 </navigation>
