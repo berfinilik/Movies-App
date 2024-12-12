@@ -70,4 +70,6 @@ dependencies {
 
     implementation("androidx.work:work-runtime-ktx:2.8.0")
 
+    implementation("com.itextpdf:itextg:5.5.10")
+
 }
