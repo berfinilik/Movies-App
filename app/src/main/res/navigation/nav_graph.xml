@@ -146,6 +146,16 @@
         android:id="@+id/action_privacySecurityFragment_to_changePasswordFragment"
         app:destination="@id/changePasswordFragment" />
 
+    <fragment
+        android:id="@+id/dataProtectionFragment"
+        android:name="com.berfinilik.moviesappkotlin.ui.fragments.DataProtectionFragment"
+        android:label="Data Protection"
+        tools:layout="@layout/fragment_data_protection" />
+
+    <action
+        android:id="@+id/action_privacySecurityFragment_to_dataProtectionFragment"
+        app:destination="@id/dataProtectionFragment" />
+
 
 
 

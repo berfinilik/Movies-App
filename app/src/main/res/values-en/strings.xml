@@ -56,7 +56,7 @@
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
     <string name="logged_out">You have successfully logged out.</string>
-    <string name="error_occurred">An error occurred.</string>
+    <string name="error_occurred">Error: %1$s</string>
     <string name="firestore_delete_failed">An error occurred while deleting Firestore data.</string>
     <string name="firestore_delete_success">Firestore data deleted successfully.</string>
     <string name="enter_current_password">Enter your current password</string>
@@ -70,8 +70,14 @@
     <string name="current_password_empty">Current password cannot be empty.</string>
     <string name="new_password_empty">New password cannot be empty.</string>
     <string name="confirm_password_empty">Confirm password cannot be empty.</string>
+    <string name="data_protection_description">
+"The security of your data is very important to us. All your data is stored only to perform in-app operations and is never shared with third parties. Your data is protected with Firebase's security protocols.
 
-
-
+You can download your data to your device using the button below. This file contains information related to your use of the app. If you have any questions, feel free to contact our support team."
+</string>
+    <string name="download_your_data">Download Your Data</string>
+    <string name="data_download_success">Data successfully saved: %1$s</string>
+    <string name="data_download_fail">Data download failed. Please try again.</string>
+    <string name="data_not_found">No data found.</string>
 
 </resources>

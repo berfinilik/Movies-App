@@ -55,7 +55,7 @@
     <string name="confirm">Onayla</string>
     <string name="cancel">İptal</string>
     <string name="logged_out">Başarıyla çıkış yaptınız.</string>
-    <string name="error_occurred">Bir hata oluştu.</string>
+    <string name="error_occurred">Hata: %1$s</string>
     <string name="firestore_delete_failed">Firestore verileri silinirken bir hata oluştu.</string>
     <string name="firestore_delete_success">Firestore verileri başarıyla silindi.</string>
     <string name="enter_current_password">Mevcut şifrenizi girin</string>
@@ -69,8 +69,15 @@
     <string name="current_password_empty">Mevcut şifre boş olamaz.</string>
     <string name="new_password_empty">Yeni şifre boş olamaz.</string>
     <string name="confirm_password_empty">Onay şifresi boş olamaz.</string>
+    <string name="data_protection_description">
+"Verilerinizin güvenliği bizim için çok önemlidir. Tüm verileriniz yalnızca uygulama içindeki işlemleri gerçekleştirmek amacıyla saklanır ve hiçbir şekilde üçüncü taraflarla paylaşılmaz. Verileriniz, Firebase güvenlik protokolleri ile korunmaktadır.
 
-
+Aşağıdaki butonu kullanarak verilerinizi cihazınıza indirebilirsiniz. Bu dosyada, uygulama kullanımınızla ilişkili bilgileri bulabilirsiniz. Herhangi bir sorunuz varsa destek ekibimize ulaşabilirsiniz."
+</string>
+    <string name="download_your_data">Verilerinizi İndirin</string>
+    <string name="data_download_success">Verileriniz başarıyla indirildi: %1$s</string>
+    <string name="data_download_fail">Veriler indirilemedi. Lütfen tekrar deneyin.</string>
+    <string name="data_not_found">Veri bulunamadı.</string>
 
 
 </resources>

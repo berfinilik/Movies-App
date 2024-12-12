@@ -43,6 +43,7 @@ class PrivacySecurityFragment : Fragment() {
                 SettingAction.DELETE_ACCOUNT -> showDeleteAccountDialog()
                 SettingAction.LOGOUT -> confirmLogout()
                 SettingAction.CHANGE_PASSWORD -> findNavController().navigate(R.id.action_privacySecurityFragment_to_changePasswordFragment)
+                SettingAction.DATA_PROTECTION -> findNavController().navigate(R.id.action_privacySecurityFragment_to_dataProtectionFragment)
 
 
                 else -> {}
