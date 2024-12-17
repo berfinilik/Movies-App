@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.berfinilik.moviesappkotlin.data.model.GenresResponse
 import com.berfinilik.moviesappkotlin.data.model.PopularMoviesResponse
-import com.berfinilik.moviesappkotlin.data.model.Result
+import com.berfinilik.moviesappkotlin.data.model.MovieResult
 import com.berfinilik.moviesappkotlin.data.repository.MovieRepository
 import kotlinx.coroutines.launch
 
@@ -18,8 +18,8 @@ class MovieViewModel(private val repository: MovieRepository) : ViewModel() {
     private val _genresLiveData = MutableLiveData<GenresResponse>()
     val genresLiveData: LiveData<GenresResponse> = _genresLiveData
 
-    private val _searchResultsLiveData = MutableLiveData<List<Result>>()
-    val searchResultsLiveData: LiveData<List<Result>> = _searchResultsLiveData
+    private val _searchResultsLiveData = MutableLiveData<List<MovieResult>>()
+    val searchResultsLiveData: LiveData<List<MovieResult>> = _searchResultsLiveData
 
     private var currentPage = 1
     var isLoading = false
@@ -29,7 +29,7 @@ class MovieViewModel(private val repository: MovieRepository) : ViewModel() {
         if (isLoading || currentPage > totalPages) return
         isLoading = true
         viewModelScope.launch {
-            val response = repository.getPopularMovies(language, currentPage, region)
+            val response = repository.getPopularMovies(page = currentPage, language = language, region = region)
             if (response.isSuccessful) {
                 val movies = response.body()?.results.orEmpty()
                 val currentResponse = _popularMoviesLiveData.value

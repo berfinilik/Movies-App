@@ -34,6 +34,8 @@
     <string name="recommendation_message">En sevdiğin filmi yayınlayalım.</string>
     <string name="voice_search_description">Sesli Arama</string>
     <string name="empty_category_message">Bu kategoride film bulunamadı.</string>
+    <string name="recommended">Önerilenler</string>
+
 
     <string name="who_is_watching">Kim İzliyor?</string>
     <string name="manage_profiles">Profilleri Yönet</string>

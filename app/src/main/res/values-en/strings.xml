@@ -35,6 +35,8 @@
     <string name="recommendation_message">Let’s publish your favorite movie.</string>
     <string name="voice_search_description">Voice Search</string>
     <string name="empty_category_message">No movies found in this category.</string>
+    <string name="recommended">Recommended</string>
+
 
     <string name="who_is_watching">Who is watching?</string>
     <string name="manage_profiles">Manage Profiles</string>

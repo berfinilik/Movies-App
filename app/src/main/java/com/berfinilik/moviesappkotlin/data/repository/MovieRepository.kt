@@ -26,11 +26,11 @@ class MovieRepository(
     }
 
     suspend fun getPopularMovies(
-        language: String = "tr-TR",
         page: Int = 1,
+        language: String = "tr-TR",
         region: String? = null
     ): Response<PopularMoviesResponse> {
-        return apiService.getPopularMovies(apiKey, language, page, region)
+        return apiService.getPopularMovies(apiKey = apiKey, page = page, language = language, region = region)
     }
 
     suspend fun getMovieGenres(

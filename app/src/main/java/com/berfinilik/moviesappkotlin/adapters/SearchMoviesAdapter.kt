@@ -7,12 +7,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.berfinilik.moviesappkotlin.R
-import com.berfinilik.moviesappkotlin.data.model.Result
+import com.berfinilik.moviesappkotlin.data.model.MovieResult
 import com.bumptech.glide.Glide
 
 class SearchMoviesAdapter(
-    private var moviesList: List<Result>,
-    private val onClick: (Result) -> Unit
+    private var moviesList: List<MovieResult>,
+    private val onClick: (MovieResult) -> Unit
 ) : RecyclerView.Adapter<SearchMoviesAdapter.SearchViewHolder>() {
 
     class SearchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -41,7 +41,7 @@ class SearchMoviesAdapter(
 
     override fun getItemCount() = moviesList.size
 
-    fun updateData(newMovies: List<Result>) {
+    fun updateData(newMovies: List<MovieResult>) {
         moviesList = newMovies
         notifyDataSetChanged()
     }

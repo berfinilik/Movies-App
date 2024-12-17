@@ -15,6 +15,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,17 +23,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.berfinilik.moviesappkotlin.MovieViewModelFactory
 import com.berfinilik.moviesappkotlin.adapters.CategoriesAdapter
 import com.berfinilik.moviesappkotlin.adapters.PopularMoviesAdapter
+import com.berfinilik.moviesappkotlin.adapters.RandomMovieAdapter
 import com.berfinilik.moviesappkotlin.adapters.SearchMoviesAdapter
 import com.berfinilik.moviesappkotlin.api.ApiClient
 import com.berfinilik.moviesappkotlin.data.repository.MovieRepository
 import com.berfinilik.moviesappkotlin.databinding.FragmentHomeBinding
 import com.berfinilik.moviesappkotlin.viewmodels.MovieViewModel
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.MobileAds
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+
+import com.berfinilik.moviesappkotlin.data.model.MovieResult
+import kotlinx.coroutines.launch
+import kotlin.random.Random
+
 
 class HomeFragment : Fragment() {
 
@@ -48,7 +52,8 @@ class HomeFragment : Fragment() {
     private lateinit var popularMoviesAdapter: PopularMoviesAdapter
     private lateinit var searchMoviesAdapter: SearchMoviesAdapter
 
-    private lateinit var adView:AdView
+
+
 
     companion object {
         private const val VOICE_RECOGNITION_REQUEST_CODE = 1
@@ -60,9 +65,6 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        context?.let { MobileAds.initialize(it) }
-        adView = binding.adView
-        loadBannerAd()
         return binding.root
     }
 
@@ -74,6 +76,8 @@ class HomeFragment : Fragment() {
         movieViewModel.fetchMovieGenres()
         movieViewModel.fetchPopularMovies()
         fetchUserNameFromFirestore()
+        loadRandomMovies()
+
         binding.searchViewFilm.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             android.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -96,12 +100,7 @@ class HomeFragment : Fragment() {
             checkAudioPermission()
         }
     }
-    private fun loadBannerAd() {
-        val adRequest = AdRequest.Builder()
-            .setContentUrl("https://www.imdb.com/")
-            .build()
-        adView.loadAd(adRequest)
-    }
+
     private fun setupRecyclerViews() {
         categoriesAdapter = CategoriesAdapter(emptyList()) { category ->
             val action = HomeFragmentDirections.actionHomeFragmentToCategoryMoviesFragment(
@@ -115,7 +114,7 @@ class HomeFragment : Fragment() {
             adapter = categoriesAdapter
         }
 
-        popularMoviesAdapter = PopularMoviesAdapter(emptyList()) { selectedMovie ->
+        popularMoviesAdapter = PopularMoviesAdapter(emptyList<MovieResult>()) { selectedMovie: MovieResult ->
             val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(selectedMovie.id)
             findNavController().navigate(action)
         }
@@ -163,10 +162,10 @@ class HomeFragment : Fragment() {
             }
         }
 
-        movieViewModel.searchResultsLiveData.observe(viewLifecycleOwner) { searchResults ->
-            searchResults?.let {
-                if (it.isNotEmpty()) {
-                    searchMoviesAdapter.updateData(it)
+        movieViewModel.searchResultsLiveData.observe(viewLifecycleOwner) { searchResults: List<MovieResult>? ->
+            searchResults?.let { results ->
+                if (results.isNotEmpty()) {
+                    searchMoviesAdapter.updateData(results)
                 } else {
                     showSnackbar("Arama sonucu bulunamadı.")
                 }
@@ -223,6 +222,40 @@ class HomeFragment : Fragment() {
             Snackbar.make(binding.root, "Ses tanıma desteklenmiyor.", Snackbar.LENGTH_LONG).show()
         }
     }
+    private fun loadRandomMovies() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                val randomPage = Random.nextInt(1, 100)
+                val response = repository.getPopularMovies(page = randomPage)
+
+                if (response.isSuccessful) {
+                    val movies = response.body()?.results?.shuffled()?.take(10) // İlk 10 film
+                    if (!movies.isNullOrEmpty()) {
+                        setupRandomMoviesViewPager(movies)
+                    } else {
+                        showSnackbar("Rastgele film bulunamadı.")
+                    }
+                } else {
+                    showSnackbar("Filmler yüklenirken hata oluştu: ${response.message()}")
+                }
+            } catch (e: Exception) {
+                showSnackbar("Filmler yüklenemedi: ${e.message}")
+            }
+        }
+    }
+
+
+
+    private fun setupRandomMoviesViewPager(movies: List<MovieResult>) {
+        val adapter = RandomMovieAdapter(movies) { movie ->
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(movie.id)
+            findNavController().navigate(action)
+        }
+        binding.randomMovieViewPager.adapter = adapter
+    }
+
+
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == VOICE_RECOGNITION_REQUEST_CODE && resultCode == Activity.RESULT_OK) {

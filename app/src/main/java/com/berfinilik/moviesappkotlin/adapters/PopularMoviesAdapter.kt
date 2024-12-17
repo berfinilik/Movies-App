@@ -7,12 +7,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.berfinilik.moviesappkotlin.R
-import com.berfinilik.moviesappkotlin.data.model.Result
+import com.berfinilik.moviesappkotlin.data.model.MovieResult
 import com.bumptech.glide.Glide
 
 class PopularMoviesAdapter(
-    private var moviesList: List<Result>,
-    private val onClick: (Result) -> Unit
+    private var moviesList: List<MovieResult>,
+    private val onClick: (MovieResult) -> Unit
 ) : RecyclerView.Adapter<PopularMoviesAdapter.PopularViewHolder>() {
 
     class PopularViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -39,7 +39,7 @@ class PopularMoviesAdapter(
 
     override fun getItemCount() = moviesList.size
 
-    fun updateData(newMovies: List<Result>) {
+    fun updateData(newMovies: List<MovieResult>) {
         moviesList = newMovies
         notifyDataSetChanged()
     }
