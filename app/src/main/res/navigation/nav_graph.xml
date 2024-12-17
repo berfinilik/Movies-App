@@ -5,6 +5,13 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/homeFragment">
 
+
+    <fragment
+        android:id="@+id/accountInfoFragment"
+        android:name="com.berfinilik.moviesappkotlin.ui.fragments.AccountInfoFragment"
+        android:label="fragment_account_info"
+        tools:layout="@layout/fragment_account_info"/>
+
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.berfinilik.moviesappkotlin.ui.fragments.DetailFragment"
@@ -124,9 +131,13 @@
         android:name="com.berfinilik.moviesappkotlin.ui.fragments.SettingsFragment"
         android:label="Ayarlar"
         tools:layout="@layout/fragment_settings">
-    <action
+        <action
         android:id="@+id/action_settingsFragment_to_privacySecurityFragment"
-        app:destination="@id/privacySecurityFragment" />
+        app:destination="@id/privacySecurityFragment"/>
+        <action
+            android:id="@+id/action_settingsFragment_to_accountInfoFragment"
+            app:destination="@id/accountInfoFragment" />
+
     </fragment>
 
 

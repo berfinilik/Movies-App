@@ -53,6 +53,7 @@ class SettingsFragment : Fragment() {
                 SettingAction.CHANGE_THEME -> showThemeDialog()
                 SettingAction.NOTIFICATIONS -> showNotificationSettingsDialog()
                 SettingAction.PRIVACY_SECURITY -> openPrivacySecurityFragment()
+                SettingAction.ACCOUNT_INFO -> openAccountInfoFragment()
                 else -> {}
             }
         }
@@ -62,6 +63,11 @@ class SettingsFragment : Fragment() {
 
         return binding.root
     }
+
+    private fun openAccountInfoFragment() {
+        findNavController().navigate(R.id.action_settingsFragment_to_accountInfoFragment)
+    }
+
     private fun openPrivacySecurityFragment() {
         findNavController().navigate(R.id.action_settingsFragment_to_privacySecurityFragment)
     }
