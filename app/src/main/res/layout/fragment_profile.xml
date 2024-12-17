@@ -39,7 +39,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Kullanıcı Adı"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -52,7 +51,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="kullanici@ornek.com"
         android:textColor="@color/darker_gray"
         android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@id/textViewUserName"
@@ -126,7 +124,6 @@
                     android:gravity="center" />
             </LinearLayout>
 
-            <!-- Çıkış -->
             <LinearLayout
                 android:id="@+id/logoutLayout"
                 android:layout_width="0dp"

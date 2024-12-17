@@ -11,11 +11,15 @@ import androidx.navigation.fragment.findNavController
 import com.berfinilik.moviesappkotlin.databinding.FragmentProfileBinding
 import com.berfinilik.moviesappkotlin.ui.activities.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
+
+    private val auth = FirebaseAuth.getInstance()
+    private val firestore = FirebaseFirestore.getInstance()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,11 +30,46 @@ class ProfileFragment : Fragment() {
             val action = ProfileFragmentDirections.actionProfileFragmentToSettingsFragment()
             findNavController().navigate(action)
         }
+
+        loadUserData()
+
+        binding.settingsLayout.setOnClickListener {
+            val action = ProfileFragmentDirections.actionProfileFragmentToSettingsFragment()
+            findNavController().navigate(action)
+        }
+
         binding.logoutLayout.setOnClickListener {
             showLogoutConfirmationDialog()
         }
         return binding.root
     }
+
+    private fun loadUserData() {
+        val userId = auth.currentUser?.uid
+
+        if (userId != null) {
+            firestore.collection("users").document(userId)
+                .get()
+                .addOnSuccessListener { document ->
+                    if (document.exists()) {
+                        val userName = document.getString("userName") ?: "Kullanıcı Adı"
+                        val email = document.getString("email") ?: "E-posta"
+
+                        binding.textViewUserName.text = userName
+                        binding.textViewEmail.text = email
+                    } else {
+                        binding.textViewUserName.text = ""
+                        binding.textViewEmail.text = ""
+                    }
+                }
+                .addOnFailureListener {
+
+                }
+        } else {
+
+        }
+    }
+
     private fun showLogoutConfirmationDialog() {
         AlertDialog.Builder(requireContext())
             .setTitle("Çıkış Yap")
