@@ -20,7 +20,7 @@
         android:icon="@drawable/save"
         android:title="Kaydedilenler" />
     <item
-        android:id="@+id/profileFragment"
+        android:id="@+id/accountFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/profile"

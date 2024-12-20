@@ -44,12 +44,9 @@
     <string name="theme_settings">Tema Ayarları</string>
     <string name="account_info">Hesap Bilgileri</string>
     <string name="privacy_and_security">Gizlilik ve Güvenlik</string>
-    <string name="notification_settings">Bildirim Ayarları</string>
     <string name="help_and_support">Yardım ve Destek</string>
     <string name="change_password">Şifreyi Değiştir</string>
     <string name="two_factor_auth">İki Faktörlü Kimlik Doğrulama</string>
-    <string name="data_protection">Veri Koruma</string>
-    <string name="delete_account">Hesabı Sil</string>
     <string name="delete_account_confirmation">Hesabınızı silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.</string>
     <string name="account_deleted_successfully">Hesap başarıyla silindi.</string>
     <string name="account_delete_failed">Hesap silinirken bir hata oluştu.</string>
@@ -80,6 +77,31 @@ Aşağıdaki butonu kullanarak verilerinizi cihazınıza indirebilirsiniz. Bu do
     <string name="data_download_success">Verileriniz başarıyla indirildi: %1$s</string>
     <string name="data_download_fail">Veriler indirilemedi. Lütfen tekrar deneyin.</string>
     <string name="data_not_found">Veri bulunamadı.</string>
+
+
+    <string name="profile_title">Profil</string>
+    <string name="profile_edit">Profili Düzenle</string>
+    <string name="menu_change_password">Şifre Değiştir</string>
+    <string name="menu_change_email">E-posta Değiştir</string>
+    <string name="menu_notification">Bildirim</string>
+    <string name="menu_language">Dil</string>
+    <string name="account_header">Hesap</string>
+    <string name="general_header">Genel</string>
+    <string name="menu_about_app">Uygulama Hakkında</string>
+    <string name="menu_theme">Tema</string>
+    <string name="menu_data_protection">Veri Koruma</string>
+    <string name="menu_delete_account">Hesabı Sil</string>
+    <string name="menu_logout">Çıkış Yap</string>
+    <string name="select_theme">Tema Seçenekleri</string>
+    <string name="supported_themes">Desteklenen Temalar</string>
+    <string name="theme_light">Açık Mod</string>
+    <string name="theme_dark">Koyu Mod</string>
+    <string name="theme_default">Varsayılan Mod</string>
+    <string name="notification_settings">Bildirim Seçenekleri</string>
+    <string name="enable_notifications">Açık</string>
+    <string name="disable_notifications">Kapalı</string>
+    <string name="save">Kaydet</string>
+
 
 
 </resources>

@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="@string/data_protection"
+        android:text="@string/menu_data_protection"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"

@@ -45,12 +45,9 @@
     <string name="theme_settings">Theme Settings</string>
     <string name="account_info">Account Information</string>
     <string name="privacy_and_security">Privacy and Security</string>
-    <string name="notification_settings">Notification Settings</string>
     <string name="help_and_support">Help and Support</string>
     <string name="change_password">Change Password</string>
     <string name="two_factor_auth">Two-Factor Authentication</string>
-    <string name="data_protection">Data Protection</string>
-    <string name="delete_account">Delete Account</string>
     <string name="delete_account_confirmation">Are you sure you want to delete your account? This action cannot be undone.</string>
     <string name="logout_confirmation">Are you sure you want to log out?</string>
     <string name="account_deleted_successfully">Account deleted successfully.</string>
@@ -81,5 +78,31 @@ You can download your data to your device using the button below. This file cont
     <string name="data_download_success">Data successfully saved: %1$s</string>
     <string name="data_download_fail">Data download failed. Please try again.</string>
     <string name="data_not_found">No data found.</string>
+
+    <string name="profile_title">Profile</string>
+    <string name="profile_edit">Edit Profile</string>
+    <string name="menu_change_password">Change Password</string>
+    <string name="menu_change_email">Change Email</string>
+    <string name="menu_notification">Notification</string>
+    <string name="menu_language">Language</string>
+    <string name="account_header">Account</string>
+    <string name="general_header">General</string>
+    <string name="menu_about_app">About App</string>
+    <string name="menu_theme">Theme</string>
+    <string name="menu_data_protection">Data Protection</string>
+    <string name="menu_delete_account">Delete Account</string>
+    <string name="menu_logout">Log Out</string>
+    <string name="select_theme">Theme Options</string>
+    <string name="supported_themes">Supported Themes</string>
+    <string name="theme_light">Light Mode</string>
+    <string name="theme_dark">Dark Mode</string>
+    <string name="theme_default">Default Mode</string>
+    <string name="notification_settings">Notification Settings</string>
+    <string name="enable_notifications">Enabled</string>
+    <string name="disable_notifications">Disabled</string>
+    <string name="save">Save</string>
+
+
+
 
 </resources>

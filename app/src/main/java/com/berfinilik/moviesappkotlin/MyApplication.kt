@@ -45,9 +45,9 @@ class MyApplication : Application() {
     }
 
     private fun applyThemePreference() {
-        val sharedPreferences = getSharedPreferences("theme_pref", Context.MODE_PRIVATE)
-        val isDarkMode = sharedPreferences.getBoolean("isDarkMode", false)
-        ThemeHelper.setThemeMode(isDarkMode)
+        val sharedPreferences = getSharedPreferences("app_settings", Context.MODE_PRIVATE)
+        val themePref = sharedPreferences.getString("theme", ThemeHelper.LIGHT_MODE)
+        ThemeHelper.applyTheme(themePref ?: ThemeHelper.LIGHT_MODE)
     }
 
     private fun checkAndSetupWorkManager() {
