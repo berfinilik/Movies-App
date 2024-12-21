@@ -38,15 +38,11 @@
 
 
     <string name="who_is_watching">Kim İzliyor?</string>
-    <string name="manage_profiles">Profilleri Yönet</string>
-    <string name="logout">Çıkış Yap</string>
-    <string name="settings">Ayarlar</string>
     <string name="theme_settings">Tema Ayarları</string>
     <string name="account_info">Hesap Bilgileri</string>
     <string name="privacy_and_security">Gizlilik ve Güvenlik</string>
     <string name="help_and_support">Yardım ve Destek</string>
     <string name="change_password">Şifreyi Değiştir</string>
-    <string name="two_factor_auth">İki Faktörlü Kimlik Doğrulama</string>
     <string name="delete_account_confirmation">Hesabınızı silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.</string>
     <string name="account_deleted_successfully">Hesap başarıyla silindi.</string>
     <string name="account_delete_failed">Hesap silinirken bir hata oluştu.</string>
@@ -57,9 +53,10 @@
     <string name="error_occurred">Hata: %1$s</string>
     <string name="firestore_delete_failed">Firestore verileri silinirken bir hata oluştu.</string>
     <string name="firestore_delete_success">Firestore verileri başarıyla silindi.</string>
-    <string name="enter_current_password">Mevcut şifrenizi girin</string>
-    <string name="enter_new_password">Yeni şifrenizi girin</string>
-    <string name="confirm_new_password">Yeni şifrenizi onaylayın</string>
+    <string name="password">Şifre</string>
+    <string name="enter_current_password">Mevcut şifreniz</string>
+    <string name="enter_new_password">Yeni Şifre</string>
+    <string name="confirm_new_password">Yeni Şifre(Tekrar)</string>
     <string name="passwords_do_not_match">Şifreler eşleşmiyor</string>
     <string name="password_too_short">Şifre en az 6 karakter olmalıdır</string>
     <string name="password_changed_successfully">Şifre başarıyla değiştirildi</string>

@@ -46,7 +46,15 @@ class AccountFragment : Fragment() {
 
         binding.recyclerAccount.apply {
             adapter = MenuAdapter(getAccountMenuItems()) { menuItem ->
-                Toast.makeText(requireContext(), menuItem.title, Toast.LENGTH_SHORT).show()
+                when (menuItem.title) {
+                    getString(R.string.menu_change_password) -> {
+                        findNavController().navigate(R.id.action_accountFragment_to_changePasswordFragment)
+                    }
+
+                    else -> {
+                        Toast.makeText(requireContext(), menuItem.title, Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
             layoutManager = LinearLayoutManager(requireContext())
             isNestedScrollingEnabled = false

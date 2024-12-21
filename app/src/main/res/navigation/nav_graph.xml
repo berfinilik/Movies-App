@@ -79,18 +79,14 @@
         <action
             android:id="@+id/action_accountFragment_to_notificationFragment"
             app:destination="@id/notificationFragment" />
-
-    </fragment>
-
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.berfinilik.moviesappkotlin.ui.fragments.ProfileFragment"
-        android:label="Profil"
-        tools:layout="@layout/fragment_profile">
         <action
-            android:id="@+id/action_profileFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
+            android:id="@+id/action_accountFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment" />
+
+
     </fragment>
+
+
     <fragment
         android:id="@+id/savedFragment"
         android:name="com.berfinilik.moviesappkotlin.ui.fragments.SavedFragment"
@@ -149,35 +145,11 @@
         app:destination="@id/searchResultsFragment"/>
 
     <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.berfinilik.moviesappkotlin.ui.fragments.SettingsFragment"
-        android:label="Ayarlar"
-        tools:layout="@layout/fragment_settings">
-        <action
-        android:id="@+id/action_settingsFragment_to_privacySecurityFragment"
-        app:destination="@id/privacySecurityFragment"/>
-        <action
-            android:id="@+id/action_settingsFragment_to_accountInfoFragment"
-            app:destination="@id/accountInfoFragment" />
-
-    </fragment>
-
-
-    <fragment
-        android:id="@+id/privacySecurityFragment"
-        android:name="com.berfinilik.moviesappkotlin.ui.fragments.PrivacySecurityFragment"
-        android:label="fragment_privacy_security"
-        tools:layout="@layout/fragment_privacy_security" />
-
-    <fragment
         android:id="@+id/changePasswordFragment"
         android:name="com.berfinilik.moviesappkotlin.ui.fragments.ChangePasswordFragment"
         android:label="Change Password"
         tools:layout="@layout/fragment_change_password" />
 
-    <action
-        android:id="@+id/action_privacySecurityFragment_to_changePasswordFragment"
-        app:destination="@id/changePasswordFragment" />
 
     <fragment
         android:id="@+id/dataProtectionFragment"
@@ -185,9 +157,6 @@
         android:label="Data Protection"
         tools:layout="@layout/fragment_data_protection" />
 
-    <action
-        android:id="@+id/action_privacySecurityFragment_to_dataProtectionFragment"
-        app:destination="@id/dataProtectionFragment" />
 
     <fragment
         android:id="@+id/notificationFragment"

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.berfinilik.moviesappkotlin.R
 import com.berfinilik.moviesappkotlin.databinding.FragmentChangePasswordBinding
 import com.google.firebase.auth.EmailAuthProvider
@@ -21,6 +22,10 @@ class ChangePasswordFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentChangePasswordBinding.inflate(inflater, container, false)
+
+        binding.backIcon.setOnClickListener {
+            findNavController().navigateUp()
+        }
 
         binding.buttonChangePassword.setOnClickListener {
             val currentPassword = binding.editTextCurrentPassword.text.toString()
