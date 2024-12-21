@@ -50,6 +50,9 @@ class AccountFragment : Fragment() {
                     getString(R.string.menu_change_password) -> {
                         findNavController().navigate(R.id.action_accountFragment_to_changePasswordFragment)
                     }
+                    getString(R.string.menu_change_email) -> {
+                        findNavController().navigate(R.id.action_accountFragment_to_changeEmailFragment)
+                    }
 
                     else -> {
                         Toast.makeText(requireContext(), menuItem.title, Toast.LENGTH_SHORT).show()

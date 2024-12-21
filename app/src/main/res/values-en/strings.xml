@@ -44,6 +44,14 @@
     <string name="privacy_and_security">Privacy and Security</string>
     <string name="help_and_support">Help and Support</string>
     <string name="change_password">Change Password</string>
+    <string name="change_email">Email Address</string>
+    <string name="enter_current_email">Enter Current Email Address</string>
+    <string name="enter_new_email">Enter New Email Address</string>
+    <string name="confirm_new_email">New Email Address(Repeat)</string>
+    <string name="new_email_same_as_current">The new email address cannot be the same as the current email address.</string>
+    <string name="emails_do_not_match">Emails do not match</string>
+    <string name="email_changed_successfully">Email changed successfully</string>
+    <string name="email_change_failed">Email change failed</string>
     <string name="delete_account_confirmation">Are you sure you want to delete your account? This action cannot be undone.</string>
     <string name="logout_confirmation">Are you sure you want to log out?</string>
     <string name="account_deleted_successfully">Account deleted successfully.</string>
