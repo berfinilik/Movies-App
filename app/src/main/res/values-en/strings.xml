@@ -112,6 +112,9 @@ You can download your data to your device using the button below. This file cont
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="delete_account">Delete Account</string>
+    <string name="language_selection">Language Selection</string>
+    <string name="language_tr">TR-Turkish</string>
+    <string name="language_en">EN-English</string>
 
 
 

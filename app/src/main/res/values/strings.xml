@@ -112,6 +112,9 @@ Aşağıdaki butonu kullanarak verilerinizi cihazınıza indirebilirsiniz. Bu do
     <string name="yes">Evet</string>
     <string name="no">Hayır</string>
     <string name="delete_account">Hesap Sil</string>
+    <string name="language_selection">Dil Seçimi</string>
+    <string name="language_tr">TR-Türkçe</string>
+    <string name="language_en">EN-İngilizce</string>
 
 
 

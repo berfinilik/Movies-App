@@ -80,6 +80,9 @@
             android:id="@+id/action_accountFragment_to_notificationFragment"
             app:destination="@id/notificationFragment" />
         <action
+            android:id="@+id/action_accountFragment_to_languageFragment"
+            app:destination="@id/languageFragment" />
+        <action
             android:id="@+id/action_accountFragment_to_changePasswordFragment"
             app:destination="@id/changePasswordFragment" />
         <action
@@ -88,6 +91,13 @@
 
 
     </fragment>
+
+    <fragment
+        android:id="@+id/languageFragment"
+        android:name="com.berfinilik.moviesappkotlin.ui.fragments.LanguageFragment"
+        android:label="LanguageFragment"
+        tools:layout="@layout/fragment_language"/>
+
 
 
     <fragment

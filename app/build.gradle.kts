@@ -71,4 +71,7 @@ dependencies {
 
     implementation("com.itextpdf:itextg:5.5.10")
 
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+
 }

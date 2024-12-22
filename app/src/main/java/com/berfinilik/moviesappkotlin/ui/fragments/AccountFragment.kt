@@ -1,5 +1,6 @@
 package com.berfinilik.moviesappkotlin.ui.fragments
 
+import LanguagePreferenceManager
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -23,6 +24,13 @@ class AccountFragment : Fragment() {
     private var _binding: FragmentAccountBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var languagePreferenceManager: LanguagePreferenceManager
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        languagePreferenceManager = LanguagePreferenceManager(requireContext())
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,6 +47,9 @@ class AccountFragment : Fragment() {
                     }
                     getString(R.string.menu_notification) -> {
                         findNavController().navigate(R.id.action_accountFragment_to_notificationFragment)
+                    }
+                    getString(R.string.menu_language) -> {
+                        findNavController().navigate(R.id.action_accountFragment_to_languageFragment)
                     }
                     getString(R.string.menu_delete_account) -> {
                         showDeleteAccountDialog()
