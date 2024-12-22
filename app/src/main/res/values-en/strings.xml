@@ -115,6 +115,10 @@ You can download your data to your device using the button below. This file cont
     <string name="language_selection">Language Selection</string>
     <string name="language_tr">TR-Turkish</string>
     <string name="language_en">EN-English</string>
+    <string name="about_app_description">This application is designed to provide users with the best experience. It will continue to offer more features and improvements in the future...</string>
+    <string name="more_info">More Info</string>
+    <string name="back">Back</string>
+
 
 
 

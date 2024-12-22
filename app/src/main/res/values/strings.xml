@@ -115,7 +115,9 @@ Aşağıdaki butonu kullanarak verilerinizi cihazınıza indirebilirsiniz. Bu do
     <string name="language_selection">Dil Seçimi</string>
     <string name="language_tr">TR-Türkçe</string>
     <string name="language_en">EN-İngilizce</string>
-
+    <string name="about_app_description">Bu uygulama, kullanıcıların en iyi deneyimi yaşaması için tasarlanmıştır.Gelecekte daha fazla özellik ve geliştirme ile hizmet vermeye devam edecek....</string>
+    <string name="more_info">Daha Fazla Bilgi</string>
+    <string name="back">Geri</string>
 
 
 
