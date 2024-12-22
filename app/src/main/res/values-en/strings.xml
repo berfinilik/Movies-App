@@ -53,7 +53,6 @@
     <string name="email_changed_successfully">Email changed successfully</string>
     <string name="email_change_failed">Email change failed</string>
     <string name="delete_account_confirmation">Are you sure you want to delete your account? This action cannot be undone.</string>
-    <string name="logout_confirmation">Are you sure you want to log out?</string>
     <string name="account_deleted_successfully">Account deleted successfully.</string>
     <string name="account_delete_failed">An error occurred while deleting the account.</string>
     <string name="confirm">Confirm</string>
@@ -106,6 +105,13 @@ You can download your data to your device using the button below. This file cont
     <string name="enable_notifications">Enabled</string>
     <string name="disable_notifications">Disabled</string>
     <string name="save">Save</string>
+    <string name="logout_confirmation">You are about to log out of the application. Do you want to continue?</string>
+    <string name="logout_confirm">Log Out</string>
+    <string name="logout_cancel">Cancel</string>
+    <string name="logout_success">Successfully logged out.</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="delete_account">Delete Account</string>
 
 
 
