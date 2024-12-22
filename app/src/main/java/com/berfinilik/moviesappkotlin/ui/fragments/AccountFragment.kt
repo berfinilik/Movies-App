@@ -51,6 +51,9 @@ class AccountFragment : Fragment() {
                     getString(R.string.menu_language) -> {
                         findNavController().navigate(R.id.action_accountFragment_to_languageFragment)
                     }
+                    getString(R.string.menu_data_protection) -> {
+                        findNavController().navigate(R.id.action_accountFragment_to_dataProtectionFragment)
+                    }
                     getString(R.string.menu_delete_account) -> {
                         showDeleteAccountDialog()
                     }

@@ -83,6 +83,9 @@
             android:id="@+id/action_accountFragment_to_languageFragment"
             app:destination="@id/languageFragment" />
         <action
+            android:id="@+id/action_accountFragment_to_dataProtectionFragment"
+            app:destination="@id/dataProtectionFragment" />
+        <action
             android:id="@+id/action_accountFragment_to_changePasswordFragment"
             app:destination="@id/changePasswordFragment" />
         <action

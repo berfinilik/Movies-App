@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.berfinilik.moviesappkotlin.R
 import com.berfinilik.moviesappkotlin.databinding.FragmentDataProtectionBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -39,6 +40,9 @@ class DataProtectionFragment : Fragment() {
 
         binding.buttonDownloadData.setOnClickListener {
             downloadUserData()
+        }
+        binding.backIcon.setOnClickListener {
+            findNavController().popBackStack()
         }
 
         return binding.root
