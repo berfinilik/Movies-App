@@ -12,6 +12,20 @@
         android:label="fragment_account_info"
         tools:layout="@layout/fragment_account_info"/>
 
+    <action
+        android:id="@+id/action_accountInfoFragment_to_changeEmailFragment"
+        app:destination="@id/changeEmailFragment" />
+
+    <fragment
+        android:id="@+id/changeUserNameFragment"
+        android:name="com.berfinilik.moviesappkotlin.ui.fragments.ChangeUserNameFragment"
+        android:label="Change User Name"
+        tools:layout="@layout/fragment_change_user_name" />
+
+    <action
+        android:id="@+id/action_accountInfoFragment_to_changeUserNameFragment"
+        app:destination="@id/changeUserNameFragment" />
+
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.berfinilik.moviesappkotlin.ui.fragments.DetailFragment"
@@ -89,12 +103,17 @@
             android:id="@+id/action_accountFragment_to_changePasswordFragment"
             app:destination="@id/changePasswordFragment" />
         <action
+            android:id="@+id/action_accountInfoFragment_to_changeUserNameFragmentFragment"
+            app:destination="@id/changeUserNameFragment" />
+        <action
             android:id="@+id/action_accountFragment_to_changeEmailFragment"
             app:destination="@id/changeEmailFragment" />
         <action
             android:id="@+id/action_accountFragment_to_aboutAppFragment"
             app:destination="@id/aboutAppFragment" />
-
+        <action
+            android:id="@+id/action_accountFragment_to_accountInfoFragment"
+            app:destination="@id/accountInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/aboutAppFragment"

@@ -75,6 +75,9 @@ class AccountFragment : Fragment() {
         binding.recyclerAccount.apply {
             adapter = MenuAdapter(getAccountMenuItems()) { menuItem ->
                 when (menuItem.title) {
+                    getString(R.string.menu_change_username) -> {
+                        findNavController().navigate(R.id.action_accountInfoFragment_to_changeUserNameFragmentFragment)
+                    }
                     getString(R.string.menu_change_password) -> {
                         findNavController().navigate(R.id.action_accountFragment_to_changePasswordFragment)
                     }
@@ -92,7 +95,7 @@ class AccountFragment : Fragment() {
         }
 
         binding.btnEditProfile.setOnClickListener {
-            Toast.makeText(requireContext(), getString(R.string.profile_edit), Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_accountFragment_to_accountInfoFragment)
         }
 
         return view
@@ -189,6 +192,7 @@ class AccountFragment : Fragment() {
     }
     private fun getAccountMenuItems(): List<MenuItem> {
         return listOf(
+            MenuItem(getString(R.string.change_username), R.drawable.ic_account_info),
             MenuItem(getString(R.string.menu_change_password), R.drawable.password),
             MenuItem(getString(R.string.menu_change_email), R.drawable.icon_email)
         )

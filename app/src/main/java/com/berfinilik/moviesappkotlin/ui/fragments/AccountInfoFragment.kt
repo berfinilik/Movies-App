@@ -5,11 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.navigation.fragment.findNavController
+import com.berfinilik.moviesappkotlin.R
 import com.berfinilik.moviesappkotlin.databinding.FragmentAccountInfoBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-
 
 class AccountInfoFragment : Fragment() {
 
@@ -22,7 +22,7 @@ class AccountInfoFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentAccountInfoBinding.inflate(inflater, container, false)
 
         auth = FirebaseAuth.getInstance()
@@ -30,69 +30,42 @@ class AccountInfoFragment : Fragment() {
 
         loadUserInfo()
 
-        binding.buttonUpdateUserInfo.setOnClickListener {
-            updateUserInfo()
+        binding.backIcon.setOnClickListener {
+            findNavController().popBackStack()
         }
+        binding.textViewChangeEmail.setOnClickListener {
+            findNavController().navigate(R.id.action_accountInfoFragment_to_changeEmailFragment)
+        }
+        binding.textViewChangeUserName.setOnClickListener {
+            findNavController().navigate(R.id.action_accountInfoFragment_to_changeUserNameFragment)
+        }
+
+
 
         return binding.root
-
-
     }
+
     private fun loadUserInfo() {
-        val userId=auth.currentUser?.uid
-        if (userId!=null) {
-            firestore.collection("users").document(userId).get().addOnSuccessListener {document->
-                if (document.exists()){
-                    val userName=document.getString("userName")
-                    val email=document.getString("email")
-
-                    binding.editTextUserName.setText(userName)
-                    binding.editTextEmail.setText(email)
-                }
-                else{
-                    Toast.makeText(requireContext(),"Kullanıcı bilgisi bulunamadı",Toast.LENGTH_SHORT).show()
-                }
-
-            }.addOnFailureListener {
-                Toast.makeText(requireContext(), "Bilgiler yüklenirken hata oluştu.", Toast.LENGTH_SHORT).show()
-
-            }
-        }
-        else{
-            Toast.makeText(requireContext(),"Kullanıcı bilgisi bulunamadı",Toast.LENGTH_SHORT).show()
-        }
-
-    }
-    private fun updateUserInfo() {
-        val userId=auth.currentUser?.uid
-        val updatedUserName = binding.editTextUserName.text.toString().trim()
-        val updatedEmail = binding.editTextEmail.text.toString().trim()
-
-        if (updatedUserName.isEmpty() || updatedEmail.isEmpty()) {
-            Toast.makeText(requireContext(), "Tüm alanları doldurunuz.", Toast.LENGTH_SHORT).show()
-            return
-        }
-        val updates = mapOf(
-            "userName" to updatedUserName,
-            "email" to updatedEmail
-        )
-
+        val userId = auth.currentUser?.uid
         if (userId != null) {
-            firestore.collection("users").document(userId)
-                .update(updates)
-                .addOnSuccessListener {
-                    Toast.makeText(requireContext(), "Bilgiler başarıyla güncellendi.", Toast.LENGTH_SHORT).show()
+            firestore.collection("users").document(userId).get()
+                .addOnSuccessListener { document ->
+                    if (document.exists()) {
+                        val userName = document.getString("userName") ?: ""
+                        val email = document.getString("email") ?: ""
+
+                        binding.textViewUserName.setText(userName)
+                        binding.textViewEmail.setText(email)
+                    } else {
+                    }
                 }
                 .addOnFailureListener {
-                    Toast.makeText(requireContext(), "Bilgiler güncellenirken hata oluştu.", Toast.LENGTH_SHORT).show()
                 }
+        } else {
         }
-
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding=null
+        _binding = null
     }
-
 }

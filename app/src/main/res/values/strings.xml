@@ -85,6 +85,7 @@ Aşağıdaki butonu kullanarak verilerinizi cihazınıza indirebilirsiniz. Bu do
 
     <string name="profile_title">Profil</string>
     <string name="profile_edit">Profili Düzenle</string>
+    <string name="menu_change_username">Kullanıcı Adı Değiştir</string>
     <string name="menu_change_password">Şifre Değiştir</string>
     <string name="menu_change_email">E-posta Değiştir</string>
     <string name="menu_notification">Bildirim</string>
@@ -118,6 +119,18 @@ Aşağıdaki butonu kullanarak verilerinizi cihazınıza indirebilirsiniz. Bu do
     <string name="about_app_description">Bu uygulama, kullanıcıların en iyi deneyimi yaşaması için tasarlanmıştır.Gelecekte daha fazla özellik ve geliştirme ile hizmet vermeye devam edecek....</string>
     <string name="more_info">Daha Fazla Bilgi</string>
     <string name="back">Geri</string>
+    <string name="personal_info">Kişisel Bilgilerim</string>
+    <string name="first_name">Ad</string>
+    <string name="last_name">Soyad</string>
+    <string name="username">Kullanıcı Adı</string>
+    <string name="email">E-posta</string>
+    <string name="change">Değiştir</string>
+    <string name="change_username">Kullanıcı Adı Değiştir</string>
+    <string name="enter_new_username">Yeni Kullanıcı Adınızı Girin</string>
+    <string name="username_updated_successfully">Kullanıcı adı başarıyla güncellendi.</string>
+    <string name="username_update_failed">Kullanıcı adı güncellenirken hata oluştu.</string>
+    <string name="please_enter_valid_username">Lütfen geçerli bir kullanıcı adı girin.</string>
+
 
 
 
