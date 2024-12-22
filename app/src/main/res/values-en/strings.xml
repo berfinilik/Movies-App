@@ -130,10 +130,9 @@ You can download your data to your device using the button below. This file cont
     <string name="username_updated_successfully">Username updated successfully.</string>
     <string name="username_update_failed">Failed to update username.</string>
     <string name="please_enter_valid_username">Please enter a valid username.</string>
-
-
-
-
-
+    <string name="first_name_hint">Enter your first name</string>
+    <string name="last_name_hint">Enter your last name</string>
+    <string name="confirm_password">Password (Repeat)</string>
+    <string name="register">Sign Up</string>
 
 </resources>

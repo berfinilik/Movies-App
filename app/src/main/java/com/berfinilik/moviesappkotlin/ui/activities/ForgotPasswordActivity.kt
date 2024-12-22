@@ -34,11 +34,20 @@ class ForgotPasswordActivity : AppCompatActivity() {
             }
         }
         binding.textViewSignIn.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
+            navigateToLogin()
+        }
+        binding.backIcon.setOnClickListener {
+            navigateToLogin()
         }
     }
+
+    private fun navigateToLogin() {
+        val intent = Intent(this, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+        startActivity(intent)
+        finish()
+    }
+
     private fun resetPassword(userName: String) {
         val db = FirebaseFirestore.getInstance()
 

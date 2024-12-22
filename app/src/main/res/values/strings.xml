@@ -130,8 +130,9 @@ Aşağıdaki butonu kullanarak verilerinizi cihazınıza indirebilirsiniz. Bu do
     <string name="username_updated_successfully">Kullanıcı adı başarıyla güncellendi.</string>
     <string name="username_update_failed">Kullanıcı adı güncellenirken hata oluştu.</string>
     <string name="please_enter_valid_username">Lütfen geçerli bir kullanıcı adı girin.</string>
-
-
-
+    <string name="first_name_hint">Adınızı girin</string>
+    <string name="last_name_hint">Soyadınızı girin</string>
+    <string name="confirm_password">Şifre (Tekrar)</string>
+    <string name="register">Kaydol</string>
 
 </resources>

@@ -51,9 +51,13 @@ class AccountInfoFragment : Fragment() {
             firestore.collection("users").document(userId).get()
                 .addOnSuccessListener { document ->
                     if (document.exists()) {
+                        val firstName = document.getString("userName") ?: ""
+                        val lastName = document.getString("userName") ?: ""
                         val userName = document.getString("userName") ?: ""
                         val email = document.getString("email") ?: ""
 
+                        binding.textViewFirstName.setText(firstName)
+                        binding.textViewLastName.setText(lastName)
                         binding.textViewUserName.setText(userName)
                         binding.textViewEmail.setText(email)
                     } else {

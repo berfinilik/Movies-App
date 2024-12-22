@@ -26,16 +26,16 @@ class SignUpActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-        binding.buttonKayitOl.setOnClickListener {
-
-            val userName = binding.editTextKullaniciAdi.text.toString().trim()
+        binding.buttonRegister.setOnClickListener {
+            val firstName = binding.editTextFirstName.text.toString().trim()
+            val lastName = binding.editTextLastName.text.toString().trim()
+            val userName = binding.editTextUserName.text.toString().trim()
             val email = binding.editTextEmail.text.toString().trim()
-            val password = binding.editTextSifre.text.toString().trim()
-            val reEnterPassword = binding.editTextSifreTekrar.text.toString().trim()
+            val password = binding.editTextPassword.text.toString().trim()
+            val reEnterPassword = binding.editTextPasswordConfirm.text.toString().trim()
 
-
-            if (email.isEmpty() || password.isEmpty() || userName.isEmpty() || reEnterPassword.isEmpty()) {
-                showSnackbar("Kullanıcı adı, e-posta ve şifre boş olamaz")
+            if (firstName.isEmpty() || lastName.isEmpty() || userName.isEmpty() || email.isEmpty() || password.isEmpty() || reEnterPassword.isEmpty()) {
+                showSnackbar("Tüm alanları doldurunuz.")
                 return@setOnClickListener
             }
 
@@ -48,7 +48,12 @@ class SignUpActivity : AppCompatActivity() {
                 showSnackbar("Şifre en az 6 karakter olmalıdır.")
                 return@setOnClickListener
             }
-            createUserWithEmailAndPassword(email, password, userName)
+
+            createUserWithEmailAndPassword(email, password, firstName, lastName, userName)
+        }
+
+        binding.backIcon.setOnClickListener {
+            navigateToLogin()
         }
     }
 
@@ -56,35 +61,43 @@ class SignUpActivity : AppCompatActivity() {
         Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
     }
 
-    private fun createUserWithEmailAndPassword(email: String, password: String, userName: String) {
+
+    private fun createUserWithEmailAndPassword(
+        email: String,
+        password: String,
+        firstName: String,
+        lastName: String,
+        userName: String
+    ) {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Log.d(TAG, "createUserWithEmail:success")
                     val user = auth.currentUser
-                    showSnackbar("Kayıt başarılı.Giriş yapabilirsiniz.")
+                    showSnackbar("Kayıt başarılı. Giriş yapabilirsiniz.")
 
                     user?.let {
-                        saveUserDataToFirestore(it, userName, email)
+                        saveUserDataToFirestore(it, firstName, lastName, userName, email)
                     }
-
                 } else {
                     val exception = task.exception
-                    if (exception != null) {
-                        Log.w(TAG, "createUserWithEmail:failure", exception)
-                        if (exception.message?.contains("email address is already in use") == true) {
-                            showSnackbar("Bu e-posta adresi zaten kullanımda.")
-                        } else {
-                            showSnackbar("Kayıt başarısız: ${exception.message}")
-                        }
-                    }
+                    Log.w(TAG, "createUserWithEmail:failure", exception)
+                    showSnackbar("Kayıt başarısız: ${exception?.message}")
                 }
             }
     }
 
-    private fun saveUserDataToFirestore(user: FirebaseUser, userName: String, email: String) {
+    private fun saveUserDataToFirestore(
+        user: FirebaseUser,
+        firstName: String,
+        lastName: String,
+        userName: String,
+        email: String
+    ) {
         val db = FirebaseFirestore.getInstance()
         val userMap = hashMapOf(
+            "firstName" to firstName,
+            "lastName" to lastName,
             "userName" to userName,
             "email" to email
         )
@@ -98,7 +111,12 @@ class SignUpActivity : AppCompatActivity() {
                 Log.w(TAG, "Belge eklerken hata oluştu", e)
             }
     }
-
+    private fun navigateToLogin() {
+        val intent = Intent(this, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+        startActivity(intent)
+        finish()
+    }
     override fun onBackPressed() {
         super.onBackPressed()
         val intent = Intent(this, LoginActivity::class.java)
