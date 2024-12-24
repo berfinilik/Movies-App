@@ -1,10 +1,13 @@
 package com.berfinilik.moviesappkotlin.ui.activities
 
+import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import com.berfinilik.moviesappkotlin.databinding.ActivitySignUpBinding
+import com.berfinilik.moviesappkotlin.databinding.DialogPasswordRulesBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -25,6 +28,10 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
+        binding.txtPasswordRules.setOnClickListener {
+            showPasswordRulesDialog()
+        }
+
 
         binding.buttonRegister.setOnClickListener {
             val firstName = binding.editTextFirstName.text.toString().trim()
@@ -44,8 +51,7 @@ class SignUpActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            if (password.length < 6) {
-                showSnackbar("Şifre en az 6 karakter olmalıdır.")
+            if (!isPasswordValid(password, firstName, lastName, userName, email)) {
                 return@setOnClickListener
             }
 
@@ -117,6 +123,51 @@ class SignUpActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+    private fun isPasswordValid(
+        password: String,
+        firstName: String,
+        lastName: String,
+        userName: String,
+        email: String
+    ): Boolean {
+        if (password.length < 6) {
+            showSnackbar("Şifre en az 6 karakter olmalıdır.")
+            return false
+        }
+
+        val lowerPassword = password.lowercase()
+        if (lowerPassword.contains(firstName.lowercase()) ||
+            lowerPassword.contains(lastName.lowercase()) ||
+            lowerPassword.contains(userName.lowercase()) ||
+            lowerPassword.contains(email.substringBefore("@").lowercase())
+        ) {
+            showSnackbar("Şifre ad, soyad, kullanıcı adı veya e-posta içermemelidir.")
+            return false
+        }
+
+        val invalidPattern = Regex("(\\w)\\1{2,}|(\\w{2,})\\1")
+        if (invalidPattern.containsMatchIn(password)) {
+            showSnackbar("Şifre tekrarlanan karakter veya desen içermemelidir.")
+            return false
+        }
+
+        return true
+    }
+    private fun showPasswordRulesDialog() {
+        val dialogBinding = DialogPasswordRulesBinding.inflate(LayoutInflater.from(this))
+        val dialog = Dialog(this)
+
+        dialog.setContentView(dialogBinding.root)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.setCancelable(true)
+
+        dialogBinding.btnDialogOk.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+    }
+
     override fun onBackPressed() {
         super.onBackPressed()
         val intent = Intent(this, LoginActivity::class.java)

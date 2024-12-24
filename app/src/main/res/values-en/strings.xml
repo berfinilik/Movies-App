@@ -134,5 +134,9 @@ You can download your data to your device using the button below. This file cont
     <string name="last_name_hint">Enter your last name</string>
     <string name="confirm_password">Password (Repeat)</string>
     <string name="register">Sign Up</string>
+    <string name="password_rules_title">Password Rules</string>
+    <string name="password_rules_details">- Must contain at least 6 characters.\n- Should not contain first name, last name, username, or email.\n- Should not have repeating patterns (123123, abcabc).\n- Should not have consecutive repeated characters (111, aaa).</string>
+    <string name="ok">OK</string>
+    <string name="password_rules_text">Password Rules Detail</string>
 
 </resources>

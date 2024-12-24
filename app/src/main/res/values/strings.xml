@@ -134,5 +134,8 @@ Aşağıdaki butonu kullanarak verilerinizi cihazınıza indirebilirsiniz. Bu do
     <string name="last_name_hint">Soyadınızı girin</string>
     <string name="confirm_password">Şifre (Tekrar)</string>
     <string name="register">Kaydol</string>
-
+    <string name="password_rules_title">Şifre Kuralları</string>
+    <string name="password_rules_details">- En az 6 karakter içermelidir.\n- Ad, soyad, kullanıcı adı veya e-posta içermemelidir.\n- Tekrarlanan desenler (123123, abcabc) olmamalıdır.\n- Aynı karakter ardışık tekrarlanmamalıdır (111, aaa).</string>
+    <string name="ok">Tamam</string>
+    <string name="password_rules_text">Şifre Kural Detayı</string>
 </resources>
