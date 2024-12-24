@@ -10,4 +10,9 @@
     <color name="red">#FF0000</color>
     <color name="darker_gray">#AAAAAA</color>
     <color name="transparent">#00000000</color>
+    <color name="bottomNavBackground">#292B37</color>
+    <color name="gray">#C0C0C0</color>
+    <color name="bottomNavSelected">#00E5FF</color>
+    <color name="bottomNavUnselected">#B0BEC5</color>
+
 </resources>

@@ -1,13 +1,10 @@
 package com.berfinilik.moviesappkotlin.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.berfinilik.moviesappkotlin.R
 import com.berfinilik.moviesappkotlin.data.model.FavouriteMovie
+import com.berfinilik.moviesappkotlin.databinding.ItemFavoriteMovieBinding
 import com.bumptech.glide.Glide
 
 class FavoritesAdapter(
@@ -15,27 +12,34 @@ class FavoritesAdapter(
     private val onClick: (FavouriteMovie) -> Unit
 ) : RecyclerView.Adapter<FavoritesAdapter.FavoriteViewHolder>() {
 
-    class FavoriteViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val titleTextView: TextView = view.findViewById(R.id.favoriteMovieTitle)
-        val posterImageView: ImageView = view.findViewById(R.id.favoriteMoviePoster)
-    }
+    inner class FavoriteViewHolder(private val binding: ItemFavoriteMovieBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): FavoriteViewHolder {
-        val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.item_favorite_movie, viewGroup, false)
-        return FavoriteViewHolder(view)
-    }
+        fun bind(movie: FavouriteMovie) {
+            binding.favoriteMovieTitle.text = movie.title
+            binding.favoriteMovieReleaseDateTextView.text = movie.releaseYear.toString()
 
-    override fun onBindViewHolder(viewHolder: FavoriteViewHolder, position: Int) {
-        val movie = moviesList[position]
-        viewHolder.titleTextView.text = movie.title
+            Glide.with(binding.root.context)
+                .load(movie.posterUrl)
+                .into(binding.favoriteMoviePoster)
 
-        Glide.with(viewHolder.itemView.context)
-            .load(movie.posterUrl)
-            .into(viewHolder.posterImageView)
-        viewHolder.itemView.setOnClickListener {
-            onClick(movie)
+            binding.root.setOnClickListener {
+                onClick(movie)
+            }
         }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteViewHolder {
+        val binding = ItemFavoriteMovieBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
+        return FavoriteViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
+        holder.bind(moviesList[position])
     }
 
     override fun getItemCount() = moviesList.size

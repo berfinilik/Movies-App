@@ -31,7 +31,7 @@
     <string name="saved_list_title">My List</string>
     <string name="empty_saved_list_message">No movies in your list. Discover and add now!</string>
     <string name="remove_selected">Remove Selected</string>
-    <string name="welcome_message">Welcome</string>
+    <string name="welcome_message">Welcome %1$s</string>
     <string name="recommendation_message">Let’s publish your favorite movie.</string>
     <string name="voice_search_description">Voice Search</string>
     <string name="empty_category_message">No movies found in this category.</string>

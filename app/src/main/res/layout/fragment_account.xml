@@ -1,10 +1,11 @@
-<androidx.core.widget.NestedScrollView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:fillViewport="true"
+    android:padding="16dp"
     tools:context=".ui.fragments.AccountFragment">
 
     <LinearLayout
@@ -31,8 +32,8 @@
 
             <ImageView
                 android:id="@+id/imgProfile"
-                android:layout_width="80dp"
-                android:layout_height="80dp"/>
+                android:layout_width="78dp"
+                android:layout_height="60dp" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -46,7 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#FFFFFF"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -54,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#A9A9A9"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
             </LinearLayout>
 
             <ImageView
@@ -69,7 +70,7 @@
             android:id="@+id/txtAccountHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="5dp"
             android:text="@string/account_header"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
@@ -77,7 +78,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerAccount"
-            android:layout_width="match_parent"
+            android:layout_width="337dp"
             android:layout_height="wrap_content"
             android:nestedScrollingEnabled="false"
             android:overScrollMode="never" />
@@ -86,7 +87,7 @@
             android:id="@+id/txtGeneralHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="5dp"
             android:text="@string/general_header"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
@@ -94,9 +95,9 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerGeneral"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="337dp"
+            android:layout_height="437dp"
             android:nestedScrollingEnabled="false"
             android:overScrollMode="never" />
     </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,22 +20,21 @@
 
         <ImageView
             android:id="@+id/backIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="29dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:contentDescription="@string/back"
             android:src="@drawable/back" />
 
         <TextView
             android:id="@+id/txtLanguageTitle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:gravity="center"
-            android:text="@string/language_selection"
+            android:text="@string/menu_language"
             android:textColor="@android:color/white"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 
@@ -55,7 +54,7 @@
             android:layout_height="wrap_content"
             android:text="@string/language_tr"
             android:textColor="@android:color/white"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:checked="true" />
 
         <RadioButton
@@ -64,7 +63,7 @@
             android:layout_height="wrap_content"
             android:text="@string/language_en"
             android:textColor="@android:color/white"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
     </RadioGroup>
 
     <Button

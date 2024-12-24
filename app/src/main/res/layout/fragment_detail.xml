@@ -4,15 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     android:background="@color/colorPrimary"
     tools:context=".ui.fragments.DetailFragment">
 
     <ScrollView
         android:id="@+id/scrollView5"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -36,19 +40,21 @@
 
             <ImageView
                 android:id="@+id/backImageView"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:contentDescription="@string/back"
+                android:src="@drawable/back"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/back" />
 
             <ImageView
                 android:id="@+id/favImageView"
-                android:layout_width="48dp"
-                android:layout_height="43dp"
-                android:layout_marginTop="15dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -95,58 +101,59 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/linearLayout"
-                    android:layout_width="389dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center">
 
                     <TextView
                         android:id="@+id/movieReleaseYearTextView"
-                        android:layout_width="49dp"
-                        android:layout_height="17dp"
-                        android:layout_marginStart="2dp"
-                        android:drawablePadding="2dp"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/white"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/movieDurationTextView"
-                        app:layout_constraintEnd_toStartOf="@+id/movieDurationTextView"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/movieDurationTextView"
-                        app:layout_constraintVertical_bias="0.487" />
-
-                    <TextView
-                        android:id="@+id/movieDurationTextView"
-                        android:layout_width="85dp"
-                        android:layout_height="38dp"
-                        android:layout_marginEnd="1dp"
-                        android:drawableStart="@drawable/ic_duration_foreground"
-                        android:drawablePadding="4dp"
-                        android:textAlignment="viewStart"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2024"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="14sp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/movieCategoryTextView"
-                        app:layout_constraintStart_toEndOf="@+id/movieReleaseYearTextView"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/movieCategoryTextView"
-                        android:layout_width="144dp"
-                        android:layout_height="45dp"
-                        android:drawableStart="@drawable/category"
+                        android:id="@+id/movieDurationTextView"
+                        android:layout_width="103dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="36dp"
+                        android:drawableStart="@drawable/ic_duration_foreground"
                         android:drawablePadding="4dp"
-                        android:textAlignment="viewStart"
+                        android:text="124 dk"
+                        android:layout_marginTop="5dp"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/movieDurationTextView"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/movieDurationTextView"
-                        app:layout_constraintTop_toTopOf="@+id/movieDurationTextView" />
+                        app:layout_constraintBottom_toBottomOf="@id/movieReleaseYearTextView"
+                        app:layout_constraintStart_toEndOf="@id/movieReleaseYearTextView"
+                        app:layout_constraintTop_toTopOf="@id/movieReleaseYearTextView"
+                        app:layout_constraintVertical_bias="0.461" />
 
+                    <TextView
+                        android:id="@+id/movieCategoryTextView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:ellipsize="none"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:maxLines="3"
+                        app:layout_constraintStart_toEndOf="@id/movieDurationTextView"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-                <TextView
+
+            <TextView
                     android:id="@+id/ratingTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -163,8 +170,8 @@
                     android:background="@drawable/gradient" />
 
                 <LinearLayout
-                    android:layout_width="382dp"
-                    android:layout_height="60dp"
+                    android:layout_width="330dp"
+                    android:layout_height="58dp"
                     android:layout_marginTop="5dp"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal">

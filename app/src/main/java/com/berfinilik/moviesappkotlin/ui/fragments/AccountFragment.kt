@@ -97,6 +97,8 @@ class AccountFragment : Fragment() {
         binding.btnEditProfile.setOnClickListener {
             findNavController().navigate(R.id.action_accountFragment_to_accountInfoFragment)
         }
+        fetchUserDataFromFirestore()
+
 
         return view
     }
@@ -209,6 +211,33 @@ class AccountFragment : Fragment() {
             MenuItem(getString(R.string.menu_logout), R.drawable.ic_logout)
         )
     }
+    private fun fetchUserDataFromFirestore() {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser != null) {
+            val userId = currentUser.uid
+            val firestore = FirebaseFirestore.getInstance()
+
+            firestore.collection("users").document(userId).get()
+                .addOnSuccessListener { document ->
+                    if (isAdded && _binding != null) {
+                        val firstName = document.getString("firstName") ?: "Ad"
+                        val lastName = document.getString("lastName") ?: "Soyad"
+                        val email = document.getString("email") ?: "E-posta Yok"
+
+                        binding.txtName.text = "$firstName $lastName"
+                        binding.txtEmail.text = email
+                    }
+                }
+                .addOnFailureListener {
+                    if (isAdded && _binding != null) {
+                        binding.txtName.text = "Ad Soyad"
+                        binding.txtEmail.text = "E-posta Yok"
+                        Toast.makeText(requireContext(), "Kullanıcı verileri alınamadı.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+        }
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

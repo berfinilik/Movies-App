@@ -17,7 +17,7 @@ class SavedMoviesAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: SavedMovie) {
             binding.movieTitleTextView.text = movie.title
-            binding.releaseYearTextView.text = "${movie.releaseYear}"
+            binding.movieReleaseDateTextView.text = "${movie.releaseYear}"
             Glide.with(binding.moviePosterImageView.context)
                 .load(movie.posterUrl)
                 .into(binding.moviePosterImageView)

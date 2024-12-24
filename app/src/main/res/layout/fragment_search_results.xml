@@ -4,27 +4,48 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:padding="16dp">
 
-    <TextView
-        android:id="@+id/searchResultsTitle"
+    <LinearLayout
+        android:id="@+id/headerLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textAppearance="?attr/textAppearanceHeadline6"
-        android:padding="16dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/backIcon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:contentDescription="@string/back"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:id="@+id/searchResultsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewSearchResults"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:padding="8dp"
-        app:layout_constraintTop_toBottomOf="@id/searchResultsTitle"
+        app:layout_constraintTop_toBottomOf="@id/headerLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:listitem="@layout/item_search_result" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

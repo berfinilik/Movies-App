@@ -1,133 +1,133 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="@color/colorPrimary">
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/headerLayout"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:gravity="center_vertical"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <ImageView
             android:id="@+id/backIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="29dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:contentDescription="@string/back"
             android:src="@drawable/back" />
 
         <TextView
-            android:id="@+id/txtTitle"
+            android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="16dp"
             android:text="@string/change_email"
             android:textColor="@android:color/white"
-            android:textSize="22sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/txtCurrentEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/enter_current_email"
-        android:textColor="@android:color/white"
-        android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:gravity="start" />
+
 
     <TextView
         android:id="@+id/textViewCurrentEmail"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/edittext_background"
-        android:ems="10"
-        android:gravity="start"
-        android:text=""
-        android:textAlignment="textStart"
-        android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtCurrentEmail" />
-
-    <TextView
-        android:id="@+id/txtNewEmail"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/enter_new_email"
+        android:layout_marginTop="24dp"
+        android:text="@string/enter_current_email"
         android:textColor="@android:color/white"
-        android:textSize="16sp"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/headerLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextCurrentEmail"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/enter_current_email"
+        android:inputType="textEmailAddress"
+        android:textColor="@android:color/white"
+        android:textColorHint="@color/darker_gray"
+        android:background="@drawable/edittext_background"
         app:layout_constraintTop_toBottomOf="@id/textViewCurrentEmail"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:gravity="start" />
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewNewEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/enter_new_email"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/editTextCurrentEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/editTextNewEmail"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/edittext_background"
-        android:ems="10"
-        android:textColor="@android:color/white"
+        android:hint="@string/enter_new_email"
         android:inputType="textEmailAddress"
-        app:layout_constraintTop_toBottomOf="@id/txtNewEmail"
+        android:textColor="@android:color/white"
+        android:textColorHint="@color/darker_gray"
+        android:background="@drawable/edittext_background"
+        app:layout_constraintTop_toBottomOf="@id/textViewNewEmail"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:gravity="start|center_vertical" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/txtRepeatEmail"
-        android:layout_width="match_parent"
+        android:id="@+id/textViewConfirmNewEmail"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="16dp"
         android:text="@string/confirm_new_email"
         android:textColor="@android:color/white"
-        android:textSize="16sp"
+        android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@id/editTextNewEmail"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:gravity="start" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/editTextConfirmNewEmail"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="120dp"
-        android:background="@drawable/edittext_background"
-        android:ems="10"
+        android:hint="@string/confirm_new_email"
         android:inputType="textEmailAddress"
         android:textColor="@android:color/white"
-        app:layout_constraintTop_toBottomOf="@id/txtRepeatEmail"
+        android:textColorHint="@color/darker_gray"
+        android:background="@drawable/edittext_background"
+        app:layout_constraintTop_toBottomOf="@id/textViewConfirmNewEmail"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:gravity="start|center_vertical" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonChangeEmail"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/orange_button_background"
+        android:layout_marginTop="32dp"
         android:text="@string/save"
         android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:background="@drawable/orange_button_background"
         app:layout_constraintTop_toBottomOf="@id/editTextConfirmNewEmail"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

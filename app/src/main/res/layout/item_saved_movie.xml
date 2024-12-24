@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -5,71 +6,65 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     app:cardCornerRadius="12dp"
-    app:cardElevation="4dp">
+    app:cardElevation="6dp"
+    android:padding="16dp"
+    app:cardBackgroundColor="@color/white">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="8dp">
-
-        <ImageView
-            android:id="@+id/moviePosterImageView"
-            android:layout_width="114dp"
-            android:layout_height="136dp"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="30dp"
-            android:scaleType="centerCrop" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
-            android:layout_toEndOf="@id/moviePosterImageView"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/releaseYearTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Yıl: 2024"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/movieCategoryTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Kategori: Bilim Kurgu"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-        </LinearLayout>
-
+        android:layout_height="wrap_content"
+        android:padding="12dp">
 
         <CheckBox
             android:id="@+id/selectMovieCheckBox"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="-30dp"
-            android:layout_marginTop="-27dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:minWidth="24dp"
+            android:minHeight="24dp"
             android:buttonTint="@color/colorPrimary"
-            android:button="@drawable/checkbox_selector"/>
+            android:button="@drawable/checkbox_selector"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/moviePosterImageView"
+            android:layout_width="0dp"
+            android:layout_height="180dp"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/selectMovieCheckBox" />
 
         <TextView
             android:id="@+id/movieTitleTextView"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:text="Film Adı"
             android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-    </RelativeLayout>
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/moviePosterImageView" />
+
+        <TextView
+            android:id="@+id/movieReleaseDateTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="2024"
+            android:textColor="@color/darker_gray"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/movieTitleTextView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

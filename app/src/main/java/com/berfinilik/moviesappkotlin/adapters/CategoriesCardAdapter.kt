@@ -30,7 +30,7 @@ class CategoriesCardAdapter(
     override fun onBindViewHolder(holder: CategoryMovieViewHolder, position: Int) {
         val movie = movies[position]
         holder.titleTextView.text = movie.title
-        holder.releaseDateTextView.text = "Yayın Tarihi: ${movie.releaseYear}"
+        holder.releaseDateTextView.text = "${movie.releaseYear}"
         Glide.with(holder.itemView.context)
             .load(movie.posterUrl)
             .into(holder.posterImageView)

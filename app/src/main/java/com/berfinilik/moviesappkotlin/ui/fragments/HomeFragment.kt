@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.berfinilik.moviesappkotlin.MovieViewModelFactory
+import com.berfinilik.moviesappkotlin.R
 import com.berfinilik.moviesappkotlin.adapters.CategoriesAdapter
 import com.berfinilik.moviesappkotlin.adapters.PopularMoviesAdapter
 import com.berfinilik.moviesappkotlin.adapters.RandomMovieAdapter
@@ -75,7 +76,7 @@ class HomeFragment : Fragment() {
         observeViewModel()
         movieViewModel.fetchMovieGenres()
         movieViewModel.fetchPopularMovies()
-        fetchUserNameFromFirestore()
+        fetchFirstNameFromFirestore()
         loadRandomMovies()
 
         binding.searchViewFilm.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
@@ -121,6 +122,7 @@ class HomeFragment : Fragment() {
         binding.popularsRecyclerView.apply {
             layoutManager = GridLayoutManager(requireContext(), 1, GridLayoutManager.HORIZONTAL, false)
             adapter = popularMoviesAdapter
+
 
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -176,7 +178,7 @@ class HomeFragment : Fragment() {
     private fun showSnackbar(message: String) {
         Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
     }
-    private fun fetchUserNameFromFirestore() {
+    private fun fetchFirstNameFromFirestore() {
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
             val userId = currentUser.uid
@@ -184,20 +186,26 @@ class HomeFragment : Fragment() {
 
             db.collection("users").document(userId).get()
                 .addOnSuccessListener { document ->
-                    if (document != null && document.exists()) {
-                        val userName = document.getString("userName") ?: "Anonim Kullanıcı"
-                        binding.textViewUserName.text = "Hoşgeldin $userName"
-                    } else {
-                        binding.textViewUserName.text = "Hoşgeldin Anonim Kullanıcı"
+                    if (isAdded && _binding != null) {
+                        val firstName = document.getString("firstName") ?: "Anonim"
+                        binding.textViewUserName.text = String.format(getString(R.string.welcome_message), firstName)
                     }
                 }
-                .addOnFailureListener { exception ->
-                    showSnackbar("Kullanıcı adı alınamadı: ${exception.message}")
+                .addOnFailureListener {
+                    if (isAdded && _binding != null) {
+                        binding.textViewUserName.text = String.format(getString(R.string.welcome_message), "Anonim")
+                    }
                 }
         } else {
-            binding.textViewUserName.text = "Hoşgeldin Anonim Kullanıcı"
+            if (isAdded && _binding != null) {
+                binding.textViewUserName.text = String.format(getString(R.string.welcome_message), "Anonim")
+            }
         }
     }
+
+
+
+
     private fun checkAudioPermission() {
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(
