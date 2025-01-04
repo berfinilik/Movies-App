@@ -5,6 +5,17 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/homeFragment">
 
+    <fragment
+        android:id="@+id/allPopularMoviesFragment"
+        android:name="com.berfinilik.moviesappkotlin.ui.fragments.AllPopularMoviesFragment"
+        android:label="All Popular Movies"
+        tools:layout="@layout/fragment_all_popular_movies">
+        <action
+            android:id="@+id/action_allPopularMoviesFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
+
 
     <fragment
         android:id="@+id/accountInfoFragment"
@@ -56,6 +67,11 @@
                 android:name="movieId"
                 app:argType="integer" />
         </action>
+        <action
+            android:id="@+id/actionHomeFragmentToAllPopularMoviesFragment"
+            app:destination="@id/allPopularMoviesFragment" />
+
+
 
 
         <action

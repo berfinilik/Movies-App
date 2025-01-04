@@ -148,5 +148,5 @@ You can download your data to your device using the button below. This file cont
     <string name="photo_updated">Photo updated successfully</string>
     <string name="photo_load_error">Failed to load photo</string>
     <string name="share_prompt">Share Image</string>
-
+    <string name="view_all">View All</string>
 </resources>

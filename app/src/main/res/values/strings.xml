@@ -148,4 +148,6 @@ Aşağıdaki butonu kullanarak verilerinizi cihazınıza indirebilirsiniz. Bu do
     <string name="photo_updated">Fotoğraf başarıyla güncellendi</string>
     <string name="photo_load_error">Fotoğraf yüklenemedi</string>
     <string name="share_prompt">Fotoğrafı Paylaş</string>
+    <string name="view_all">Hepsini Görün</string>
+
 </resources>

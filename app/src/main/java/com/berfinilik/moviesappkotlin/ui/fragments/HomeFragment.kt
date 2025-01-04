@@ -101,6 +101,12 @@ class HomeFragment : Fragment() {
         binding.microphoneImageView.setOnClickListener {
             checkAudioPermission()
         }
+        binding.viewAllPopular.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToAllPopularMoviesFragment()
+            findNavController().navigate(action)
+        }
+
+
     }
 
     private fun setupRecyclerViews() {
