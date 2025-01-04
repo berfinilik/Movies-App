@@ -4,52 +4,53 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/margin_small"
-    app:cardCornerRadius="@dimen/card_corner_radius"
-    app:cardElevation="@dimen/card_elevation"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="6dp"
     app:cardBackgroundColor="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/padding_standard">
+        android:padding="12dp">
 
         <ImageView
             android:id="@+id/searchMoviePosterImageView"
             android:layout_width="0dp"
-            android:layout_height="@dimen/search_movie_poster_height"
+            android:layout_height="180dp"
             android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintDimensionRatio="16:9"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/searchMovieTitleTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginTop="8dp"
             android:ellipsize="end"
             android:maxLines="1"
+            android:paddingTop="2dp"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size_medium"
+            android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/searchMoviePosterImageView"/>
+            app:layout_constraintTop_toBottomOf="@id/searchMoviePosterImageView" />
 
         <TextView
             android:id="@+id/searchMovieReleaseDateTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_extra_small"
+            android:layout_marginTop="4dp"
             android:ellipsize="end"
             android:maxLines="1"
+            android:paddingTop="2dp"
             android:textColor="@color/darker_gray"
-            android:textSize="@dimen/text_size_small"
+            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/searchMovieTitleTextView"/>
+            app:layout_constraintTop_toBottomOf="@id/searchMovieTitleTextView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|center_horizontal"
-        android:layout_marginTop="@dimen/margin_standard"
+        android:layout_marginTop="16dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/white" />
 
@@ -34,7 +34,7 @@
         android:id="@+id/moviesRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/margin_large"
+        android:layout_marginTop="48dp"
         android:clipToPadding="false"
         android:padding="16dp"
         tools:listitem="@layout/item_movie" />
