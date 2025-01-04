@@ -149,5 +149,10 @@ Aşağıdaki butonu kullanarak verilerinizi cihazınıza indirebilirsiniz. Bu do
     <string name="photo_load_error">Fotoğraf yüklenemedi</string>
     <string name="share_prompt">Fotoğrafı Paylaş</string>
     <string name="view_all">Hepsini Görün</string>
+    <string name="social_login">Veya sosyal hesaplarınızla giriş yapın</string>
+    <string name="facebook_login">Facebook ile Giriş Yap</string>
+    <string name="google_login">Google ile Giriş Yap</string>
+    <string name="instagram_login">Instagram ile Giriş Yap</string>
+    <string name="default_web_client_id">1007759706019-oibiuqt7ht8lenebsl4hkki7i76cmcjo.apps.googleusercontent.com</string>
 
 </resources>

@@ -149,4 +149,9 @@ You can download your data to your device using the button below. This file cont
     <string name="photo_load_error">Failed to load photo</string>
     <string name="share_prompt">Share Image</string>
     <string name="view_all">View All</string>
+    <string name="social_login">Or log in with your social accounts</string>
+    <string name="facebook_login">Login with Facebook</string>
+    <string name="google_login">Login with Google</string>
+    <string name="instagram_login">Login with Instagram</string>
+    <string name="default_web_client_id">1007759706019-oibiuqt7ht8lenebsl4hkki7i76cmcjo.apps.googleusercontent.com</string>
 </resources>
