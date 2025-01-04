@@ -43,6 +43,11 @@ class FavouritesFragment : Fragment() {
         setupRecyclerView()
         loadFavorites()
 
+        binding.fabViewAll.setOnClickListener {
+            val action = FavouritesFragmentDirections.actionFavouritesFragmentToAllPopularMoviesFragment()
+            findNavController().navigate(action)
+        }
+
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
             val database = AppDatabase.getDatabase(requireContext())
             val currentUser = FirebaseAuth.getInstance().currentUser
@@ -78,10 +83,12 @@ class FavouritesFragment : Fragment() {
                     Log.d("FavouritesFragment", "Empty List: Showing TextView")
                     binding.emptyFavouritesTextView.visibility = View.VISIBLE
                     binding.favouritesRecyclerView.visibility = View.GONE
+                    binding.fabViewAll.visibility = View.VISIBLE
                 } else {
                     Log.d("FavouritesFragment", "Non-Empty List: Showing RecyclerView")
                     binding.emptyFavouritesTextView.visibility = View.GONE
                     binding.favouritesRecyclerView.visibility = View.VISIBLE
+                    binding.fabViewAll.visibility = View.GONE
                     favoritesAdapter.updateData(favoriteMovies)
                 }
             }
