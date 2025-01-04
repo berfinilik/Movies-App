@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:padding="@dimen/padding_small"
     android:background="@color/colorPrimary">
 
     <LinearLayout
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/margin_standard"
         android:gravity="center_vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,8 +20,8 @@
 
         <ImageView
             android:id="@+id/backIcon"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/back_icon_size"
+            android:layout_height="@dimen/back_icon_size"
             android:contentDescription="@string/back"
             android:src="@drawable/back" />
 
@@ -29,10 +29,10 @@
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/margin_standard"
             android:text="@string/change_email"
             android:textColor="@android:color/white"
-            android:textSize="24sp"
+            android:textSize="@dimen/text_size_large"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -42,10 +42,10 @@
         android:id="@+id/textViewCurrentEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="@dimen/margin_large"
         android:text="@string/enter_current_email"
         android:textColor="@android:color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_size_large"
         app:layout_constraintTop_toBottomOf="@id/headerLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -53,8 +53,8 @@
     <EditText
         android:id="@+id/editTextCurrentEmail"
         android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="@dimen/edittext_height"
+        android:layout_marginTop="@dimen/margin_standard"
         android:hint="@string/enter_current_email"
         android:inputType="textEmailAddress"
         android:textColor="@android:color/white"
@@ -68,10 +68,10 @@
         android:id="@+id/textViewNewEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/margin_standard"
         android:text="@string/enter_new_email"
         android:textColor="@android:color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_size_large"
         app:layout_constraintTop_toBottomOf="@id/editTextCurrentEmail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -79,8 +79,8 @@
     <EditText
         android:id="@+id/editTextNewEmail"
         android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="@dimen/edittext_height"
+        android:layout_marginTop="@dimen/margin_small"
         android:hint="@string/enter_new_email"
         android:inputType="textEmailAddress"
         android:textColor="@android:color/white"
@@ -94,10 +94,10 @@
         android:id="@+id/textViewConfirmNewEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/margin_small"
         android:text="@string/confirm_new_email"
         android:textColor="@android:color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_size_large"
         app:layout_constraintTop_toBottomOf="@id/editTextNewEmail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -105,8 +105,8 @@
     <EditText
         android:id="@+id/editTextConfirmNewEmail"
         android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="@dimen/edittext_height"
+        android:layout_marginTop="@dimen/margin_small"
         android:hint="@string/confirm_new_email"
         android:inputType="textEmailAddress"
         android:textColor="@android:color/white"
@@ -120,10 +120,10 @@
         android:id="@+id/buttonChangeEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="@dimen/margin_large"
         android:text="@string/save"
         android:textColor="@android:color/white"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_medium"
         android:background="@drawable/orange_button_background"
         app:layout_constraintTop_toBottomOf="@id/editTextConfirmNewEmail"
         app:layout_constraintStart_toStartOf="parent"

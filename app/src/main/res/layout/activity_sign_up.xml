@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    android:padding="16dp"
+    android:padding="@dimen/padding_standard"
     tools:context=".ui.activities.SignUpActivity">
 
     <LinearLayout
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/margin_standard"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,9 +21,9 @@
 
         <ImageView
             android:id="@+id/backIcon"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginEnd="16dp"
+            android:layout_width="@dimen/back_icon_size"
+            android:layout_height="@dimen/back_icon_size"
+            android:layout_marginEnd="@dimen/margin_standard"
             android:contentDescription="@string/back"
             android:src="@drawable/back" />
 
@@ -34,15 +34,15 @@
             android:layout_marginStart="16dp"
             android:text="@string/register_text"
             android:textColor="@android:color/white"
-            android:textSize="24sp"
+            android:textSize="@dimen/text_size_large"
             android:textStyle="bold" />
     </LinearLayout>
 
     <ImageView
         android:id="@+id/logoImageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="@dimen/logo_size"
+        android:layout_height="@dimen/logo_size"
+        android:layout_marginTop="@dimen/margin_standard"
         android:src="@drawable/ic_launcher_foreground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +52,7 @@
         android:id="@+id/nameLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/margin_standard"
         android:orientation="horizontal"
         android:weightSum="2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,12 +71,12 @@
                 android:layout_height="wrap_content"
                 android:text="@string/first_name"
                 android:textColor="@android:color/white"
-                android:textSize="14sp" />
+                android:textSize="@dimen/text_size_medium" />
 
             <EditText
                 android:id="@+id/editTextFirstName"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="@dimen/button_height"
                 android:background="@drawable/edittext_background"
                 android:hint="@string/first_name_hint"
                 android:textColor="@android:color/white"
@@ -86,7 +86,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/margin_small"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -96,12 +96,12 @@
                 android:layout_height="wrap_content"
                 android:text="@string/last_name"
                 android:textColor="@android:color/white"
-                android:textSize="14sp" />
+                android:textSize="@dimen/text_size_medium" />
 
             <EditText
                 android:id="@+id/editTextLastName"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="@dimen/button_height"
                 android:background="@drawable/edittext_background"
                 android:hint="@string/last_name_hint"
                 android:textColor="@android:color/white"
@@ -113,10 +113,10 @@
         android:id="@+id/txtUserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/margin_standard"
         android:text="@string/username"
         android:textColor="@android:color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_size_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nameLayout" />
@@ -124,7 +124,7 @@
     <EditText
         android:id="@+id/editTextUserName"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="@dimen/button_height"
         android:background="@drawable/edittext_background"
         android:hint="@string/username_hint"
         android:textColor="@android:color/white"
@@ -137,10 +137,10 @@
         android:id="@+id/txtEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/margin_standard"
         android:text="@string/email"
         android:textColor="@android:color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_size_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editTextUserName" />
@@ -148,7 +148,7 @@
     <EditText
         android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="@dimen/button_height"
         android:background="@drawable/edittext_background"
         android:hint="@string/email_hint"
         android:textColor="@android:color/white"
@@ -161,10 +161,10 @@
         android:id="@+id/txtPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/margin_standard"
         android:text="@string/password"
         android:textColor="@android:color/white"
-        android:textSize="14sp"
+        android:textSize="@dimen/text_size_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/editTextEmail" />
@@ -172,7 +172,7 @@
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="@dimen/button_height"
         android:background="@drawable/edittext_background"
         android:hint="@string/password"
         android:textColor="@android:color/white"
@@ -184,8 +184,8 @@
     <EditText
         android:id="@+id/editTextPasswordConfirm"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginTop="@dimen/margin_small"
         android:background="@drawable/edittext_background"
         android:hint="@string/confirm_password"
         android:textColor="@android:color/white"
@@ -200,7 +200,7 @@
         android:id="@+id/txtPasswordRules"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/margin_standard"
         android:layout_marginBottom="12dp"
         android:clickable="true"
         android:focusable="true"
@@ -218,7 +218,7 @@
         android:id="@+id/buttonRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="@dimen/button_margin"
         android:background="@drawable/orange_button_background"
         android:text="@string/register"
         android:textColor="@android:color/white"

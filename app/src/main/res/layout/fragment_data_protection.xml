@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:padding="@dimen/padding_standard"
     android:background="@color/colorPrimary"
     tools:context=".ui.fragments.DataProtectionFragment">
 
@@ -12,7 +12,7 @@
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/margin_standard"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,8 +22,8 @@
 
         <ImageView
             android:id="@+id/backIcon"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/back_icon_size"
+            android:layout_height="@dimen/back_icon_size"
             android:contentDescription="@string/back"
             android:src="@drawable/back" />
 
@@ -32,11 +32,11 @@
             android:id="@+id/txtDataProtectionTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/margin_standard"
             android:gravity="center"
             android:text="@string/menu_data_protection"
             android:textColor="@android:color/white"
-            android:textSize="20sp"
+            android:textSize="@dimen/text_size_large"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -44,11 +44,11 @@
         android:id="@+id/textViewDataProtectionDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="@dimen/margin_large"
         android:text="@string/data_protection_description"
         android:textColor="@color/white"
         android:gravity="start"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/headerLayout" />
@@ -57,9 +57,10 @@
         android:id="@+id/buttonDownloadData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="@dimen/button_margin"
         android:background="@drawable/orange_button_background"
         android:text="@string/download_your_data"
+        android:textSize="@dimen/text_size_medium"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
