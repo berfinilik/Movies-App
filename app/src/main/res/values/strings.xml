@@ -154,5 +154,6 @@ Aşağıdaki butonu kullanarak verilerinizi cihazınıza indirebilirsiniz. Bu do
     <string name="google_login">Google ile Giriş Yap</string>
     <string name="instagram_login">Instagram ile Giriş Yap</string>
     <string name="default_web_client_id">1007759706019-oibiuqt7ht8lenebsl4hkki7i76cmcjo.apps.googleusercontent.com</string>
-
+    <string name="facebook_app_id">429816690085723</string>
+    <string name="facebook_client_token">ee03bd07c03f137b0496e6fb389c60b5</string>
 </resources>

@@ -74,7 +74,11 @@ dependencies {
     implementation("com.itextpdf:itextg:5.5.10")
 
     implementation("androidx.datastore:datastore-preferences:1.0.0")
+
     implementation("com.google.android.gms:play-services-auth:21.1.1")
+
+    implementation("com.facebook.android:facebook-android-sdk:16.0.0")
+
 
 
 }

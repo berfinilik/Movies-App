@@ -17,6 +17,14 @@ import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.berfinilik.moviesappkotlin.R
 import com.berfinilik.moviesappkotlin.databinding.ActivityLoginBinding
+import com.facebook.AccessToken
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.FacebookSdk
+import com.facebook.appevents.AppEventsLogger
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -35,6 +43,8 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var mGoogleSignInClient: GoogleSignInClient
     private val GOOGLE_SIGN_IN_REQUEST_CODE = 100
+    private lateinit var callbackManager: CallbackManager
+
 
 
     companion object {
@@ -44,12 +54,18 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FacebookSdk.sdkInitialize(applicationContext)
+        AppEventsLogger.activateApp(application)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         requestNotificationPermission()
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
+        callbackManager = CallbackManager.Factory.create()
+
         setupGoogleSignIn()
+        setupFacebookSignIn()
+
 
         checkLastActive()
 
@@ -74,6 +90,9 @@ class LoginActivity : AppCompatActivity() {
         }
         binding.buttonGoogleLogin.setOnClickListener {
             showGoogleSignInDialog()
+        }
+        binding.buttonFacebookLogin.setOnClickListener {
+            signInWithFacebook()
         }
     }
     private fun setupGoogleSignIn() {
@@ -100,8 +119,42 @@ class LoginActivity : AppCompatActivity() {
         }
         dialog.create().show()
     }
+    private fun setupFacebookSignIn() {
+        LoginManager.getInstance().registerCallback(callbackManager,
+            object : FacebookCallback<LoginResult> {
+                override fun onSuccess(result: LoginResult) {
+                    handleFacebookAccessToken(result.accessToken)
+                }
+                override fun onCancel() {
+                    showSnackbar("Facebook giriş işlemi iptal edildi.")
+                }
+
+                override fun onError(error: FacebookException) {
+                    Log.e(TAG, "Facebook Giriş Hatası: ${error.message}")
+                    showSnackbar("Facebook ile giriş başarısız: ${error.message}")
+                }
+            }
+        )
+    }
+    private fun signInWithFacebook() {
+        LoginManager.getInstance().logInWithReadPermissions(this, listOf("email", "public_profile"))
+    }
+    private fun handleFacebookAccessToken(token: AccessToken) {
+        val credential = com.google.firebase.auth.FacebookAuthProvider.getCredential(token.token)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val user = auth.currentUser
+                    saveUserToFirestore(user!!)
+                } else {
+                    showSnackbar("Firebase kimlik doğrulama başarısız.")
+                    Log.e(TAG, "Firebase Auth with Facebook: ${task.exception}")
+                }
+            }
+    }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        callbackManager.onActivityResult(requestCode, resultCode, data)
         if (requestCode == GOOGLE_SIGN_IN_REQUEST_CODE) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             handleResult(task)
