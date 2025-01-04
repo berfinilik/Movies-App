@@ -138,4 +138,14 @@ Aşağıdaki butonu kullanarak verilerinizi cihazınıza indirebilirsiniz. Bu do
     <string name="password_rules_details">- En az 6 karakter içermelidir.\n- Ad, soyad, kullanıcı adı veya e-posta içermemelidir.\n- Tekrarlanan desenler (123123, abcabc) olmamalıdır.\n- Aynı karakter ardışık tekrarlanmamalıdır (111, aaa).</string>
     <string name="ok">Tamam</string>
     <string name="password_rules_text">Şifre Kural Detayı</string>
+    <string name="fullscreen_image">Tam Ekran Görsel</string>
+    <string name="close">Kapat</string>
+    <string name="share">Paylaş</string>
+    <string name="share_image_title">Fotoğrafı Paylaş</string>
+    <string name="take_photo">Fotoğraf Çek</string>
+    <string name="select_photo">Mevcut Fotoğrafı Seç</string>
+    <string name="view_photo">Fotoğrafı Görüntüle</string>
+    <string name="photo_updated">Fotoğraf başarıyla güncellendi</string>
+    <string name="photo_load_error">Fotoğraf yüklenemedi</string>
+    <string name="share_prompt">Fotoğrafı Paylaş</string>
 </resources>

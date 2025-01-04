@@ -2,22 +2,37 @@ package com.berfinilik.moviesappkotlin.ui.fragments
 
 import LanguagePreferenceManager
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.berfinilik.moviesappkotlin.R
 import com.berfinilik.moviesappkotlin.adapters.MenuAdapter
 import com.berfinilik.moviesappkotlin.data.model.MenuItem
+import com.berfinilik.moviesappkotlin.databinding.BottomSheetProfilePictureBinding
 import com.berfinilik.moviesappkotlin.databinding.FragmentAccountBinding
 import com.berfinilik.moviesappkotlin.ui.activities.LoginActivity
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
+import com.google.firebase.storage.FirebaseStorage
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class AccountFragment : Fragment() {
 
@@ -26,6 +41,76 @@ class AccountFragment : Fragment() {
 
     private lateinit var languagePreferenceManager: LanguagePreferenceManager
 
+
+    private val auth = FirebaseAuth.getInstance()
+    private val firestore = FirebaseFirestore.getInstance()
+    private val storage = FirebaseStorage.getInstance()
+
+    private var photoUri: Uri? = null
+
+    private val requestCameraPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                openCamera()
+            } else {
+                Toast.makeText(requireContext(), "Kamera izni reddedildi", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+
+    private val takePhotoLauncher =
+        registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
+            if (success) {
+                photoUri?.let { uri ->
+                    Glide.with(requireContext())
+                        .load(uri)
+                        .circleCrop()
+                        .skipMemoryCache(true)
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .into(binding.imgProfile)
+
+                    uploadProfilePicture(uri)
+                }
+            } else {
+                Toast.makeText(requireContext(), "Fotoğraf çekme iptal edildi", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
+    private val openGalleryLauncher =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+            uri?.let {
+                Glide.with(requireContext())
+                    .load(it)
+                    .circleCrop()
+                    .skipMemoryCache(true)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .into(binding.imgProfile)
+
+                uploadProfilePicture(it)
+            }
+        }
+
+
+    private fun openCamera() {
+        val photoFile = createImageFile()
+        photoUri = FileProvider.getUriForFile(
+            requireContext(),
+            "${requireContext().packageName}.provider",
+            photoFile
+        )
+        takePhotoLauncher.launch(photoUri)
+    }
+
+    private fun createImageFile(): File {
+        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+        val storageDir: File? = requireContext().getExternalFilesDir("Pictures")
+        return File.createTempFile(
+            "JPEG_${timeStamp}_",
+            ".jpg",
+            storageDir
+        )
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         languagePreferenceManager = LanguagePreferenceManager(requireContext())
@@ -96,6 +181,9 @@ class AccountFragment : Fragment() {
 
         binding.btnEditProfile.setOnClickListener {
             findNavController().navigate(R.id.action_accountFragment_to_accountInfoFragment)
+        }
+        binding.imgProfile.setOnClickListener {
+            showBottomSheet()
         }
         fetchUserDataFromFirestore()
 
@@ -215,32 +303,153 @@ class AccountFragment : Fragment() {
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
             val userId = currentUser.uid
-            val firestore = FirebaseFirestore.getInstance()
-
             firestore.collection("users").document(userId).get()
                 .addOnSuccessListener { document ->
                     if (isAdded && _binding != null) {
                         val firstName = document.getString("firstName") ?: "Ad"
                         val lastName = document.getString("lastName") ?: "Soyad"
                         val email = document.getString("email") ?: "E-posta Yok"
+                        val profilePicture = document.getString("profilePicture")
 
                         binding.txtName.text = "$firstName $lastName"
                         binding.txtEmail.text = email
+
+                        if (!profilePicture.isNullOrEmpty()) {
+                            Glide.with(requireContext())
+                                .load(profilePicture)
+                                .circleCrop()
+                                .skipMemoryCache(true)
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                .into(binding.imgProfile)
+                        } else {
+                            binding.imgProfile.setImageResource(R.drawable.adduserphoto)
+                        }
                     }
                 }
                 .addOnFailureListener {
                     if (isAdded && _binding != null) {
                         binding.txtName.text = "Ad Soyad"
                         binding.txtEmail.text = "E-posta Yok"
+                        binding.imgProfile.setImageResource(R.drawable.adduserphoto)
                         Toast.makeText(requireContext(), "Kullanıcı verileri alınamadı.", Toast.LENGTH_SHORT).show()
                     }
                 }
         }
     }
 
+    private fun showBottomSheet() {
+        val bottomSheetDialog = BottomSheetDialog(requireContext())
+        val bindingBottomSheet = BottomSheetProfilePictureBinding.inflate(layoutInflater)
+        bottomSheetDialog.setContentView(bindingBottomSheet.root)
+
+        bindingBottomSheet.takePhotoButton.setOnClickListener {
+            if (requireContext().packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)) {
+                requestCameraPermissionLauncher.launch(android.Manifest.permission.CAMERA)
+            } else {
+                Toast.makeText(requireContext(), "Cihazınızda kamera bulunmuyor", Toast.LENGTH_SHORT).show()
+            }
+            bottomSheetDialog.dismiss()
+        }
+
+        bindingBottomSheet.selectPhotoButton.setOnClickListener {
+            openGalleryLauncher.launch("image/*")
+            bottomSheetDialog.dismiss()
+        }
+
+        bindingBottomSheet.viewPhotoButton.setOnClickListener {
+            showFullScreenImage()
+            bottomSheetDialog.dismiss()
+        }
+
+        bottomSheetDialog.setCancelable(true)
+        bottomSheetDialog.show()
+    }
+
+
+    private fun showFullScreenImage(imageUrl: String? = null) {
+        val user = auth.currentUser
+        if (imageUrl != null) {
+            val dialog = FullScreenImageDialogFragment(imageUrl)
+            dialog.show(parentFragmentManager, "FullScreenImage")
+        } else {
+            user?.let {
+                firestore.collection("users").document(it.uid).get()
+                    .addOnSuccessListener { document ->
+                        val storedImageUrl = document.getString("profilePicture")
+                        if (!storedImageUrl.isNullOrEmpty()) {
+                            val dialog = FullScreenImageDialogFragment(storedImageUrl)
+                            dialog.show(parentFragmentManager, "FullScreenImage")
+                        } else {
+                            Toast.makeText(requireContext(), "Profil fotoğrafı bulunamadı", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(requireContext(), "Fotoğraf yüklenirken hata oluştu", Toast.LENGTH_SHORT).show()
+                    }
+            }
+        }
+    }
+
+    private fun uploadProfilePicture(uri: Uri) {
+        val user = auth.currentUser
+        if (user != null) {
+            val storageReference = storage.reference.child("profile_pictures/${user.uid}.jpg")
+            Log.d("AccountFragment", "Fotoğraf yükleniyor: ${uri.path}")
+
+            Glide.with(requireContext())
+                .load(uri)
+                .circleCrop()
+                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .into(binding.imgProfile)
+
+            storageReference.putFile(uri)
+                .addOnSuccessListener {
+                    Log.d("AccountFragment", "Fotoğraf başarıyla yüklendi.")
+                    storageReference.downloadUrl.addOnSuccessListener { downloadUrl ->
+                        Log.d("AccountFragment", "Download URL alındı: $downloadUrl")
+                        updateProfilePictureInFirestore(downloadUrl)
+                        showFullScreenImage(downloadUrl.toString())
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Log.e("AccountFragment", "Fotoğraf yükleme hatası: ${exception.localizedMessage}")
+                    Toast.makeText(requireContext(), "Fotoğraf yüklenirken hata oluştu", Toast.LENGTH_SHORT).show()
+                }
+        } else {
+            Log.e("AccountFragment", "Kullanıcı oturum açmamış!")
+        }
+    }
+
+    private fun updateProfilePictureInFirestore(downloadUrl: Uri) {
+        val user = auth.currentUser
+        if (user != null) {
+            firestore.collection("users").document(user.uid)
+                .set(mapOf("profilePicture" to downloadUrl.toString()), SetOptions.merge())
+                .addOnSuccessListener {
+                    if (isAdded && context != null) {
+                        Toast.makeText(requireContext(), "Fotoğraf güncellendi", Toast.LENGTH_SHORT)
+                            .show()
+
+                        Glide.with(requireContext())
+                            .load(downloadUrl)
+                            .circleCrop()
+                            .skipMemoryCache(true)
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .into(binding.imgProfile)
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    if (isAdded && context != null) {
+                        Log.e("Firestore", "Firestore güncelleme hatası: ${exception.localizedMessage}")
+                    }
+                }
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 }
+
