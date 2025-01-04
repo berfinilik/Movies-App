@@ -35,6 +35,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 import com.berfinilik.moviesappkotlin.data.model.MovieResult
+import com.bumptech.glide.Glide
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
@@ -189,16 +190,29 @@ class HomeFragment : Fragment() {
                     if (isAdded && _binding != null) {
                         val firstName = document.getString("firstName") ?: "Anonim"
                         binding.textViewUserName.text = String.format(getString(R.string.welcome_message), firstName)
+                        val profilePictureUrl = document.getString("profilePicture")
+                        if (!profilePictureUrl.isNullOrEmpty()) {
+                            Glide.with(requireContext())
+                                .load(profilePictureUrl)
+                                .circleCrop()
+                                .skipMemoryCache(true)
+                                .diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.NONE)
+                                .into(binding.imageViewProfile)
+                        } else {
+                            binding.imageViewProfile.setImageResource(R.drawable.adduserphoto)
+                        }
                     }
                 }
                 .addOnFailureListener {
                     if (isAdded && _binding != null) {
                         binding.textViewUserName.text = String.format(getString(R.string.welcome_message), "Anonim")
+                        binding.imageViewProfile.setImageResource(R.drawable.adduserphoto)
                     }
                 }
         } else {
             if (isAdded && _binding != null) {
                 binding.textViewUserName.text = String.format(getString(R.string.welcome_message), "Anonim")
+                binding.imageViewProfile.setImageResource(R.drawable.adduserphoto)
             }
         }
     }
