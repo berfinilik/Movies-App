@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:padding="@dimen/padding_standard">
 
     <ImageView
         android:id="@+id/imageViewPoster"
-        android:layout_width="100dp"
-        android:layout_height="150dp"
+        android:layout_width="@dimen/image_poster_width"
+        android:layout_height="@dimen/image_poster_height"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -18,11 +18,11 @@
         android:id="@+id/textViewTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="@dimen/margin_standard"
         android:text="Film Başlığı"
         android:textColor="@color/black"
         android:textStyle="bold"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_medium"
         app:layout_constraintStart_toEndOf="@id/imageViewPoster"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -31,9 +31,9 @@
         android:id="@+id/textViewOverview"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:textSize="16sp"
+        android:layout_marginStart="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_extra_small"
+        android:textSize="@dimen/text_size_medium"
         android:text="Film açıklaması"
         android:textColor="@color/darker_gray"
         android:maxLines="3"

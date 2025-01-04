@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:padding="@dimen/padding_standard"
     android:background="@color/colorPrimary"
     tools:context=".ui.fragments.DetailFragment">
 
@@ -12,7 +12,7 @@
         android:id="@+id/scrollView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/margin_standard"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,15 +23,15 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="16dp">
+            android:paddingBottom="@dimen/padding_standard">
 
             <ImageView
                 android:id="@+id/moviesImageView"
-                android:layout_width="303dp"
-                android:layout_height="313dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="90dp"
-                android:layout_marginEnd="20dp"
+                android:layout_width="@dimen/image_width"
+                android:layout_height="@dimen/image_height"
+                android:layout_marginStart="@dimen/image_margin_start"
+                android:layout_marginTop="@dimen/image_margin_top"
+                android:layout_marginEnd="@dimen/image_margin_end"
                 android:scaleType="fitXY"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -40,21 +40,21 @@
 
             <ImageView
                 android:id="@+id/backImageView"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="@dimen/back_icon_size"
+                android:layout_height="@dimen/back_icon_size"
                 android:contentDescription="@string/back"
                 android:src="@drawable/back"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/margin_standard"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/back" />
 
             <ImageView
                 android:id="@+id/favImageView"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginTop="16dp"
+                android:layout_width="@dimen/fav_icon_size"
+                android:layout_height="@dimen/fav_icon_size"
+                android:layout_marginTop="@dimen/margin_standard"
                 android:layout_marginEnd="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="24sp"
+                android:textSize="@dimen/text_size_large"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/backImageView"
                 app:layout_constraintEnd_toStartOf="@id/favImageView"
@@ -93,9 +93,9 @@
                 android:id="@+id/detailLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/margin_standard"
                 android:orientation="vertical"
-                android:padding="16dp"
+                android:padding="@dimen/padding_standard"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/moviesImageView">
 
@@ -112,7 +112,7 @@
                         android:text="2024"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/text_size_medium"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -128,7 +128,7 @@
                         android:layout_marginTop="5dp"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/text_size_medium"
                         app:layout_constraintBottom_toBottomOf="@id/movieReleaseYearTextView"
                         app:layout_constraintStart_toEndOf="@id/movieReleaseYearTextView"
                         app:layout_constraintTop_toTopOf="@id/movieReleaseYearTextView"
@@ -182,35 +182,34 @@
                         android:layout_height="match_parent"
                         android:background="@drawable/orange_button_background"
                         android:drawableStart="@drawable/play"
-                        android:padding="20dp"
+                        android:padding="@dimen/padding_standard"
                         android:text="@string/watch_trailer"
                         android:textColor="@color/white"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/button_text_size"
                         android:textStyle="bold" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/addToSavedBtn"
-                        android:layout_width="65dp"
+                        android:layout_width="@dimen/button_width"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="@dimen/margin_standard"
                         android:background="@drawable/orange_button_background"
                         android:drawableStart="@drawable/download"
-                        android:padding="8dp"
+                        android:padding="@dimen/padding_standard"
                         android:textColor="@color/white"
-                        android:textSize="18sp"
+                        android:textSize="@dimen/text_size_medium"
                         android:textStyle="bold" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/shareBtn"
-                        android:layout_width="78dp"
+                        android:layout_width="@dimen/button_width"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="@dimen/margin_standard"
                         android:background="@drawable/orange_button_background"
                         android:drawableStart="@drawable/share"
-                        android:padding="20dp"
+                        android:padding="@dimen/padding_standard"
                         android:textColor="@color/white"
-                        android:textSize="18sp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -226,7 +225,7 @@
                     android:id="@+id/textView12"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/margin_standard"
                     android:text="@string/cast_title"
                     android:textColor="@color/white"
                     android:textStyle="bold" />
@@ -235,8 +234,8 @@
                     android:id="@+id/castRecyclerView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
+                    android:paddingStart="@dimen/padding_small"
+                    android:paddingEnd="@dimen/padding_small"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/item_cast" />
             </LinearLayout>
