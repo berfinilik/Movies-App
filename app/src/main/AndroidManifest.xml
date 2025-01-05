@@ -7,15 +7,12 @@
         android:required="false" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.CAMERA" />
-
-
-
 
     <application
         android:name=".MyApplication"
@@ -28,6 +25,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoviesAppKotlin"
         tools:targetApi="31">
+        <activity
+            android:name=".ui.activities.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
 
         <meta-data
             android:name="com.facebook.sdk.ClientToken"
@@ -35,7 +42,6 @@
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
-
 
         <service
             android:name=".MyFirebaseMessagingService"
@@ -45,12 +51,9 @@
             </intent-filter>
         </service>
 
-
-
         <activity
             android:name=".ui.activities.ForgotPasswordActivity"
             android:exported="false" />
-
         <activity
             android:name=".ui.activities.SignUpActivity"
             android:exported="false" />
@@ -58,15 +61,11 @@
             android:name=".ui.activities.LoginActivity"
             android:exported="true">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.activities.MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
