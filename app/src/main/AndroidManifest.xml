@@ -76,6 +76,11 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
+        <activity
+            android:name=".ui.fragments.FullScreenImageDialogFragment"
+            android:theme="@style/Theme.FullScreenDialog"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>

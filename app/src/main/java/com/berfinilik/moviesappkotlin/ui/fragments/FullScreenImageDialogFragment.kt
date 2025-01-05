@@ -3,9 +3,7 @@ package com.berfinilik.moviesappkotlin.ui.fragments
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.DialogFragment
 import com.berfinilik.moviesappkotlin.R
 import com.berfinilik.moviesappkotlin.databinding.FragmentFullScreenImageDialogBinding
@@ -20,7 +18,7 @@ class FullScreenImageDialogFragment(private val imageUrl: String) : DialogFragme
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentFullScreenImageDialogBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -51,12 +49,16 @@ class FullScreenImageDialogFragment(private val imageUrl: String) : DialogFragme
         startActivity(Intent.createChooser(shareIntent, getString(R.string.share_prompt)))
     }
 
-
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = super.onCreateDialog(savedInstanceState)
-        dialog.window?.setBackgroundDrawableResource(android.R.color.black)
+        dialog.window?.apply {
+            setBackgroundDrawableResource(android.R.color.black)
+            setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+            setWindowAnimations(android.R.style.Animation_Dialog)
+        }
         return dialog
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
