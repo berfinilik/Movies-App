@@ -1,13 +1,10 @@
 package com.berfinilik.moviesappkotlin.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.berfinilik.moviesappkotlin.R
 import com.berfinilik.moviesappkotlin.data.model.MovieResult
+import com.berfinilik.moviesappkotlin.databinding.ItemPopularMovieBinding
 import com.bumptech.glide.Glide
 
 class PopularMoviesAdapter(
@@ -15,26 +12,35 @@ class PopularMoviesAdapter(
     private val onClick: (MovieResult) -> Unit
 ) : RecyclerView.Adapter<PopularMoviesAdapter.PopularViewHolder>() {
 
-    class PopularViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val titleTextView: TextView = view.findViewById(R.id.nameFilmTextView)
-        val posterImageView: ImageView = view.findViewById(R.id.filmImageView)
+    inner class PopularViewHolder(private val binding: ItemPopularMovieBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(movie: MovieResult) {
+            with(binding) {
+                nameFilmTextView.text = movie.title
+
+                Glide.with(root.context)
+                    .load("https://image.tmdb.org/t/p/w500${movie.poster_path}")
+                    .into(filmImageView)
+
+                root.setOnClickListener {
+                    onClick(movie)
+                }
+            }
+        }
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): PopularViewHolder {
-        val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.item_popular_movie, viewGroup, false)
-        return PopularViewHolder(view)
+        val binding = ItemPopularMovieBinding.inflate(
+            LayoutInflater.from(viewGroup.context),
+            viewGroup,
+            false
+        )
+        return PopularViewHolder(binding)
     }
 
     override fun onBindViewHolder(viewHolder: PopularViewHolder, position: Int) {
-        val movie = moviesList[position]
-        viewHolder.titleTextView.text = movie.title
-
-        Glide.with(viewHolder.itemView.context)
-            .load("https://image.tmdb.org/t/p/w500" + movie.poster_path)
-            .into(viewHolder.posterImageView)
-
-        viewHolder.itemView.setOnClickListener { onClick(movie) }
+        viewHolder.bind(moviesList[position])
     }
 
     override fun getItemCount() = moviesList.size

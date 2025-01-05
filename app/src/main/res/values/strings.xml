@@ -158,4 +158,8 @@ Aşağıdaki butonu kullanarak verilerinizi cihazınıza indirebilirsiniz. Bu do
     <string name="facebook_client_token">ee03bd07c03f137b0496e6fb389c60b5</string>
     <string name="continue_with_google">Google ile devam et</string>
     <string name="continue_with_facebook">Facebook ile devam et</string>
+    <string name="home_fragment">Ana Sayfa</string>
+    <string name="favourites_fragment">Favoriler</string>
+    <string name="saved_fragment">Kaydedilenler</string>
+    <string name="account_fragment">Profil</string>
 </resources>

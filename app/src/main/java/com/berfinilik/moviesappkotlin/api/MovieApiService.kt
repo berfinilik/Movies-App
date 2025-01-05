@@ -1,6 +1,6 @@
 package com.berfinilik.moviesappkotlin.api
 
-import com.berfinilik.moviesappkotlin.VideosResponse
+import com.berfinilik.moviesappkotlin.data.model.VideosResponse
 import com.berfinilik.moviesappkotlin.data.model.MovieDetailsResponse
 import com.berfinilik.moviesappkotlin.data.model.GenresResponse
 import com.berfinilik.moviesappkotlin.data.model.MovieResponse

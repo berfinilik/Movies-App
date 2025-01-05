@@ -158,4 +158,8 @@ You can download your data to your device using the button below. This file cont
     <string name="facebook_client_token">ee03bd07c03f137b0496e6fb389c60b5</string>
     <string name="continue_with_google">Continue with Google</string>
     <string name="continue_with_facebook">Continue with Facebook</string>
+    <string name="home_fragment">Home</string>
+    <string name="favourites_fragment">Favorites</string>
+    <string name="saved_fragment">Saved</string>
+    <string name="account_fragment">Profile</string>
 </resources>

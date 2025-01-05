@@ -6,23 +6,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/home"
-        android:title="Ana Sayfa" />
+        android:title="@string/home_fragment" />
+
     <item
         android:id="@+id/favouritesFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/bottom_favourite"
-        android:title="Favoriler" />
+        android:title="@string/favourites_fragment" />
+
     <item
         android:id="@+id/savedFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/save"
-        android:title="Kaydedilenler" />
+        android:title="@string/saved_fragment" />
+
     <item
         android:id="@+id/accountFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/profile"
-        android:title="Profil" />
+        android:title="@string/account_fragment" />
 </menu>

@@ -11,8 +11,9 @@ import com.berfinilik.moviesappkotlin.data.dao.SavedMoviesDao
 import com.berfinilik.moviesappkotlin.data.dao.FavouritesDao
 import com.berfinilik.moviesappkotlin.data.model.FavouriteMovie
 
-@Database(entities = [FavouriteMovie::class, SavedMovie::class], version = 5)
+@Database(entities = [FavouriteMovie::class, SavedMovie::class], version = 5, exportSchema = true)
 abstract class AppDatabase : RoomDatabase() {
+
     abstract fun favouritesDao(): FavouritesDao
     abstract fun savedMoviesDao(): SavedMoviesDao
 
@@ -29,14 +30,15 @@ abstract class AppDatabase : RoomDatabase() {
                 )
                     .addMigrations(
                         MIGRATION_1_2,
-                        MIGRATION_2_3,
                         MIGRATION_3_4,
-                        MIGRATION_4_5)
+                        MIGRATION_4_5
+                    )
                     .build()
                 INSTANCE = instance
                 instance
             }
         }
+
 
         val MIGRATION_1_2 = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
@@ -53,14 +55,9 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
 
-        val MIGRATION_2_3 = object : Migration(2, 3) {
-            override fun migrate(database: SupportSQLiteDatabase) {
-            }
-        }
 
         val MIGRATION_3_4 = object : Migration(3, 4) {
             override fun migrate(database: SupportSQLiteDatabase) {
-                database.execSQL("DROP TABLE IF EXISTS `saved_movies`")
                 database.execSQL(
                     """
                     CREATE TABLE IF NOT EXISTS `saved_movies` (
@@ -73,9 +70,13 @@ abstract class AppDatabase : RoomDatabase() {
                 )
             }
         }
+
+
         val MIGRATION_4_5 = object : Migration(4, 5) {
             override fun migrate(database: SupportSQLiteDatabase) {
-                database.execSQL("ALTER TABLE favorite_movies ADD COLUMN userId TEXT NOT NULL DEFAULT ''")
+                database.execSQL(
+                    "ALTER TABLE favorite_movies ADD COLUMN userId TEXT NOT NULL DEFAULT ''"
+                )
             }
         }
     }

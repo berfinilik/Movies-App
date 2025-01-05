@@ -1,34 +1,38 @@
 package com.berfinilik.moviesappkotlin.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.berfinilik.moviesappkotlin.R
 import com.berfinilik.moviesappkotlin.data.model.Genre
+import com.berfinilik.moviesappkotlin.databinding.ItemCategoryBinding
 
 class CategoriesAdapter(
     private var categoriesList: List<Genre>,
     private val onCategoryClick: (Genre) -> Unit
 ) : RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
 
-    class CategoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val categoryTextView: TextView = view.findViewById(R.id.categoryNameTextView)
-    }
+    inner class CategoryViewHolder(private val binding: ItemCategoryBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): CategoryViewHolder {
-        val view = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.item_category, viewGroup, false)
-        return CategoryViewHolder(view)
-    }
-
-    override fun onBindViewHolder(viewHolder: CategoryViewHolder, position: Int) {
-        val category = categoriesList[position]
-        viewHolder.itemView.setOnClickListener {
-            onCategoryClick(category)
+        fun bind(category: Genre) {
+            binding.categoryNameTextView.text = category.name
+            binding.root.setOnClickListener {
+                onCategoryClick(category)
+            }
         }
-        viewHolder.categoryTextView.text = category.name
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
+        val binding = ItemCategoryBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
+        return CategoryViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
+        holder.bind(categoriesList[position])
     }
 
     override fun getItemCount() = categoriesList.size

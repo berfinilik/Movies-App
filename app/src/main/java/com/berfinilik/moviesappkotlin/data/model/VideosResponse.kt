@@ -1,4 +1,5 @@
-package com.berfinilik.moviesappkotlin
+package com.berfinilik.moviesappkotlin.data.model
+
 
 data class VideosResponse(
     val id: Int,

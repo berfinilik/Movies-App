@@ -9,7 +9,7 @@ import com.berfinilik.moviesappkotlin.data.model.SavedMovie
 @Dao
 interface SavedMoviesDao {
     @Query("SELECT * FROM saved_movies")
-    fun getAllSavedMovies(): List<SavedMovie>
+    suspend fun getAllSavedMovies(): List<SavedMovie>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertSavedMovie(movie: SavedMovie)

@@ -6,19 +6,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.RadioGroup
 import androidx.fragment.app.Fragment
-import androidx.work.ExistingPeriodicWorkPolicy
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
+import androidx.work.*
 import com.berfinilik.moviesappkotlin.FetchMoviesWorker
-import com.berfinilik.moviesappkotlin.R
+import com.berfinilik.moviesappkotlin.databinding.FragmentNotificationBinding
 import java.util.concurrent.TimeUnit
 
 class NotificationFragment : Fragment() {
+
+    private var _binding: FragmentNotificationBinding? = null
+    private val binding get() = _binding!!
 
     private lateinit var sharedPreferences: SharedPreferences
     private var isNotificationEnabled: Boolean = true
@@ -26,39 +23,37 @@ class NotificationFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_notification, container, false)
+    ): View {
+        _binding = FragmentNotificationBinding.inflate(inflater, container, false)
+        val view = binding.root
 
         sharedPreferences = requireContext().getSharedPreferences("notification_pref", Context.MODE_PRIVATE)
         isNotificationEnabled = sharedPreferences.getBoolean("notification_enabled", true)
 
-        val radioGroup = view.findViewById<RadioGroup>(R.id.radioGroupNotifications)
-        val btnSave = view.findViewById<Button>(R.id.btnSaveNotification)
-        val backIcon = view.findViewById<ImageView>(R.id.backIcon)
-
-
-        // Mevcut ayara göre seçim yap
+        // Bildirim Durumunu Kontrol Et ve UI Güncelle
         when (isNotificationEnabled) {
-            true -> radioGroup.check(R.id.radioEnableNotifications)
-            false -> radioGroup.check(R.id.radioDisableNotifications)
+            true -> binding.radioGroupNotifications.check(binding.radioEnableNotifications.id)
+            false -> binding.radioGroupNotifications.check(binding.radioDisableNotifications.id)
         }
 
-        // RadioGroup seçim dinleyicisi
-        radioGroup.setOnCheckedChangeListener { _, checkedId ->
+        // RadioGroup Değişim Dinleyicisi
+        binding.radioGroupNotifications.setOnCheckedChangeListener { _, checkedId ->
             isNotificationEnabled = when (checkedId) {
-                R.id.radioEnableNotifications -> true
-                R.id.radioDisableNotifications -> false
+                binding.radioEnableNotifications.id -> true
+                binding.radioDisableNotifications.id -> false
                 else -> true
             }
         }
 
-        btnSave.setOnClickListener {
+        // Kaydet Butonu
+        binding.btnSaveNotification.setOnClickListener {
             saveNotificationPreference(isNotificationEnabled)
             handleNotificationWorkManager()
             requireActivity().onBackPressed()
         }
 
-        backIcon.setOnClickListener {
+        // Geri Butonu
+        binding.backIcon.setOnClickListener {
             requireActivity().onBackPressed()
         }
 
@@ -66,7 +61,6 @@ class NotificationFragment : Fragment() {
     }
 
     private fun saveNotificationPreference(enabled: Boolean) {
-        val sharedPreferences = requireContext().getSharedPreferences("notification_pref", Context.MODE_PRIVATE)
         sharedPreferences.edit()
             .putBoolean("notification_enabled", enabled)
             .apply()
@@ -77,13 +71,13 @@ class NotificationFragment : Fragment() {
             WorkManager.getInstance(requireContext()).cancelUniqueWork("FetchMoviesWork")
         }
     }
+
     private fun triggerNotificationWorkManager() {
         if (isNotificationEnabled) {
             val workRequest = OneTimeWorkRequestBuilder<FetchMoviesWorker>().build()
             WorkManager.getInstance(requireContext()).enqueue(workRequest)
         }
     }
-
 
     private fun scheduleWorkManager() {
         val workRequest = PeriodicWorkRequestBuilder<FetchMoviesWorker>(1, TimeUnit.DAYS)
@@ -98,7 +92,6 @@ class NotificationFragment : Fragment() {
     }
 
     private fun handleNotificationWorkManager() {
-        val sharedPreferences = requireContext().getSharedPreferences("notification_pref", Context.MODE_PRIVATE)
         val isEnabled = sharedPreferences.getBoolean("notification_enabled", true)
 
         if (isEnabled) {
@@ -106,5 +99,10 @@ class NotificationFragment : Fragment() {
         } else {
             WorkManager.getInstance(requireContext()).cancelAllWorkByTag("FetchMoviesWork")
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
