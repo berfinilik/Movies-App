@@ -1,68 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     android:background="@color/colorPrimary"
+    android:padding="@dimen/padding_default"
     tools:context=".ui.fragments.DataProtectionFragment">
 
     <LinearLayout
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/margin_medium"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <ImageView
             android:id="@+id/backIcon"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/icon_size_small"
+            android:layout_height="@dimen/icon_size_small"
+            android:src="@drawable/back"
             android:contentDescription="@string/back"
-            android:src="@drawable/back" />
-
+            android:layout_marginEnd="@dimen/margin_small" />
 
         <TextView
             android:id="@+id/txtDataProtectionTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:gravity="center"
+            android:layout_marginStart="@dimen/margin_small"
             android:text="@string/menu_data_protection"
             android:textColor="@android:color/white"
-            android:textSize="20sp"
+            android:textSize="@dimen/text_size_title"
             android:textStyle="bold" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/textViewDataProtectionDescription"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="@dimen/margin_large"
         android:text="@string/data_protection_description"
         android:textColor="@color/white"
+        android:textSize="@dimen/text_size_medium"
         android:gravity="start"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerLayout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/headerLayout" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonDownloadData"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/orange_button_background"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginTop="@dimen/margin_large"
         android:text="@string/download_your_data"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_large"
+        android:background="@drawable/orange_button_background"
+        app:layout_constraintTop_toBottomOf="@id/textViewDataProtectionDescription"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewDataProtectionDescription" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

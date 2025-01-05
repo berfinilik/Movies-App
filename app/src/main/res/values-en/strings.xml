@@ -88,8 +88,8 @@ You can download your data to your device using the button below. This file cont
     <string name="menu_change_username">Change Username</string>
     <string name="menu_change_password">Change Password</string>
     <string name="menu_change_email">Change Email</string>
-    <string name="menu_notification">Notification</string>
-    <string name="menu_language">Language</string>
+    <string name="menu_notification">Notification Settings</string>
+    <string name="menu_language">Language Settings</string>
     <string name="account_header">Account</string>
     <string name="general_header">General</string>
     <string name="menu_about_app">About App</string>
@@ -156,4 +156,6 @@ You can download your data to your device using the button below. This file cont
     <string name="default_web_client_id">1007759706019-oibiuqt7ht8lenebsl4hkki7i76cmcjo.apps.googleusercontent.com</string>
     <string name="facebook_app_id">429816690085723</string>
     <string name="facebook_client_token">ee03bd07c03f137b0496e6fb389c60b5</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="continue_with_facebook">Continue with Facebook</string>
 </resources>

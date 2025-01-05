@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.RadioGroup
 import com.berfinilik.moviesappkotlin.R
 import com.berfinilik.moviesappkotlin.utils.ThemeHelper
@@ -22,6 +23,7 @@ class ThemeFragment : Fragment() {
 
         val radioGroupThemes = view.findViewById<RadioGroup>(R.id.radioGroupThemes)
         val btnSave = view.findViewById<View>(R.id.btnSaveTheme)
+        val backIcon = view.findViewById<ImageView>(R.id.backIcon)
 
         val sharedPreferences = requireContext().getSharedPreferences("app_settings", Context.MODE_PRIVATE)
 
@@ -43,6 +45,9 @@ class ThemeFragment : Fragment() {
             val editor = sharedPreferences.edit()
             editor.putString("theme", selectedTheme).apply()
             ThemeHelper.applyTheme(selectedTheme)
+            requireActivity().onBackPressed()
+        }
+        backIcon.setOnClickListener {
             requireActivity().onBackPressed()
         }
 

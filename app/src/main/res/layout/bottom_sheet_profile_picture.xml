@@ -4,31 +4,30 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@color/white"
-    android:padding="16dp">
-
+    android:padding="@dimen/padding_large">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingTop="8dp"
+        android:paddingTop="@dimen/padding_medium"
         android:gravity="center_vertical">
 
         <ImageView
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
             android:src="@drawable/camera"
-            android:contentDescription="Fotoğraf çek"
-            android:padding="4dp" />
+            android:contentDescription="@string/take_photo"
+            android:padding="@dimen/padding_small" />
 
         <TextView
             android:id="@+id/takePhotoButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/take_photo"
-            android:textSize="16dp"
-            android:layout_marginStart="10dp"
-            android:padding="8dp"
+            android:textSize="@dimen/text_size_medium"
+            android:layout_marginStart="@dimen/margin_small"
+            android:padding="@dimen/padding_medium"
             android:textColor="@android:color/black" />
     </LinearLayout>
 
@@ -36,24 +35,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingTop="8dp"
+        android:paddingTop="@dimen/padding_medium"
         android:gravity="center_vertical">
 
         <ImageView
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
             android:src="@drawable/selectphoto"
-            android:contentDescription="Fotoğraf seç"
-            android:padding="4dp" />
+            android:contentDescription="@string/select_photo"
+            android:padding="@dimen/padding_small" />
 
         <TextView
             android:id="@+id/selectPhotoButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/select_photo"
-            android:layout_marginStart="10dp"
-            android:textSize="15dp"
-            android:padding="8dp"
+            android:textSize="@dimen/text_size_medium"
+            android:layout_marginStart="@dimen/margin_small"
+            android:padding="@dimen/padding_medium"
             android:textColor="@android:color/black" />
     </LinearLayout>
 
@@ -61,24 +60,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingTop="8dp"
+        android:paddingTop="@dimen/padding_medium"
         android:gravity="center_vertical">
 
         <ImageView
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
             android:src="@drawable/display_photo"
-            android:contentDescription="Fotoğrafı Görüntüle"
-            android:padding="4dp" />
+            android:contentDescription="@string/view_photo"
+            android:padding="@dimen/padding_small" />
 
         <TextView
             android:id="@+id/viewPhotoButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/view_photo"
-            android:layout_marginStart="10dp"
-            android:textSize="16dp"
-            android:padding="8dp"
+            android:textSize="@dimen/text_size_medium"
+            android:layout_marginStart="@dimen/margin_small"
+            android:padding="@dimen/padding_medium"
             android:textColor="@android:color/black" />
     </LinearLayout>
 

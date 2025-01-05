@@ -322,7 +322,7 @@ class AccountFragment : Fragment() {
                                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                                 .into(binding.imgProfile)
                         } else {
-                            binding.imgProfile.setImageResource(R.drawable.adduserphoto)
+                            binding.imgProfile.setImageResource(R.drawable.adduser)
                         }
                     }
                 }
@@ -330,7 +330,7 @@ class AccountFragment : Fragment() {
                     if (isAdded && _binding != null) {
                         binding.txtName.text = "Ad Soyad"
                         binding.txtEmail.text = "E-posta Yok"
-                        binding.imgProfile.setImageResource(R.drawable.adduserphoto)
+                        binding.imgProfile.setImageResource(R.drawable.adduser)
                         Toast.makeText(requireContext(), "Kullanıcı verileri alınamadı.", Toast.LENGTH_SHORT).show()
                     }
                 }

@@ -4,24 +4,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimary"
+    android:padding="@dimen/padding_default">
 
     <LinearLayout
         android:id="@+id/linearLayoutTheme"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:gravity="center_vertical"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
         android:orientation="horizontal"
-        android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <ImageView
             android:id="@+id/backIcon"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/icon_size_small"
+            android:layout_height="@dimen/icon_size_small"
             android:contentDescription="@string/back"
             android:src="@drawable/back" />
 
@@ -29,11 +29,10 @@
             android:id="@+id/txtThemeTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:gravity="center"
+            android:layout_marginStart="@dimen/margin_small"
             android:text="@string/select_theme"
             android:textColor="@android:color/white"
-            android:textSize="20sp"
+            android:textSize="@dimen/text_size_title"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -41,14 +40,14 @@
         android:id="@+id/txtThemeDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_large"
         android:text="@string/supported_themes"
-        android:padding="16dp"
-        android:textSize="16sp"
         android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/linearLayoutTheme"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="@dimen/text_size_large"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayoutTheme" />
 
     <RadioGroup
         android:id="@+id/radioGroupThemes"
@@ -58,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@id/txtThemeDescription"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="@dimen/margin_medium">
 
         <RadioButton
             android:id="@+id/radioLight"
@@ -66,7 +65,7 @@
             android:layout_height="wrap_content"
             android:text="@string/theme_light"
             android:textColor="@android:color/white"
-            android:textSize="16sp" />
+            android:textSize="@dimen/text_size_large" />
 
         <RadioButton
             android:id="@+id/radioDark"
@@ -74,7 +73,7 @@
             android:layout_height="wrap_content"
             android:text="@string/theme_dark"
             android:textColor="@android:color/white"
-            android:textSize="16sp" />
+            android:textSize="@dimen/text_size_large" />
     </RadioGroup>
 
     <Button
@@ -84,8 +83,9 @@
         android:text="@string/save"
         android:backgroundTint="@color/orange"
         android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_large"
         app:layout_constraintTop_toBottomOf="@id/radioGroupThemes"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"/>
+        android:layout_marginTop="@dimen/margin_large"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,40 +4,38 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/dialog_background"
-    android:padding="24dp">
+    android:padding="@dimen/padding_large">
 
     <ImageView
         android:id="@+id/warningIcon"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="@dimen/icon_size_large"
+        android:layout_height="@dimen/icon_size_large"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/ic_delete_account"
-        android:contentDescription="Warning Icon" />
+        android:src="@drawable/ic_delete_account"/>
 
     <TextView
         android:id="@+id/deleteMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/margin_top_medium"
         android:layout_gravity="center_horizontal"
         android:text="@string/delete_account_confirmation"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_size_medium"
         android:textColor="@color/black"
         android:textAlignment="center"
-        android:gravity="center"
-        android:lineSpacingExtra="4dp"/>
+        android:gravity="center" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="@dimen/margin_top_large"
         android:orientation="horizontal"
         android:gravity="center">
 
         <Button
             android:id="@+id/btnYes"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/button_height"
             android:layout_weight="1"
             android:text="@string/yes"
             android:background="@drawable/button_outline"
@@ -46,11 +44,11 @@
         <Button
             android:id="@+id/btnNo"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/button_height"
             android:layout_weight="1"
+            android:layout_marginStart="@dimen/button_margin_start"
             android:text="@string/no"
             android:background="@drawable/button_filled"
-            android:textColor="@color/white"
-            android:layout_marginStart="8dp" />
+            android:textColor="@color/white" />
     </LinearLayout>
 </LinearLayout>

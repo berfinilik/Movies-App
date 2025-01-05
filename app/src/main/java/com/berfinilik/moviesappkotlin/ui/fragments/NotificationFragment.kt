@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.RadioGroup
 import androidx.fragment.app.Fragment
 import androidx.work.ExistingPeriodicWorkPolicy
@@ -33,6 +34,8 @@ class NotificationFragment : Fragment() {
 
         val radioGroup = view.findViewById<RadioGroup>(R.id.radioGroupNotifications)
         val btnSave = view.findViewById<Button>(R.id.btnSaveNotification)
+        val backIcon = view.findViewById<ImageView>(R.id.backIcon)
+
 
         // Mevcut ayara göre seçim yap
         when (isNotificationEnabled) {
@@ -52,6 +55,10 @@ class NotificationFragment : Fragment() {
         btnSave.setOnClickListener {
             saveNotificationPreference(isNotificationEnabled)
             handleNotificationWorkManager()
+            requireActivity().onBackPressed()
+        }
+
+        backIcon.setOnClickListener {
             requireActivity().onBackPressed()
         }
 

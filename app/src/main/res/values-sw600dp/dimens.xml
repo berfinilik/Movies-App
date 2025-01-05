@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ###################### MARJİN BOYUTLARI ###################### -->
+    <dimen name="margin_xsmall">6dp</dimen>
+    <dimen name="margin_small">12dp</dimen>
+    <dimen name="margin_medium">20dp</dimen>
+    <dimen name="margin_large">28dp</dimen>
+    <dimen name="margin_xlarge">36dp</dimen>
+    <dimen name="margin_xxlarge">70dp</dimen>
+    <dimen name="margin_xxxlarge">100dp</dimen>
+
+    <!-- Özel Margin Değerleri -->
+    <dimen name="button_margin_start">12dp</dimen>
+    <dimen name="button_margin_top">28dp</dimen>
+    <dimen name="bottom_nav_margin">110dp</dimen>
+    <dimen name="margin_top_small">12dp</dimen>
+    <dimen name="margin_top_medium">20dp</dimen>
+    <dimen name="margin_top_large">28dp</dimen>
+    <dimen name="margin_start_small">8dp</dimen>
+    <dimen name="margin_start_medium">14dp</dimen>
+    <dimen name="margin_end_small">8dp</dimen>
+    <dimen name="margin_end_medium">14dp</dimen>
+
+    <!-- ###################### PADDING BOYUTLARI ###################### -->
+    <dimen name="padding_small">6dp</dimen>
+    <dimen name="padding_menu">9dp</dimen>
+    <dimen name="padding_medium">12dp</dimen>
+    <dimen name="padding_large">20dp</dimen>
+    <dimen name="padding_xlarge">24dp</dimen>
+    <dimen name="padding_default">20dp</dimen>
+
+    <!-- ###################### METİN BOYUTLARI ###################### -->
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="text_size_large">18sp</dimen>
+    <dimen name="text_size_xlarge">20sp</dimen>
+    <dimen name="text_size_title">28sp</dimen>
+    <dimen name="text_size_content">16sp</dimen>
+    <dimen name="text_size_description">18sp</dimen>
+    <dimen name="text_size_subtitle">20sp</dimen>
+    <dimen name="text_size_normal">18sp</dimen>
+
+    <!-- ###################### BUTON VE EDITTEXT BOYUTLARI ###################### -->
+    <dimen name="edittext_height">60dp</dimen>
+    <dimen name="button_height">55dp</dimen>
+    <dimen name="button_width_large">400dp</dimen>
+    <dimen name="button_width_medium">80dp</dimen>
+    <dimen name="button_width_small">90dp</dimen>
+    <dimen name="social_button_size">55dp</dimen>
+    <dimen name="fab_size">65dp</dimen>
+
+    <!-- ###################### İKON BOYUTLARI ###################### -->
+    <dimen name="icon_size">34dp</dimen>
+    <dimen name="icon_size_small">28dp</dimen>
+    <dimen name="icon_size_medium">36dp</dimen>
+    <dimen name="icon_size_large">72dp</dimen>
+    <dimen name="checkbox_size">28dp</dimen>
+    <dimen name="button_icon_small">20dp</dimen>
+    <dimen name="button_icon_medium">26dp</dimen>
+
+    <!-- ###################### PROFİL GÖRSELLERİ ###################### -->
+    <dimen name="profile_image_width">65dp</dimen>
+    <dimen name="profile_image_height">65dp</dimen>
+    <dimen name="profile_image_size">90dp</dimen>
+
+    <!-- ###################### CARDVIEW BOYUTLARI ###################### -->
+    <dimen name="card_corner_radius">16dp</dimen>
+    <dimen name="card_elevation">10dp</dimen>
+
+    <!-- ###################### MOVIE GÖRSEL BOYUTLARI ###################### -->
+    <dimen name="movie_duration_width">120dp</dimen>
+    <dimen name="movie_duration_height">38dp</dimen>
+    <dimen name="movie_poster_width">120dp</dimen>
+    <dimen name="movie_poster_height">200dp</dimen>
+    <dimen name="movie_imageview_detailwidth">350dp</dimen>
+    <dimen name="movie_imageview_detail_height">370dp</dimen>
+    <dimen name="film_image_width">220dp</dimen>
+    <dimen name="film_image_height">230dp</dimen>
+    <dimen name="cast_image_size">140dp</dimen>
+
+    <!-- ###################### RECYCLER VIEW ###################### -->
+    <dimen name="recycler_width">400dp</dimen>
+    <dimen name="recycler_height_large">500dp</dimen>
+    <dimen name="recycler_padding_start">12dp</dimen>
+    <dimen name="recycler_padding_end">12dp</dimen>
+    <dimen name="view_pager_height">220dp</dimen>
+
+    <!-- ###################### DİĞER BOYUTLAR ###################### -->
+    <dimen name="corner_radius">20dp</dimen>
+    <dimen name="elevation_medium">10dp</dimen>
+    <dimen name="view_height">2dp</dimen>
+    <dimen name="weight_sum_two">2</dimen>
+    <dimen name="view_weight_height">0dp</dimen>
+    <dimen name="view_weight_width">0dp</dimen>
+
+    <!-- ###################### LAYOUT BOYUTLARI ###################### -->
+    <dimen name="layout_width">400dp</dimen>
+    <dimen name="layout_height">65dp</dimen>
+
+    <!-- ###################### BOTTOM NAVIGATION ###################### -->
+    <dimen name="bottom_nav_height">90dp</dimen>
+
+    <!-- ###################### LOGO BOYUTLARI ###################### -->
+    <dimen name="logo_size">120dp</dimen>
+
+</resources>

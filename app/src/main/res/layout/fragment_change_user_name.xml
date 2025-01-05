@@ -4,57 +4,58 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="@color/colorPrimary">
+    android:background="@color/colorPrimary"
+    android:padding="@dimen/padding_default">
 
     <LinearLayout
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:orientation="horizontal"
         android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/margin_medium"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <ImageView
             android:id="@+id/backIcon"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/icon_size_small"
+            android:layout_height="@dimen/icon_size_small"
+            android:src="@drawable/back"
             android:contentDescription="@string/back"
-            android:src="@drawable/back" />
+            android:layout_marginEnd="@dimen/margin_small" />
 
         <TextView
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:text="@string/change_username"
             android:textColor="@android:color/white"
-            android:textSize="24sp"
+            android:textSize="@dimen/text_size_title"
             android:textStyle="bold" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/textViewNewUserName"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="@dimen/margin_large"
         android:text="@string/enter_new_username"
-        android:textColor="@android:color/white"
-        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_medium"
         app:layout_constraintTop_toBottomOf="@id/headerLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/editTextUserName"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/edittext_height"
+        android:layout_marginTop="@dimen/margin_small"
         android:hint="@string/enter_new_username"
         android:textColor="@android:color/white"
+        android:textColorHint="@color/darker_gray"
         android:background="@drawable/edittext_background"
         app:layout_constraintTop_toBottomOf="@id/textViewNewUserName"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,11 +63,12 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonChangeUserName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:layout_marginTop="@dimen/margin_xlarge"
         android:text="@string/save"
         android:textColor="@android:color/white"
+        android:textSize="@dimen/text_size_large"
         android:background="@drawable/orange_button_background"
         app:layout_constraintTop_toBottomOf="@id/editTextUserName"
         app:layout_constraintStart_toStartOf="parent"

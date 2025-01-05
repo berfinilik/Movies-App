@@ -4,15 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:padding="@dimen/padding_small"
     android:background="@color/colorPrimary"
     tools:context=".ui.fragments.DetailFragment">
+
+    <TextView
+        android:id="@+id/movieDurationTextView2"
+        android:layout_width="@dimen/movie_duration_width"
+        android:layout_height="@dimen/movie_duration_height" />
 
     <ScrollView
         android:id="@+id/scrollView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/margin_medium"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,15 +28,15 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="16dp">
+            android:paddingBottom="@dimen/padding_medium">
 
             <ImageView
                 android:id="@+id/moviesImageView"
-                android:layout_width="303dp"
-                android:layout_height="313dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="90dp"
-                android:layout_marginEnd="20dp"
+                android:layout_width="@dimen/movie_imageview_detailwidth"
+                android:layout_height="@dimen/movie_imageview_detail_height"
+                android:layout_marginStart="@dimen/margin_large"
+                android:layout_marginTop="@dimen/margin_xxlarge"
+                android:layout_marginEnd="@dimen/margin_large"
                 android:scaleType="fitXY"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -40,22 +45,22 @@
 
             <ImageView
                 android:id="@+id/backImageView"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="@dimen/icon_size_small"
+                android:layout_height="@dimen/icon_size_small"
                 android:contentDescription="@string/back"
                 android:src="@drawable/back"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="@dimen/margin_small"
+                android:layout_marginTop="@dimen/margin_medium"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/back" />
+                app:srcCompat="@drawable/back"/>
 
             <ImageView
                 android:id="@+id/favImageView"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="10dp"
+                android:layout_width="@dimen/icon_size_medium"
+                android:layout_height="@dimen/icon_size_medium"
+                android:layout_marginTop="@dimen/margin_end_medium"
+                android:layout_marginEnd="@dimen/margin_small"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_favorite_normal" />
@@ -66,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textSize="24sp"
+                android:textSize="@dimen/text_size_title"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/backImageView"
                 app:layout_constraintEnd_toStartOf="@id/favImageView"
@@ -76,10 +81,10 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl"
-                android:layout_width="363dp"
+                android:layout_width="@dimen/layout_width"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="24dp"
-                android:layout_marginBottom="56dp"
+                android:layout_marginEnd="@dimen/margin_large"
+                android:layout_marginBottom="@dimen/margin_xxlarge"
                 android:background="@drawable/dark_blue_bg"
                 app:layout_constraintBottom_toTopOf="@+id/detailLinearLayout"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -93,9 +98,9 @@
                 android:id="@+id/detailLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/margin_medium"
                 android:orientation="vertical"
-                android:padding="16dp"
+                android:padding="@dimen/padding_large"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/moviesImageView">
 
@@ -103,32 +108,47 @@
                     android:id="@+id/linearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_xsmall"
                     android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/movieCategoryTextView2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_medium"
+                        android:layout_marginEnd="@dimen/margin_medium"
+                        android:ellipsize="none"
+                        android:maxLines="3"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size_medium"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/movieDurationTextView"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/movieReleaseYearTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2024"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/text_size_medium"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/movieDurationTextView"
-                        android:layout_width="103dp"
-                        android:layout_height="32dp"
-                        android:layout_marginStart="36dp"
+                        android:layout_width="@dimen/movie_duration_width"
+                        android:layout_height="@dimen/movie_duration_height"
+                        android:layout_marginStart="@dimen/margin_xxlarge"
                         android:drawableStart="@drawable/ic_duration_foreground"
-                        android:drawablePadding="4dp"
-                        android:text="124 dk"
-                        android:layout_marginTop="5dp"
+                        android:drawablePadding="@dimen/padding_small"
+                        android:layout_marginTop="@dimen/margin_xsmall"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/text_size_medium"
                         app:layout_constraintBottom_toBottomOf="@id/movieReleaseYearTextView"
                         app:layout_constraintStart_toEndOf="@id/movieReleaseYearTextView"
                         app:layout_constraintTop_toTopOf="@id/movieReleaseYearTextView"
@@ -138,17 +158,18 @@
                         android:id="@+id/movieCategoryTextView"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="16dp"
+                        android:layout_marginStart="@dimen/margin_medium"
+                        android:layout_marginEnd="@dimen/margin_medium"
                         android:ellipsize="none"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/text_size_medium"
                         android:maxLines="3"
                         app:layout_constraintStart_toEndOf="@id/movieDurationTextView"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -164,15 +185,15 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_height="@dimen/view_height"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginBottom="@dimen/margin_small"
                     android:background="@drawable/gradient" />
 
                 <LinearLayout
-                    android:layout_width="330dp"
-                    android:layout_height="58dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_width="@dimen/button_width_large"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_marginTop="@dimen/margin_top_small"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal">
 
@@ -182,36 +203,38 @@
                         android:layout_height="match_parent"
                         android:background="@drawable/orange_button_background"
                         android:drawableStart="@drawable/play"
-                        android:padding="20dp"
+                        android:drawablePadding="@dimen/padding_small"
                         android:text="@string/watch_trailer"
                         android:textColor="@color/white"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textSize="@dimen/text_size_medium"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:paddingHorizontal="@dimen/padding_medium"
+                        android:paddingVertical="@dimen/padding_small" />
+
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/addToSavedBtn"
-                        android:layout_width="65dp"
+                        android:layout_width="@dimen/button_width_medium"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="@dimen/margin_top_medium"
                         android:background="@drawable/orange_button_background"
-                        android:drawableStart="@drawable/download"
-                        android:padding="8dp"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:drawableTop="@drawable/download"
+                        android:gravity="center"
+                        android:padding="@dimen/padding_medium"/>
+
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/shareBtn"
-                        android:layout_width="78dp"
+                        android:layout_width="@dimen/button_width_small"
                         android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="@dimen/margin_top_medium"
                         android:background="@drawable/orange_button_background"
-                        android:drawableStart="@drawable/share"
-                        android:padding="20dp"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:drawableTop="@drawable/share"
+                        android:gravity="center"
+                        android:padding="@dimen/padding_medium"/>
+
+
 
                 </LinearLayout>
 
@@ -220,25 +243,29 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="test"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_medium" />
 
                 <TextView
                     android:id="@+id/textView12"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/margin_top_medium"
                     android:text="@string/cast_title"
                     android:textColor="@color/white"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textSize="@dimen/text_size_title" />
+
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/castRecyclerView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
+                    android:layout_width="355dp"
+                    android:layout_height="617dp"
+                    android:paddingStart="@dimen/recycler_padding_start"
+                    android:paddingEnd="@dimen/recycler_padding_end"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/item_cast" />
+
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

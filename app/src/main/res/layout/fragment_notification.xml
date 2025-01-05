@@ -4,24 +4,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:padding="@dimen/padding_default"
     android:background="@color/colorPrimary">
 
     <LinearLayout
         android:id="@+id/linearLayoutNotification"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/margin_medium"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <ImageView
             android:id="@+id/backIcon"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/icon_size_small"
+            android:layout_height="@dimen/icon_size_small"
             android:contentDescription="@string/back"
             android:src="@drawable/back" />
 
@@ -29,11 +29,11 @@
             android:id="@+id/txtNotificationTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/margin_small"
             android:gravity="center"
             android:text="@string/menu_notification"
             android:textColor="@android:color/white"
-            android:textSize="20sp"
+            android:textSize="@dimen/text_size_title"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -42,10 +42,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginTop="@dimen/margin_large"
         app:layout_constraintTop_toBottomOf="@id/linearLayoutNotification"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <RadioButton
             android:id="@+id/radioEnableNotifications"
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:text="@string/enable_notifications"
             android:textColor="@android:color/white"
-            android:textSize="16sp"
+            android:textSize="@dimen/text_size_large"
             android:checked="true" />
 
         <RadioButton
@@ -62,18 +62,19 @@
             android:layout_height="wrap_content"
             android:text="@string/disable_notifications"
             android:textColor="@android:color/white"
-            android:textSize="16sp" />
+            android:textSize="@dimen/text_size_large" />
     </RadioGroup>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSaveNotification"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/button_height"
         android:text="@string/save"
-        android:backgroundTint="@color/orange"
         android:textColor="@android:color/white"
+        android:background="@drawable/orange_button_background"
+        android:layout_marginTop="@dimen/margin_large"
         app:layout_constraintTop_toBottomOf="@id/radioGroupNotifications"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"/>
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

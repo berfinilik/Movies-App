@@ -38,6 +38,7 @@ class ChangeEmailFragment : Fragment() {
             findNavController().navigateUp()
         }
 
+
         binding.buttonChangeEmail.setOnClickListener {
             showPasswordDialog()
         }
@@ -50,10 +51,11 @@ class ChangeEmailFragment : Fragment() {
         if (user != null) {
             val currentEmail = user.email
             if (currentEmail != null) {
-                binding.textViewCurrentEmail.text = currentEmail
+                binding.editTextCurrentEmail.setText(currentEmail)
             }
         }
     }
+
 
     private fun showPasswordDialog() {
         val dialogView = layoutInflater.inflate(R.layout.dialog_enter_password, null)
@@ -75,6 +77,8 @@ class ChangeEmailFragment : Fragment() {
 
         dialog.show()
     }
+
+
     private fun reauthenticateAndChangeEmail(currentPassword: String) {
         val user = FirebaseAuth.getInstance().currentUser
         if (user != null && user.email != null) {

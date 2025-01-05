@@ -10,42 +10,41 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp"
+        android:padding="@dimen/padding_medium"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <ImageButton
             android:id="@+id/btnClose"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
+            android:layout_marginTop="@dimen/margin_top_medium"
+            android:layout_marginStart="@dimen/margin_start_medium"
+            android:layout_width="@dimen/button_icon_small"
+            android:layout_height="@dimen/button_icon_small"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/close"
             android:src="@drawable/close"/>
 
         <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="@dimen/view_weight_width"
+            android:layout_height="@dimen/view_weight_height"
             android:layout_weight="1" />
 
         <ImageButton
             android:id="@+id/btnShare"
-            android:layout_width="22dp"
-            android:layout_height="22dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
+            android:layout_width="@dimen/button_icon_medium"
+            android:layout_height="@dimen/button_icon_medium"
+            android:layout_marginTop="@dimen/margin_top_small"
+            android:layout_marginEnd="@dimen/margin_end_small"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/share"
             android:src="@drawable/share" />
-
     </LinearLayout>
 
     <ImageView
         android:id="@+id/fullScreenImageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/view_weight_width"
+        android:layout_height="@dimen/view_weight_height"
         android:adjustViewBounds="true"
         android:contentDescription="@string/fullscreen_image"
         android:scaleType="fitCenter"
@@ -53,5 +52,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

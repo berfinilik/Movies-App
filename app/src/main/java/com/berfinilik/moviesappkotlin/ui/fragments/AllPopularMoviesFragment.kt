@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.berfinilik.moviesappkotlin.MovieViewModelFactory
-import com.berfinilik.moviesappkotlin.adapters.PopularMoviesAdapter
+import com.berfinilik.moviesappkotlin.adapters.AllPopularMoviesAdapter
 import com.berfinilik.moviesappkotlin.api.ApiClient
 import com.berfinilik.moviesappkotlin.data.repository.MovieRepository
 import com.berfinilik.moviesappkotlin.databinding.FragmentAllPopularMoviesBinding
@@ -25,7 +25,7 @@ class AllPopularMoviesFragment : Fragment() {
         MovieViewModelFactory(repository)
     }
 
-    private lateinit var popularMoviesAdapter: PopularMoviesAdapter
+    private lateinit var allPopularMoviesAdapter: AllPopularMoviesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,13 +44,16 @@ class AllPopularMoviesFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        popularMoviesAdapter = PopularMoviesAdapter(emptyList()) { selectedMovie ->
-            val action = AllPopularMoviesFragmentDirections.actionAllPopularMoviesFragmentToDetailFragment(selectedMovie.id)
+        allPopularMoviesAdapter = AllPopularMoviesAdapter(emptyList()) { selectedMovie ->
+            val action =
+                AllPopularMoviesFragmentDirections.actionAllPopularMoviesFragmentToDetailFragment(
+                    selectedMovie.id
+                )
             findNavController().navigate(action)
         }
         binding.recyclerViewAllPopular.apply {
             layoutManager = GridLayoutManager(requireContext(), 2)
-            adapter = popularMoviesAdapter
+            adapter = allPopularMoviesAdapter
         }
     }
 
@@ -59,14 +62,12 @@ class AllPopularMoviesFragment : Fragment() {
             popularMoviesResponse?.let {
                 if (it.results.isNotEmpty()) {
                     binding.recyclerViewAllPopular.post {
-                        popularMoviesAdapter.updateData(it.results)
+                        allPopularMoviesAdapter.updateData(it.results)
                     }
                 }
             }
         }
     }
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()

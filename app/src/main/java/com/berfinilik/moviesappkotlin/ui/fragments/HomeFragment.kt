@@ -205,20 +205,17 @@ class HomeFragment : Fragment() {
                                 .diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.NONE)
                                 .into(binding.imageViewProfile)
                         } else {
-                            binding.imageViewProfile.setImageResource(R.drawable.adduserphoto)
                         }
                     }
                 }
                 .addOnFailureListener {
                     if (isAdded && _binding != null) {
                         binding.textViewUserName.text = String.format(getString(R.string.welcome_message), "Anonim")
-                        binding.imageViewProfile.setImageResource(R.drawable.adduserphoto)
                     }
                 }
         } else {
             if (isAdded && _binding != null) {
                 binding.textViewUserName.text = String.format(getString(R.string.welcome_message), "Anonim")
-                binding.imageViewProfile.setImageResource(R.drawable.adduserphoto)
             }
         }
     }
