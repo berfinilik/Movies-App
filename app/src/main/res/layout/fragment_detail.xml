@@ -98,7 +98,7 @@
                 android:id="@+id/detailLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_small"
                 android:orientation="vertical"
                 android:padding="@dimen/padding_large"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -108,7 +108,6 @@
                     android:id="@+id/linearLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_xsmall"
                     android:gravity="center">
 
                     <TextView
@@ -228,7 +227,7 @@
                         android:id="@+id/shareBtn"
                         android:layout_width="@dimen/button_width_small"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/margin_top_medium"
+                        android:layout_marginStart="@dimen/margin_top_small"
                         android:background="@drawable/orange_button_background"
                         android:drawableTop="@drawable/share"
                         android:gravity="center"

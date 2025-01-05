@@ -73,8 +73,8 @@
     <dimen name="movie_duration_height">32dp</dimen>
     <dimen name="movie_poster_width">100dp</dimen>
     <dimen name="movie_poster_height">180dp</dimen>
-    <dimen name="movie_imageview_detailwidth">303dp</dimen>
-    <dimen name="movie_imageview_detail_height">313dp</dimen>
+    <dimen name="movie_imageview_detailwidth">310dp</dimen>
+    <dimen name="movie_imageview_detail_height">340dp</dimen>
     <dimen name="film_image_width">188dp</dimen>
     <dimen name="film_image_height">193dp</dimen>
     <dimen name="cast_image_size">120dp</dimen>

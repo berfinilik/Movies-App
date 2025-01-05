@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MoviesAppKotlin</string>
+    <string name="app_name">Film World</string>
     <string name="login_title">Login</string>
     <string name="username_hint">Username</string>
     <string name="password_hint">Password</string>

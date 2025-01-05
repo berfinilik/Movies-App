@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MoviesAppKotlin</string>
+    <string name="app_name">Film Dünyası</string>
     <string name="login_title">Giriş Yap</string>
     <string name="username_hint">Kullanıcı Adı</string>
     <string name="password_hint">Şifre</string>

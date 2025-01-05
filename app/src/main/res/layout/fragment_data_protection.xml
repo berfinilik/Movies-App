@@ -32,7 +32,6 @@
             android:id="@+id/txtDataProtectionTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_small"
             android:text="@string/menu_data_protection"
             android:textColor="@android:color/white"
             android:textSize="@dimen/text_size_title"

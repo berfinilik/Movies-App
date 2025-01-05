@@ -7,6 +7,8 @@
     android:padding="@dimen/padding_default"
     android:background="@color/colorPrimary">
 
+
+
     <LinearLayout
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
@@ -32,7 +34,6 @@
             android:id="@+id/titleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_small"
             android:gravity="center"
             android:text="@string/personal_info"
             android:textColor="@android:color/white"
